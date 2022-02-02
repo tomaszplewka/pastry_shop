@@ -32,4 +32,18 @@
       left: 50%;
     }
   }
+
+  &-indicators {
+    margin: 0 !important;
+    bottom: -10px !important;
+
+    button {
+      flex: 1 !important;
+      margin: 0 !important;
+      border-top: 0 solid transparent !important;
+      border-bottom: 0 solid transparent !important;
+      height: 10px !important;
+      background-color: green !important;
+    }
+  }
 }

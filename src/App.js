@@ -1,6 +1,7 @@
 import React from "react";
 import CategoryList from "./components/category-list/CategoryList";
 import CarouselCustom from "./components/carousel-custom/CarouselCustom";
+import Slider from "./components/slider/Slider";
 
 import Button from "react-bootstrap/Button";
 
@@ -10,8 +11,9 @@ const App = () => {
   return (
     <div className="">
       <CarouselCustom />
-      {/* <CategoryList />
-      <Button variant="primary">Primary</Button>{" "} */}
+      <CategoryList />
+      <Slider />
+      {/* <Button variant="primary">Primary</Button>{" "} */}
     </div>
   );
 };

@@ -12,7 +12,7 @@ import "./CarouselCustom.scss";
 
 const CarouselCustom = () => {
   return (
-    <Carousel fade className="carousel-wrapper">
+    <Carousel fade controls={false} className="carousel-wrapper">
       <Carousel.Item>
         <img className="d-block w-100" src={carousel3} alt="First slide" />
         <Carousel.Caption bsPrefix="carousel-caption-custom">
