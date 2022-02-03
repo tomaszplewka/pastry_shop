@@ -63,7 +63,7 @@ const CategoryList = ({ categories }) => {
 
   return (
     <SectionContainer>
-      <div className="category__list--container">{renderedCategories}</div>
+      <div className="category-list__container">{renderedCategories}</div>
     </SectionContainer>
   );
 };

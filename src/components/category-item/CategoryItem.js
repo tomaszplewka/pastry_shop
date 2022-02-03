@@ -4,14 +4,14 @@ import "./CategoryItem.scss";
 
 const CategoryItem = ({ title, imageUrl }) => {
   return (
-    <div className="category__item--container">
-      <div className="category__item">
+    <div className="category-item__container">
+      <div className="category-item">
         <div
-          className="category__item--bg-img"
+          className="category-item__bg-img"
           style={{ backgroundImage: `url(${imageUrl})` }}
         ></div>
-        <div className="category__item--content">
-          <h3 className="category__item--title">{title}</h3>
+        <div className="category-item__content">
+          <h3 className="category-item__title">{title}</h3>
         </div>
       </div>
     </div>

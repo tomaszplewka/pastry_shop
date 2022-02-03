@@ -1,0 +1,95 @@
+.card-item {
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 13rem auto 4rem;
+  position: relative;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  transition: all 0.5s ease-in-out;
+  filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
+
+  &__img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    clip-path: polygon(
+      20% 0%,
+      80% 0%,
+      100% 20%,
+      100% 80%,
+      80% 100%,
+      20% 100%,
+      0% 80%,
+      0% 20%
+    );
+    transition: all 0.5s ease-in-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      transition: all 0.5s ease-in-out;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &::before {
+        background-color: rgba(0, 0, 0, 0.25);
+        transition: all 0.5s ease-in-out;
+      }
+    }
+
+    &-wrapper {
+      transform: translateY(-150px);
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  }
+
+  &__body {
+    width: 100%;
+    transform: translateY(150px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 150px);
+
+    .name {
+      text-align: center;
+      font-size: 1.25rem;
+      padding: 1rem;
+      padding-bottom: 0;
+    }
+    .price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    transition: all 0.5s ease-in-out;
+    filter: drop-shadow(0px 15px 25px rgba(50, 50, 0, 0.75));
+
+    .card-item__img {
+      transform: scale(1.25);
+      transition: all 3s ease;
+    }
+  }
+}
