@@ -1,0 +1,88 @@
+.card-testimonial {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 4rem 1rem 1rem;
+    padding: 2rem;
+    background-color: #eaf2ef;
+    transition: all 0.5s ease-in-out;
+    border-radius: 1rem;
+    filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
+
+    & > svg {
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 3rem;
+    }
+
+    &:hover {
+      transform: translateY(-10px);
+      transition: all 0.5s ease-in-out;
+      filter: drop-shadow(0px 15px 25px rgba(50, 50, 0, 0.75));
+    }
+  }
+
+  &__rating {
+    display: inline-block;
+    margin-right: 0.25rem;
+
+    &__container {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    svg > path {
+      fill: #f2af29;
+    }
+
+    .half {
+      display: inline-block;
+      width: 50%;
+      overflow: hidden;
+    }
+  }
+
+  &__reviewer {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-right: 1rem;
+    line-height: 1em;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__occupation {
+    font-size: 0.9rem;
+    opacity: 0.5;
+
+    &__container {
+      margin-top: -0.5rem;
+    }
+  }
+
+  &__review {
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    font-style: italic;
+
+    &__container {
+      position: relative;
+
+      svg {
+        position: absolute;
+
+        &:first-of-type {
+          top: 0;
+          left: -10px;
+        }
+
+        &:last-of-type {
+          bottom: 10px;
+          right: -10px;
+        }
+      }
+    }
+  }
+}

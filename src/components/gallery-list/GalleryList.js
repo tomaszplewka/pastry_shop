@@ -12,24 +12,35 @@ const data = [
   {
     tilt: "left",
     photo: Social2,
+    margin: "left",
   },
   {
     tilt: "right",
     photo: Social1,
+    margin: "right",
   },
   {
     tilt: "right",
     photo: Social3,
+    margin: "left",
   },
   {
     tilt: "left",
     photo: Social4,
+    margin: "right",
   },
 ];
 
 const GalleryList = () => {
   const renderedItems = data.map((item, index) => {
-    return <GalleryItem key={index} tilt={item.tilt} photo={item.photo} />;
+    return (
+      <GalleryItem
+        key={index}
+        tilt={item.tilt}
+        margin={item.margin}
+        photo={item.photo}
+      />
+    );
   });
   return <div className="gallery-list__container">{renderedItems}</div>;
 };

@@ -1,6 +1,10 @@
-.swiper-slide-shadow {
-  &-left,
-  &-right {
-    display: none !important;
+.swiper {
+  min-height: 400px !important;
+
+  &-slide-shadow {
+    &-left,
+    &-right {
+      display: none !important;
+    }
   }
 }

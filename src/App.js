@@ -4,19 +4,22 @@ import CarouselCustom from "./components/carousel-custom/CarouselCustom";
 
 import FeaturedItems from "./components/sections/featured-items/FeaturedItems";
 import SocialMediaGallery from "./components/sections/social-media-gallery/SocialMediaGallery";
-
-import Button from "react-bootstrap/Button";
+import DeliveryBanner from "./components/sections/delivery-banner/DeliveryBanner";
+import Testimonials from "./components/sections/testimonials/Testimonials";
+import Subscription from "./components/sections/subscription/Subscription";
 
 import "./App.scss";
 
 const App = () => {
   return (
     <div className="">
-      {/* <CarouselCustom />
-      <CategoryList /> */}
+      {/* <CarouselCustom /> */}
+      {/* <CategoryList /> */}
       {/* <FeaturedItems /> */}
-      <SocialMediaGallery />
-      {/* <Button variant="primary">Primary</Button>{" "} */}
+      {/* <SocialMediaGallery /> */}
+      {/* <DeliveryBanner /> */}
+      {/* <Testimonials /> */}
+      <Subscription />
     </div>
   );
 };
