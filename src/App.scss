@@ -14,6 +14,11 @@ ol {
 a {
   text-decoration: none;
   color: black;
+  cursor: pointer;
+
+  &:hover {
+    color: inherit;
+  }
 }
 
 * {

@@ -42,7 +42,7 @@ const GalleryList = () => {
       />
     );
   });
-  return <div className="gallery-list__container">{renderedItems}</div>;
+  return <div className="py-5 gallery-list__container">{renderedItems}</div>;
 };
 
 export default GalleryList;

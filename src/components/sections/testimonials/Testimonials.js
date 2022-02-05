@@ -3,6 +3,7 @@ import SectionTitle from "../../section-title/SectionTitle";
 import SectionContainer from "../../section-container/SectionContainer";
 import Slider from "../../slider/Slider";
 import CardTestimonial from "../../card-testimonial/CardTestimonial";
+import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 import { Autoplay, EffectCoverflow } from "swiper";
 
@@ -41,7 +42,7 @@ const data = [
 const sliderConfig = {
   modules: [Autoplay, EffectCoverflow],
   effect: "coverflow",
-  // autoplay: true,
+  autoplay: true,
   spaceBetween: 0,
   slidesPerView: 3,
   loop: true,
@@ -51,10 +52,18 @@ const sliderConfig = {
 
 const Testimonials = () => {
   return (
-    <SectionContainer customClass="py-5">
-      <SectionTitle title="We care about our clients" />
-      <Slider data={data} config={sliderConfig} render={CardTestimonial} />
-    </SectionContainer>
+    <section
+      className="position-relative"
+      style={{
+        background: "#eaf2ef",
+      }}
+    >
+      <SectionContainer customClass="py-5">
+        <SectionTitle title="We care about our clients" />
+        <Slider data={data} config={sliderConfig} render={CardTestimonial} />
+      </SectionContainer>
+      <ShapeDividerBottom color="#fffeff" />
+    </section>
   );
 };
 

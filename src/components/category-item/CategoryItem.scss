@@ -14,7 +14,7 @@
       // filter: drop-shadow(0 10px 10px rgba(93, 103, 91, 0.75));
       margin: 16px;
       position: relative;
-      border: 1px solid #000;
+      border: 1px solid #1e212b;
       z-index: 0;
       transition: all 0.5s ease;
       opacity: 1;
@@ -27,12 +27,12 @@
         & > div {
           & > div {
             &:last-child {
-              background-color: rgba(245, 245, 245, 1);
+              background-color: rgba(#eaf2ef, 1);
             }
 
             &:first-child {
               transform: scale(1.25);
-              transition: all 3s ease;
+              transition: all 1s ease;
             }
           }
         }
@@ -43,7 +43,7 @@
         content: "";
         display: block;
         position: absolute;
-        background-color: white;
+        background-color: #eaf2ef;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -56,32 +56,32 @@
         height: 100%;
         z-index: 1;
         transition: height 1s ease, opacity 0.8s ease,
-          background-color 0.3s ease;
+          background-color 0.5s ease;
       }
 
       &:after {
         height: calc(100% + 2px);
         width: 100%;
         z-index: 1;
-        transition: width 1s ease, opacity 0.8s ease, background-color 0.3s ease;
+        transition: width 1s ease, opacity 0.8s ease, background-color 0.5s ease;
       }
 
       &:hover,
       &:focus {
         &:before {
-          transition: height 0.2s ease, opacity 0.3s ease,
-            background-color 0.3s ease;
+          transition: height 0.5s ease, opacity 0.8s ease,
+            background-color 1s ease;
           height: 85%;
-          opacity: 0.7;
-          background-color: red;
+          opacity: 0.25;
+          background-color: #1e212b;
         }
 
         &:after {
-          transition: width 0.2s ease, opacity 0.3s ease,
-            background-color 0.3s ease;
+          transition: width 0.5s ease, opacity 0.8s ease,
+            background-color 1s ease;
           width: 85%;
-          opacity: 0.8;
-          background-color: blue;
+          opacity: 0.25;
+          background-color: #1e212b;
         }
       }
 
@@ -95,7 +95,7 @@
       height: 100%;
       background-position: center;
       background-size: cover;
-      transition: all 3s ease;
+      transition: all 0.5s ease;
     }
 
     &__content {
@@ -124,12 +124,13 @@
     &__title {
       margin: 0;
       padding: 0.5rem;
-      font-weight: 600;
+      font-weight: bolder;
       position: relative;
       z-index: 3;
       line-height: 1em;
       text-transform: lowercase;
-      font-size: 1.75rem;
+      font-size: 1.5rem;
+      color: #1e212b;
     }
   }
 }

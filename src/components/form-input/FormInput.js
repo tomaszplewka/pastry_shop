@@ -19,7 +19,7 @@ const FormInput = ({ onChange, label, ...otherProps }) => {
         onChange={onChange}
         style={
           inline
-            ? { width: "100%", margin: "0rem 0.5rem 0.75rem" }
+            ? { width: "100%", margin: "0rem 0rem 0.5rem" }
             : { width: "50%", margin: "0rem 0rem 0.75rem" }
         }
         {...otherProps}

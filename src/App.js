@@ -1,26 +1,27 @@
 import React from "react";
-import CategoryList from "./components/category-list/CategoryList";
 import CarouselCustom from "./components/carousel-custom/CarouselCustom";
-
+import Categories from "./components/sections/categories/Categories";
 import FeaturedItems from "./components/sections/featured-items/FeaturedItems";
 import SocialMediaGallery from "./components/sections/social-media-gallery/SocialMediaGallery";
 import DeliveryBanner from "./components/sections/delivery-banner/DeliveryBanner";
 import Testimonials from "./components/sections/testimonials/Testimonials";
 import Subscription from "./components/sections/subscription/Subscription";
+import Footer from "./components/sections/footer/Footer";
 
 import "./App.scss";
 
 const App = () => {
   return (
-    <div className="">
-      {/* <CarouselCustom /> */}
-      {/* <CategoryList /> */}
-      {/* <FeaturedItems /> */}
-      {/* <SocialMediaGallery /> */}
-      {/* <DeliveryBanner /> */}
-      {/* <Testimonials /> */}
+    <>
+      <CarouselCustom />
+      <Categories />
+      <FeaturedItems />
+      <DeliveryBanner />
+      <SocialMediaGallery />
+      <Testimonials />
       <Subscription />
-    </div>
+      <Footer />
+    </>
   );
 };
 

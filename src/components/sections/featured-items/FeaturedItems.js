@@ -3,6 +3,7 @@ import Slider from "../../slider/Slider";
 import SectionTitle from "../../section-title/SectionTitle";
 import SectionContainer from "../../section-container/SectionContainer";
 import CardItem from "../../card-item/CardItem";
+import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 import { Autoplay, EffectCoverflow } from "swiper";
 
@@ -41,21 +42,23 @@ const data = [
 const sliderConfig = {
   modules: [Autoplay, EffectCoverflow],
   effect: "coverflow",
-  // autoplay: true,
+  autoplay: true,
   spaceBetween: 0,
   slidesPerView: 3,
   loop: true,
   speed: 500,
   autoHeight: true,
-  // onSlideChange={() => console.log("slide change")}
 };
 
 const FeaturedItems = () => {
   return (
-    <SectionContainer customClass="py-5">
-      <SectionTitle title="Featured Items" />
-      <Slider data={data} config={sliderConfig} render={CardItem} />
-    </SectionContainer>
+    <section className="position-relative">
+      <SectionContainer customClass="py-5">
+        <SectionTitle title="Featured Items" />
+        <Slider data={data} config={sliderConfig} render={CardItem} />
+      </SectionContainer>
+      <ShapeDividerBottom color="#edffd9" />
+    </section>
   );
 };
 

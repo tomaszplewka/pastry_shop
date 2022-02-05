@@ -1,6 +1,5 @@
 import React from "react";
 import CategoryItem from "../category-item/CategoryItem";
-import SectionContainer from "../section-container/SectionContainer";
 
 import "./CategoryList.scss";
 
@@ -59,12 +58,8 @@ const CategoryList = ({ categories }) => {
     );
   });
 
-  // console.log("category list");
-
   return (
-    <SectionContainer>
-      <div className="category-list__container">{renderedCategories}</div>
-    </SectionContainer>
+    <div className=" py-5 category-list__container">{renderedCategories}</div>
   );
 };
 
