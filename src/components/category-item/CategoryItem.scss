@@ -6,15 +6,16 @@
     justify-content: center;
     align-items: center;
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    height: 300px;
-    width: 360px;
+    height: 250px;
+    width: 300px;
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
 
     &__container {
       // filter: drop-shadow(0 10px 10px rgba(93, 103, 91, 0.75));
-      margin: 16px;
+      margin: 0.5rem;
       position: relative;
-      border: 1px solid #1e212b;
+      border: 1px solid #f2af29;
       z-index: 0;
       transition: all 0.5s ease;
       opacity: 1;
@@ -73,7 +74,7 @@
             background-color 1s ease;
           height: 85%;
           opacity: 0.25;
-          background-color: #1e212b;
+          background-color: #f2af29;
         }
 
         &:after {
@@ -81,7 +82,7 @@
             background-color 1s ease;
           width: 85%;
           opacity: 0.25;
-          background-color: #1e212b;
+          background-color: #f2af29;
         }
       }
 
@@ -100,8 +101,8 @@
 
     &__content {
       background-color: rgba(245, 245, 245, 0.5);
-      height: 150px;
-      width: 180px;
+      height: 125px;
+      width: 150px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -118,18 +119,16 @@
         0% 50%
       );
       transition: all 0.5s ease-in-out;
-      cursor: pointer;
     }
 
     &__title {
       margin: 0;
-      padding: 0.5rem;
       font-weight: bolder;
       position: relative;
       z-index: 3;
       line-height: 1em;
       text-transform: lowercase;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: #1e212b;
     }
   }

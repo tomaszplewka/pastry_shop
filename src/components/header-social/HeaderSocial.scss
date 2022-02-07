@@ -1,0 +1,48 @@
+.header-social {
+  &__container {
+    padding: 0.75rem 0;
+    background: #1e212b;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+
+        &:not(:last-of-type) {
+          margin-right: 2rem;
+        }
+
+        a {
+          text-decoration: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+
+            path {
+              fill: #f2af29 !important;
+            }
+          }
+
+          span {
+            font-size: 0.9rem;
+            color: #eaf2ef;
+            line-height: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}
