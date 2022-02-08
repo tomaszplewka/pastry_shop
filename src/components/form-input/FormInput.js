@@ -2,7 +2,7 @@ import React from "react";
 
 import "./FormInput.scss";
 
-const FormInput = ({ onChange, label, ...otherProps }) => {
+const FormInput = ({ onChange, label, invert, ...otherProps }) => {
   const { inline, hide } = otherProps;
   return (
     <div
@@ -16,6 +16,7 @@ const FormInput = ({ onChange, label, ...otherProps }) => {
         {label}
       </label>
       <input
+        className={`${invert && "invert"}`}
         onChange={onChange}
         style={
           inline

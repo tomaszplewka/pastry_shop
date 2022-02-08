@@ -1,14 +1,14 @@
 .carousel {
   &__container {
     margin-top: 100px;
-    height: 700px;
+    height: 750px;
   }
 
   &-item {
-    height: 700px;
+    height: 750px;
 
     img {
-      height: 700px;
+      height: 750px;
       object-fit: cover;
       filter: brightness(0.7) saturate(150%) contrast(190%) hue-rotate(30deg);
     }

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import HeaderSocial from "./components/header-social/HeaderSocial";
-import Header from "./components/header/Header";
-import CarouselCustom from "./components/carousel-custom/CarouselCustom";
-import Categories from "./components/sections/categories/Categories";
-import FeaturedItems from "./components/sections/featured-items/FeaturedItems";
-import SocialMediaGallery from "./components/sections/social-media-gallery/SocialMediaGallery";
-import DeliveryBanner from "./components/sections/delivery-banner/DeliveryBanner";
-import Testimonials from "./components/sections/testimonials/Testimonials";
-import Subscription from "./components/sections/subscription/Subscription";
+import Header from "./components/sections/header/Header";
 import Footer from "./components/sections/footer/Footer";
-import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
+import FrontPage from "./components/pages/front-page/FrontPage";
+import AboutPage from "./components/pages/about-page/AboutPage";
+import ContactPage from "./components/pages/contact-page/ContactPage";
+import ShopPage from "./components/pages/shop-page/ShopPage";
+import Auth from "./components/pages/auth/Auth";
+
+import { Routes, Route } from "react-router-dom";
 
 import { auth } from "./components/modules/Firebase";
 
@@ -39,17 +37,16 @@ const App = () => {
 
   return (
     <>
-      <HeaderSocial />
       <Header />
-      <CarouselCustom />
-      <Categories />
-      <FeaturedItems />
-      <DeliveryBanner />
-      <SocialMediaGallery />
-      <Testimonials />
-      <Subscription />
+      <Routes>
+        <Route path="/" element={<FrontPage />} />
+        <Route path="/our-offer" element={<ShopPage />} />
+        <Route path="/about-us" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/sign-in" element={<Auth />} />
+        <Route path="/register" element={<Auth />} />
+      </Routes>
       <Footer />
-      <ScrollToTop />
     </>
   );
 };

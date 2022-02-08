@@ -2,12 +2,12 @@
   &__container {
     position: fixed;
     top: 44px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #eaf2ef;
-    left: 0;
-    right: 0;
     z-index: 9999;
 
     &.shrink {

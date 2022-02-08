@@ -23,6 +23,22 @@
   cursor: pointer !important;
   border-radius: 10px !important;
 
+  &.invert {
+    border-image-source: linear-gradient(#1e212b, #1e212b) !important;
+    box-shadow: inset 10px 10px 10px rgba(#1e212b, 0.2),
+      inset -10px -10px 10px rgba(#1e212b, 0.2), 0 10px 10px rgba(#1e212b, 1) !important;
+
+    &:after {
+      background: #1e212b;
+    }
+
+    &:hover {
+      color: #eaf2ef !important;
+      box-shadow: 5px 5px 10px rgba(#1e212b, 0.2),
+        -5px -5px 10px rgba(#1e212b, 0.2), 0 10px 10px rgba(#1e212b, 1) !important;
+    }
+  }
+
   &:after {
     content: "";
     position: absolute;

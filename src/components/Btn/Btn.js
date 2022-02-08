@@ -2,10 +2,10 @@ import React from "react";
 
 import "./Btn.scss";
 
-const Btn = ({ children, fullwidth, ...otherProps }) => {
+const Btn = ({ children, fullwidth, invert, ...otherProps }) => {
   return (
     <button
-      className="btn"
+      className={`btn ${invert && "invert"}`}
       {...otherProps}
       style={fullwidth ? { width: "100%" } : { width: "50%" }}
     >
