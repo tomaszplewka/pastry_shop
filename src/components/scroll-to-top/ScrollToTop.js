@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -9,15 +9,18 @@ import "./ScrollToTop.scss";
 library.add(faChevronUp);
 
 const ScrollToTop = () => {
+  const ref = useRef();
+
   useEffect(() => {
     const className = "show";
     const scrollTrigger = 60;
+    const target = ref.current;
 
     const onScrollChange = () => {
       if (window.scrollY >= scrollTrigger) {
-        document.querySelector(".scroll-to-top").classList.add(className);
+        target.classList.add(className);
       } else {
-        document.querySelector(".scroll-to-top").classList.remove(className);
+        target.classList.remove(className);
       }
     };
 
@@ -36,7 +39,7 @@ const ScrollToTop = () => {
   };
 
   return (
-    <div className="scroll-to-top" onClick={onBtnClick}>
+    <div ref={ref} className="scroll-to-top" onClick={onBtnClick}>
       <FontAwesomeIcon icon={["fas", "chevron-up"]} />
     </div>
   );

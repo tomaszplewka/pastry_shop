@@ -2,8 +2,10 @@ import { FirebaseConfig } from "./FirebaseConfig";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
+  onAuthStateChanged,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 
@@ -17,93 +19,159 @@ const Firebase = (() => {
   // Firestore
   const db = getFirestore();
 
-  const logInGoogle = async (setAppState, authorization = auth) => {
+  const subscribeToAuthStateChanges = (setUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        console.log("USER");
+        await saveUserData(user.uid, {
+          name: user.displayName,
+          email: user.email,
+        });
+        setUser({
+          name: user.displayName,
+          email: user.email,
+          id: user.uid,
+        });
+      } else {
+        // User is signed out
+        console.log("NO USER OR USER SIGNED OUT");
+        setUser({
+          name: null,
+          email: null,
+          id: null,
+        });
+      }
+    });
+
+    return unsubscribe;
+  };
+
+  const logInGoogle = async (navigate) => {
     try {
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ propmt: "select_account" });
-      const result = await signInWithPopup(authorization, provider);
+      await signInWithPopup(auth, provider);
+      navigate("/");
       // Get user's data
-      const { getNewDeck, gameState, showLoader } = await resolveUserData(
-        result.user.uid
-      );
+      // const { getNewDeck, gameState, showLoader } = await resolveUserData(
+      //   result.user.uid
+      // );
       // Set state
-      setTimeout(() => {
-        setAppState((prevState) => {
-          return {
-            ...prevState,
-            userId: result.user.uid,
-            getNewDeck,
-            isUserLoggedIn: true,
-            gameState,
-            showLoader,
-            displayName: result.user.displayName,
-            photoUrl: result.user.photoURL,
-          };
-        });
-      }, 1500);
+      // setTimeout(() => {
+      //   setAppState((prevState) => {
+      //     return {
+      //       ...prevState,
+      //       userId: result.user.uid,
+      //       getNewDeck,
+      //       isUserLoggedIn: true,
+      //       gameState,
+      //       showLoader,
+      //       displayName: result.user.displayName,
+      //       photoUrl: result.user.photoURL,
+      //     };
+      //   });
+      // }, 1500);
     } catch (error) {
       // Show alert
+      console.log(error.message);
     }
   };
 
-  const logOut = async (setAppState, authorization = auth) => {
+  const registerUserWithEmailAndPassword = async (data, navigate) => {
+    const { email, password } = data;
+
+    try {
+      const credentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = credentials.user;
+
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const logInEmailAndPassword = async (data) => {};
+
+  const logOut = async (setUser, authorization = auth) => {
     try {
       await signOut(authorization);
       // Set state
-      setAppState((prevState) => {
-        return {
-          ...prevState,
-          isUserLoggedIn: false,
-        };
+      console.log("USER IS SIGNED OUT");
+      setUser({
+        name: null,
+        email: null,
+        id: null,
       });
     } catch (error) {
       // Show alert
+      console.log(error.message);
+    }
+  };
+
+  const saveUserData = async (userId, data) => {
+    if (!userId) return;
+
+    // Get "users" collection
+    const docSnap = await getDoc(doc(db, "users", userId));
+    // Check if collection with userId already exists
+    if (!docSnap.exists()) {
+      try {
+        await setDoc(doc(db, "users", userId), {
+          data,
+          timestamp: Date.now(),
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
   const storeData = async (userId, data, setShowLoader) => {
     // Check if user exists
-    const isUserInDb = await userExists(userId);
-    try {
-      if (!isUserInDb) {
-        // Save brand-new user
-        await setDoc(doc(db, "users", userId), {
-          data,
-          timestamp: Date.now(),
-        });
-      } else {
-        // Merge with existing data
-        await setDoc(
-          doc(db, "users", userId),
-          {
-            data,
-            timestamp: Date.now(),
-          },
-          { merge: true }
-        );
-      }
-    } catch (error) {
-      // Show alert
-    }
-
-    if (setShowLoader) {
-      setTimeout(() => {
-        setShowLoader(false);
-      }, 1500);
-    }
+    // const isUserInDb = await userExists(userId);
+    // try {
+    //   if (!isUserInDb) {
+    //     // Save brand-new user
+    //     await setDoc(doc(db, "users", userId), {
+    //       data,
+    //       timestamp: Date.now(),
+    //     });
+    //   } else {
+    //     // Merge with existing data
+    //     await setDoc(
+    //       doc(db, "users", userId),
+    //       {
+    //         data,
+    //         timestamp: Date.now(),
+    //       },
+    //       { merge: true }
+    //     );
+    //   }
+    // } catch (error) {
+    //   // Show alert
+    // }
+    // if (setShowLoader) {
+    //   setTimeout(() => {
+    //     setShowLoader(false);
+    //   }, 1500);
+    // }
   };
 
-  const userExists = async (userId) => {
-    // Get "users" collection
-    const docSnap = await getDoc(doc(db, "users", userId));
-    // Check if collection with userId already exists
-    let isUserInDb = false;
-    if (docSnap.exists()) {
-      isUserInDb = true;
-    }
+  // const userExists = async (userId) => {
+  //   // Get "users" collection
+  //   const docSnap = await getDoc(doc(db, "users", userId));
+  //   // Check if collection with userId already exists
+  //   let isUserInDb = false;
+  //   if (docSnap.exists()) {
+  //     isUserInDb = true;
+  //   }
 
-    return isUserInDb;
-  };
+  //   return isUserInDb;
+  // };
 
   const resolveUserData = async (user = "guest") => {
     // Check if user already exists in LS
@@ -139,9 +207,12 @@ const Firebase = (() => {
 
   return {
     auth,
+    subscribeToAuthStateChanges,
     logInGoogle,
     logOut,
     storeData,
+    registerUserWithEmailAndPassword,
+    logInEmailAndPassword,
   };
 })();
 

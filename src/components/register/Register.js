@@ -1,15 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
 import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./Register.scss";
 
-const Register = () => {
+const Register = ({ auth, setIsRegisterActive }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    console.log("REGISTER CLICKED");
+
+    auth.registerUserWithEmailAndPassword(
+      {
+        email,
+        password,
+      },
+      navigate
+    );
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case "username":
+        setUsername(value);
+        break;
+      case "email":
+        setEmail(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      case "confirmPassword":
+        setConfirmPassword(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <section
       className="py-5 position-relative register__section"
@@ -23,14 +63,16 @@ const Register = () => {
           title="Register"
           subtitle={["Do you already have an account?", "Sign in here"]}
           urlSlug="sign-in"
+          handleSubmit={handleRegisterSubmit}
+          setIsRegisterActive={setIsRegisterActive}
         >
           <FormInput
             type="text"
-            id="Username"
-            name="Username"
-            // value={displayName}
+            id="username"
+            name="username"
+            value={username}
             required
-            // onChange={handleChange}
+            onChange={handleChange}
             label="Username"
             placeholder="Username"
             invert
@@ -39,9 +81,9 @@ const Register = () => {
             type="email"
             id="email"
             name="email"
-            // value={email}
+            value={email}
             required
-            // onChange={handleChange}
+            onChange={handleChange}
             label="email"
             placeholder="Email"
             invert
@@ -50,9 +92,9 @@ const Register = () => {
             type="password"
             id="password"
             name="password"
-            // value={password}
+            value={password}
             required
-            // onChange={handleChange}
+            onChange={handleChange}
             label="password"
             placeholder="Password"
             invert
@@ -61,9 +103,9 @@ const Register = () => {
             type="password"
             id="confirmPassword"
             name="confirmPassword"
-            // value={confirmPassword}
+            value={confirmPassword}
             required
-            // onChange={handleChange}
+            onChange={handleChange}
             label="confirm Password"
             placeholder="Confirm Password"
             invert
@@ -71,9 +113,6 @@ const Register = () => {
           <Btn type="submit" fullwidth invert>
             Register
           </Btn>
-          {/* <Btn type="button" fullWidth onClick={googleSignInStart}>
-          Sign In With Google
-        </Btn> */}
         </Form>
       </SectionContainer>
       <ShapeDividerBottom color="#eaf2ef" />

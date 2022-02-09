@@ -7,44 +7,42 @@ import ContactPage from "./components/pages/contact-page/ContactPage";
 import ShopPage from "./components/pages/shop-page/ShopPage";
 import Auth from "./components/pages/auth/Auth";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
-import { auth } from "./components/modules/Firebase";
+import Firebase from "./components/modules/Firebase";
 
 import "./App.scss";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name: null,
+    email: null,
+    id: null,
+  });
+  const navigate = useNavigate();
+  console.log("USER FROM APP: ", user);
 
   useEffect(() => {
-    // const auth = getAuth();
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     // User is signed in, see docs for a list of available properties
-    //     // https://firebase.google.com/docs/reference/js/firebase.User
-    //     const uid = user.uid;
-    //     // ...
-    //   } else {
-    //     // User is signed out
-    //     // ...
-    //   }
-    // });
-    // window.addEventListener("beforeunload", beforeUnloadCb);
-    // return () => {
-    //   window.removeEventListener("beforeunload", beforeUnloadCb);
-    // };
-  });
+    console.log("APP USE EFFECT");
+    const unsubscribe = Firebase.subscribeToAuthStateChanges(setUser);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <>
-      <Header />
+      <Header auth={Firebase} user={user} setUser={setUser} />
       <Routes>
         <Route path="/" element={<FrontPage />} />
         <Route path="/our-offer" element={<ShopPage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/sign-in" element={<Auth />} />
-        <Route path="/register" element={<Auth />} />
+        <Route path="/sign-in" element={<Auth auth={Firebase} user={user} />} />
+        <Route
+          path="/register"
+          element={<Auth auth={Firebase} user={user} />}
+        />
       </Routes>
       <Footer />
     </>

@@ -84,8 +84,10 @@
     justify-content: center;
     color: #1e212b;
 
-    a {
+    span {
       text-decoration: underline;
+      cursor: pointer;
+      transition: all 0.3s ease;
 
       &:hover {
         color: #fffeff;

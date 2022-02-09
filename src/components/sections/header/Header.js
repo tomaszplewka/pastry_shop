@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SectionContainer from "../../section-container/SectionContainer";
 
 import logo from "../../../assets/images/logo.png";
@@ -19,8 +19,9 @@ import "./HeaderSocial.scss";
 
 library.add(faShoppingCart, faSearch, faPhone, faEnvelope);
 
-const Header = () => {
+const Header = ({ auth, user, setUser }) => {
   const ref = useRef();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const className = "shrink";
@@ -41,6 +42,10 @@ const Header = () => {
       window.removeEventListener("beforeunload", onScrollChange);
     };
   }, []);
+
+  const handleSignOutClick = (e) => {
+    auth.logOut(setUser);
+  };
 
   return (
     <>
@@ -85,26 +90,29 @@ const Header = () => {
       <header ref={ref} className="header__container">
         <SectionContainer customClass="d-flex justify-content-between align-items-center">
           <div className="header__logo__container">
-            <Link to="/">
+            <NavLink to="/">
               <img className="header__logo" src={logo} alt="" />
-            </Link>
+            </NavLink>
           </div>
           <nav className="header__menu__container">
-            <Link to="/our-offer">
+            <NavLink to="/our-offer">
               <span>our offer</span>
-            </Link>
-            <Link to="about-us">
+            </NavLink>
+            <NavLink to="about-us">
               <span>about us</span>
-            </Link>
-            <Link to="contact">
+            </NavLink>
+            <NavLink to="contact">
               <span>contact</span>
-            </Link>
-            <Link to="sign-in">
-              <span>sign in</span>
-            </Link>
-            <Link to="sign-out">
-              <span>sign out</span>
-            </Link>
+            </NavLink>
+            {user.id ? (
+              <div onClick={(e) => handleSignOutClick(e)}>
+                <span>sign out</span>
+              </div>
+            ) : (
+              <NavLink to="sign-in">
+                <span>sign in</span>
+              </NavLink>
+            )}
             {/* <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
           <FontAwesomeIcon icon={["fas", "search"]} /> */}
           </nav>

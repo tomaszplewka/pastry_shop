@@ -5,9 +5,20 @@ import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
 
+import { useNavigate } from "react-router-dom";
+
 import "./SignIn.scss";
 
-const SignIn = () => {
+const SignIn = ({ auth, setIsRegisterActive }) => {
+  const navigate = useNavigate();
+
+  const handleSignInClick = (e) => {
+    e.preventDefault();
+    console.log("SIGN IN CLICKED");
+
+    auth.logInGoogle(navigate);
+  };
+
   return (
     <section
       className="py-5 position-relative sign-in__section"
@@ -21,6 +32,7 @@ const SignIn = () => {
           title="Sign In"
           subtitle={["First visit?", "Register here"]}
           urlSlug="register"
+          setIsRegisterActive={setIsRegisterActive}
         >
           <FormInput
             type="email"
@@ -44,7 +56,12 @@ const SignIn = () => {
             placeholder="Password"
             invert
           />
-          <Btn type="submit" fullwidth invert>
+          <Btn
+            onClick={(e) => handleSignInClick(e)}
+            type="submit"
+            fullwidth
+            invert
+          >
             Sign In
           </Btn>
           {/* <Btn type="button" fullWidth onClick={googleSignInStart}>
