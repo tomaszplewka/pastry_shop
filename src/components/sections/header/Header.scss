@@ -9,6 +9,7 @@
     align-items: center;
     background-color: #eaf2ef;
     z-index: 9999;
+    box-shadow: 0px 10px 20px rgba(50, 50, 0, 0.6);
 
     &.shrink {
       top: 0;
