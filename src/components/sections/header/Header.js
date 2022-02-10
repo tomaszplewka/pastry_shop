@@ -44,7 +44,7 @@ const Header = ({ auth, user, setUser }) => {
   }, []);
 
   const handleSignOutClick = (e) => {
-    auth.logOut(setUser);
+    auth.logOut();
   };
 
   return (

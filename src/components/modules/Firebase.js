@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 
@@ -87,25 +88,30 @@ const Firebase = (() => {
         password
       );
       const user = credentials.user;
-
       console.log(user);
+
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const logInEmailAndPassword = async (data) => {};
+  const logInEmailAndPassword = async (data, navigate) => {
+    const { email, password } = data;
 
-  const logOut = async (setUser, authorization = auth) => {
     try {
-      await signOut(authorization);
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const logOut = async () => {
+    try {
+      await signOut(auth);
       // Set state
       console.log("USER IS SIGNED OUT");
-      setUser({
-        name: null,
-        email: null,
-        id: null,
-      });
     } catch (error) {
       // Show alert
       console.log(error.message);
