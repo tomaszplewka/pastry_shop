@@ -26,7 +26,8 @@
 
         &__menu {
           &__container {
-            a {
+            a,
+            div {
               margin: 0 0.75rem;
               padding: 0 0.25rem;
               line-height: 25px;
@@ -50,6 +51,14 @@
               &:hover {
                 &::before {
                   width: 100%;
+                }
+              }
+
+              &.active {
+                &::before {
+                  background: #f2af29;
+                  width: 100%;
+                  border-radius: 50px;
                 }
               }
             }

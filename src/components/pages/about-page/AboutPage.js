@@ -1,10 +1,21 @@
 import React from "react";
+import HeaderBanner from "../../sections/header-banner/HeaderBanner";
+import TextSectionExample from "../../sections/text-section-example/TextSectionExample";
+import SocialMediaGallery from "../../sections/social-media-gallery/SocialMediaGallery";
+import Testimonials from "../../sections/testimonials/Testimonials";
+import Subscription from "../../sections/subscription/Subscription";
+
+import background from "../../../assets/images/carousel4.jpg";
 
 const AboutPage = () => {
   return (
-    <div>
-      <h1>ABOUT PAGE</h1>
-    </div>
+    <>
+      <HeaderBanner image={background} title="about us" position="530px" />
+      <TextSectionExample />
+      <SocialMediaGallery />
+      <Testimonials />
+      <Subscription />
+    </>
   );
 };
 
