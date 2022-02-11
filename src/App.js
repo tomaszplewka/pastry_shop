@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { connect } from "react-redux";
+
 import Header from "./components/sections/header/Header";
 import Footer from "./components/sections/footer/Footer";
 import FrontPage from "./components/pages/front-page/FrontPage";
@@ -7,46 +10,40 @@ import ContactPage from "./components/pages/contact-page/ContactPage";
 import ShopPage from "./components/pages/shop-page/ShopPage";
 import Auth from "./components/pages/auth/Auth";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import actions from "./actions";
 
 import Firebase from "./components/modules/Firebase";
 
 import "./App.scss";
 
-const App = () => {
-  const [user, setUser] = useState({
-    name: null,
-    email: null,
-    id: null,
-  });
-  const navigate = useNavigate();
-  console.log("USER FROM APP: ", user);
-
+const App = ({ setUser }) => {
   useEffect(() => {
     console.log("APP USE EFFECT");
     const unsubscribe = Firebase.subscribeToAuthStateChanges(setUser);
+
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [setUser]);
 
   return (
     <>
-      <Header auth={Firebase} user={user} setUser={setUser} />
+      <Header />
       <Routes>
         <Route path="/" element={<FrontPage />} />
         <Route path="/our-offer" element={<ShopPage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/sign-in" element={<Auth auth={Firebase} user={user} />} />
-        <Route
-          path="/register"
-          element={<Auth auth={Firebase} user={user} />}
-        />
+        <Route path="/sign-in" element={<Auth />} />
+        <Route path="/register" element={<Auth />} />
       </Routes>
       <Footer />
     </>
   );
 };
 
-export default App;
+const mapDispatchToProps = {
+  setUser: actions.setUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);

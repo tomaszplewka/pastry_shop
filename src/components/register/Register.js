@@ -1,15 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 import React, { useState } from "react";
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
 import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
-
-import { useNavigate } from "react-router-dom";
+import Firebase from "../modules/Firebase";
 
 import "./Register.scss";
 
-const Register = ({ auth, setIsRegisterActive }) => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +21,7 @@ const Register = ({ auth, setIsRegisterActive }) => {
     e.preventDefault();
     console.log("REGISTER CLICKED");
 
-    auth.registerUserWithEmailAndPassword(
+    Firebase.registerUserWithEmailAndPassword(
       {
         email,
         password,
@@ -64,7 +65,6 @@ const Register = ({ auth, setIsRegisterActive }) => {
           subtitle={["Do you already have an account?", "Sign in here"]}
           urlSlug="sign-in"
           handleSubmit={handleRegisterSubmit}
-          setIsRegisterActive={setIsRegisterActive}
         >
           <FormInput
             type="text"

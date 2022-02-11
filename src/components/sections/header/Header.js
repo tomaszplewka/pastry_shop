@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+
 import SectionContainer from "../../section-container/SectionContainer";
+import Firebase from "../../modules/Firebase";
 
 import logo from "../../../assets/images/logo.png";
 
@@ -14,14 +17,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
+import actions from "../../../actions";
+
 import "./Header.scss";
 import "./HeaderSocial.scss";
 
 library.add(faShoppingCart, faSearch, faPhone, faEnvelope);
 
-const Header = ({ auth, user, setUser }) => {
+const Header = ({ user, setIsRegisterActive }) => {
   const ref = useRef();
-  // const navigate = useNavigate();
 
   useEffect(() => {
     const className = "shrink";
@@ -44,10 +48,12 @@ const Header = ({ auth, user, setUser }) => {
   }, []);
 
   const handleSignOutClick = (e) => {
-    auth.logOut();
+    Firebase.logOut();
   };
 
-  // TU REDUXEM TRZEBA ZACIAGNAC STATE ODNOSNIE TEGO CZY MA BYC RENDEROWANA REGISTER CZY SIGN-IN FORM PO KLIKNIECIU SIGN-IN W MENU !!!
+  const handleSignInClick = (e) => {
+    setIsRegisterActive(false);
+  };
 
   return (
     <>
@@ -111,7 +117,7 @@ const Header = ({ auth, user, setUser }) => {
                 <span>sign out</span>
               </div>
             ) : (
-              <NavLink to="sign-in">
+              <NavLink onClick={handleSignInClick} to="sign-in">
                 <span>sign in</span>
               </NavLink>
             )}
@@ -124,4 +130,15 @@ const Header = ({ auth, user, setUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = {
+  setIsRegisterActive: actions.setIsRegisterActive,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

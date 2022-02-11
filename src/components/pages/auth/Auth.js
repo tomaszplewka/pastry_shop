@@ -1,25 +1,21 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+
 import SignIn from "../../sign-in/SignIn";
 import Register from "../../register/Register";
 import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
 import ScrollToTop from "../../scroll-to-top/ScrollToTop";
-import { Navigate } from "react-router-dom";
 
-const Auth = ({ auth, user }) => {
-  const [isRegisterActive, setIsRegisterActive] = useState(false);
-
+const Auth = ({ user, isRegisterActive }) => {
   return (
     <>
       {user.id ? (
         <Navigate to="/" />
       ) : (
         <>
-          {isRegisterActive ? (
-            <Register auth={auth} setIsRegisterActive={setIsRegisterActive} />
-          ) : (
-            <SignIn auth={auth} setIsRegisterActive={setIsRegisterActive} />
-          )}
+          {isRegisterActive ? <Register /> : <SignIn />}
           <Testimonials />
           <Subscription />
           <ScrollToTop />
@@ -29,4 +25,11 @@ const Auth = ({ auth, user }) => {
   );
 };
 
-export default Auth;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    isRegisterActive: state.isRegisterActive.isActive,
+  };
+};
+
+export default connect(mapStateToProps)(Auth);

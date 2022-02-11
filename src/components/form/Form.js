@@ -1,6 +1,8 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+
+import actions from "../../actions";
 
 import "./Form.scss";
 
@@ -40,4 +42,8 @@ const Form = ({
   );
 };
 
-export default Form;
+const mapDispatchToProps = {
+  setIsRegisterActive: actions.setIsRegisterActive,
+};
+
+export default connect(null, mapDispatchToProps)(Form);

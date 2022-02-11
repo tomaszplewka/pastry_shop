@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
 import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
-
-import { useNavigate } from "react-router-dom";
+import Firebase from "../modules/Firebase";
 
 import "./SignIn.scss";
 
-const SignIn = ({ auth, setIsRegisterActive }) => {
+const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const SignIn = ({ auth, setIsRegisterActive }) => {
   const handleSignIn = (e) => {
     e.preventDefault();
     console.log("SIGN IN CLICKED");
-    auth.logInEmailAndPassword(
+    Firebase.logInEmailAndPassword(
       {
         email,
         password,
@@ -29,7 +30,7 @@ const SignIn = ({ auth, setIsRegisterActive }) => {
   const handleSignInWithGoogle = (e) => {
     e.preventDefault();
     console.log("SIGN IN WITH GOOGLE CLICKED");
-    auth.logInGoogle(navigate);
+    Firebase.logInGoogle(navigate);
   };
 
   const handleChange = (e) => {
@@ -60,7 +61,6 @@ const SignIn = ({ auth, setIsRegisterActive }) => {
           title="Sign In"
           subtitle={["First visit?", "Register here"]}
           urlSlug="register"
-          setIsRegisterActive={setIsRegisterActive}
           handleSubmit={handleSignIn}
         >
           <FormInput

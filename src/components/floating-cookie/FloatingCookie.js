@@ -9,7 +9,6 @@ import "./FloatingCookie.scss";
 library.add(faCookieBite);
 
 const FloatingCookie = ({ position }) => {
-  console.log(position);
   return (
     <div
       className="floating-cookie__container"
