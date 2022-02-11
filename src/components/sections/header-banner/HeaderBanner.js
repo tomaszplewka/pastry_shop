@@ -9,8 +9,8 @@ import "./HeaderBanner.scss";
 const HeaderBanner = ({ image, title, position }) => {
   return (
     <section
-      className="header-banner__section"
-      style={{ backgroundImage: `url(${image})` }}
+      className="position-relative header-banner__section"
+      style={{ backgroundImage: `url(${image})`, zIndex: "1" }}
     >
       <SectionContainer customClass="h-100 position-relative">
         <div className="header-banner__content">

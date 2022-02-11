@@ -12,7 +12,6 @@ const TextSectionExample = () => {
       style={{
         background:
           "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
-        zIndex: "-1",
       }}
     >
       <SectionContainer>

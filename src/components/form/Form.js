@@ -24,9 +24,11 @@ const Form = ({
   return (
     <div className="mb-5 form__container">
       <h2 className="form__title">{title}</h2>
-      <p className="form__subtitle">
-        {subtitle[0]}&nbsp;<span onClick={handleClick}>{subtitle[1]}</span>
-      </p>
+      {subtitle ? (
+        <p className="form__subtitle">
+          {subtitle[0]}&nbsp;<span onClick={handleClick}>{subtitle[1]}</span>
+        </p>
+      ) : null}
       {handleSubmit ? (
         <form onSubmit={handleSubmit} className="form">
           {children}

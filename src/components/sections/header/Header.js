@@ -47,6 +47,8 @@ const Header = ({ auth, user, setUser }) => {
     auth.logOut();
   };
 
+  // TU REDUXEM TRZEBA ZACIAGNAC STATE ODNOSNIE TEGO CZY MA BYC RENDEROWANA REGISTER CZY SIGN-IN FORM PO KLIKNIECIU SIGN-IN W MENU !!!
+
   return (
     <>
       <section className="header-social__container">

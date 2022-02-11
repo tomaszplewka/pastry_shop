@@ -18,24 +18,14 @@ const Subscription = () => {
           <form className="subscription__form">
             <div className="subscription__input__container">
               <FormInput
-                type="text"
-                id="username"
-                name="username"
-                // value={username} required
-                // onChange={handleChange}
-                hide={1}
-                inline={1}
-                placeholder="Username"
-              />
-              <FormInput
                 type="email"
                 id="email"
                 name="email"
                 // value={email} required
                 // onChange={handleChange}
-                hide={1}
-                inline={1}
                 placeholder="Email"
+                hide
+                fullwidth
               />
             </div>
             <Btn type="submit" fullwidth={true}>

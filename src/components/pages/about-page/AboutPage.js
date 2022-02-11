@@ -4,6 +4,7 @@ import TextSectionExample from "../../sections/text-section-example/TextSectionE
 import SocialMediaGallery from "../../sections/social-media-gallery/SocialMediaGallery";
 import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
+import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
 import background from "../../../assets/images/carousel4.jpg";
 
@@ -15,6 +16,7 @@ const AboutPage = () => {
       <SocialMediaGallery />
       <Testimonials />
       <Subscription />
+      <ScrollToTop />
     </>
   );
 };
