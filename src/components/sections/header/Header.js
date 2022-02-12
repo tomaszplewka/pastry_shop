@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 import SectionContainer from "../../section-container/SectionContainer";
+import CartIcon from "../../cart-icon/CartIcon";
+import CartDropdown from "../../cart-dropdown/CartDropdown";
 import Firebase from "../../modules/Firebase";
 
 import logo from "../../../assets/images/logo.png";
@@ -24,7 +26,7 @@ import "./HeaderSocial.scss";
 
 library.add(faShoppingCart, faSearch, faPhone, faEnvelope);
 
-const Header = ({ user, setIsRegisterActive }) => {
+const Header = ({ user, isCartOpen, setIsRegisterActive }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -96,7 +98,7 @@ const Header = ({ user, setIsRegisterActive }) => {
         </SectionContainer>
       </section>
       <header ref={ref} className="header__container">
-        <SectionContainer customClass="d-flex justify-content-between align-items-center">
+        <SectionContainer customClass="d-flex justify-content-between align-items-center position-relative">
           <div className="header__logo__container">
             <NavLink to="/">
               <img className="header__logo" src={logo} alt="" />
@@ -121,9 +123,10 @@ const Header = ({ user, setIsRegisterActive }) => {
                 <span>sign in</span>
               </NavLink>
             )}
-            {/* <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
-          <FontAwesomeIcon icon={["fas", "search"]} /> */}
+            <CartIcon />
+            {/* <FontAwesomeIcon icon={["fas", "search"]} /> */}
           </nav>
+          {isCartOpen ? <CartDropdown /> : null}
         </SectionContainer>
       </header>
     </>
@@ -131,9 +134,9 @@ const Header = ({ user, setIsRegisterActive }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.user,
+    isCartOpen: state.isCartOpen.isCartOpen,
   };
 };
 

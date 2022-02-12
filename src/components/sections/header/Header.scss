@@ -61,6 +61,10 @@
                 }
               }
             }
+
+            .cart-icon__container {
+              transform: scale(0.75);
+            }
           }
         }
       }
@@ -96,7 +100,7 @@
         transition: all 0.3s ease;
         cursor: pointer;
 
-        span {
+        & > span {
           display: inline-block;
           color: #eaf2ef;
           mix-blend-mode: difference;

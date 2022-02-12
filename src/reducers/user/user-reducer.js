@@ -22,6 +22,7 @@ export const isRegisterActiveReducer = (state = false, action) => {
   switch (action.type) {
     case userActionTypes.SET_IS_REGISTER_ACTIVE:
       return {
+        ...state,
         isActive: action.payload,
       };
     default:
