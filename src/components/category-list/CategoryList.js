@@ -17,10 +17,10 @@ const data = [
     category: "croissants",
     photoUrl: croissants,
   },
-  {
-    category: "catering",
-    photoUrl: catering,
-  },
+  // {
+  //   category: "catering",
+  //   photoUrl: catering,
+  // },
   {
     category: "cookies",
     photoUrl: cookies,
@@ -37,10 +37,10 @@ const data = [
     category: "pies",
     photoUrl: pies,
   },
-  {
-    category: "giftBoxes",
-    photoUrl: giftBoxes,
-  },
+  // {
+  //   category: "giftBoxes",
+  //   photoUrl: giftBoxes,
+  // },
   {
     category: "donuts",
     photoUrl: donuts,

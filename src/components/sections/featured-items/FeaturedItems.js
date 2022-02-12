@@ -14,25 +14,25 @@ import chocoCroissants from "../../../assets/images/croissants/chocolate-croissa
 
 const data = [
   {
-    photo: extraLargeCroissants,
+    image: extraLargeCroissants,
     name: "extra large croissants",
     price: 4,
     quantity: "each",
   },
   {
-    photo: peanutButterCroissants,
+    image: peanutButterCroissants,
     name: "peanut butter croissants",
     price: 5,
     quantity: "each",
   },
   {
-    photo: plainCroissants,
+    image: plainCroissants,
     name: "plain croissants",
     price: 2,
     quantity: "each",
   },
   {
-    photo: chocoCroissants,
+    image: chocoCroissants,
     name: "chocolate croissants",
     price: 5,
     quantity: "each",
