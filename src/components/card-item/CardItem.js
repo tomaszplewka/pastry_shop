@@ -1,12 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import Btn from "../Btn/Btn";
+
+import actions from "../../actions";
 
 import "./CardItem.scss";
 
-const CardItem = ({ item, addToCard }) => {
-  const { name, price, image, quantity, id, availability } = item;
+const CardItem = ({ item, cartBtn, addToCart }) => {
+  const { name, price, image, price_per, id, availability } = item;
   return (
-    <div className={`card-item ${addToCard ? "extend" : ""}`}>
+    <div className={`card-item ${cartBtn ? "extend" : ""}`}>
       <div className="card-item__img__container">
         <div
           className="card-item__img"
@@ -17,9 +21,9 @@ const CardItem = ({ item, addToCard }) => {
       </div>
       <div className="card-item__body">
         <span className="name">{name}</span>
-        <span className="price">{`$${price} / ${quantity}`}</span>
-        {addToCard ? (
-          <Btn invert fullwidth>
+        <span className="price">{`$${price} / ${price_per}`}</span>
+        {cartBtn ? (
+          <Btn onClick={() => addToCart(item)} invert fullwidth>
             add to cart
           </Btn>
         ) : null}
@@ -28,4 +32,8 @@ const CardItem = ({ item, addToCard }) => {
   );
 };
 
-export default CardItem;
+const mapDispatchToProps = {
+  addToCart: actions.addToCart,
+};
+
+export default connect(null, mapDispatchToProps)(CardItem);

@@ -6,22 +6,31 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import actions from "../../actions";
+import { selectCartItemsQuantity } from "../../reducers/cart/cart-selectors";
 
 import "./CartIcon.scss";
 
 library.add(faShoppingCart);
 
-const CartIcon = ({ toggleCart }) => {
+const CartIcon = ({ toggleCart, cartQuantity }) => {
   return (
     <span className="cart-icon__container" onClick={toggleCart}>
       <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
-      <span className="cart-icon__quantity">10</span>
+      {cartQuantity ? (
+        <span className="cart-icon__quantity">{cartQuantity}</span>
+      ) : null}
     </span>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    cartQuantity: selectCartItemsQuantity(state),
+  };
 };
 
 const mapDispatchToProps = {
   toggleCart: actions.toggleCart,
 };
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

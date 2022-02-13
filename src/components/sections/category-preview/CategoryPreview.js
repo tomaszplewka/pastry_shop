@@ -20,7 +20,7 @@ const CategoryPreview = () => {
           {category.items
             .filter((item, index) => index < 3)
             .map((item, index) => (
-              <CardItem key={index} item={item} addToCard />
+              <CardItem key={index} item={item} cartBtn />
             ))}
         </div>
       </div>

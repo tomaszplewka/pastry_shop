@@ -54,7 +54,7 @@ export const data = [
         image: treat1,
         name: "sour worms",
         price: 10,
-        quantity: "bulk",
+        price_per: "bulk",
         availability: "available",
       },
       {
@@ -62,7 +62,7 @@ export const data = [
         image: treat2,
         name: "pink lollipops",
         price: 16,
-        quantity: "bulk",
+        price_per: "bulk",
         availability: "sold out",
       },
       {
@@ -70,7 +70,7 @@ export const data = [
         image: treat3,
         name: "classic candies",
         price: 10,
-        quantity: "bulk",
+        price_per: "bulk",
         availability: "available",
       },
       {
@@ -78,7 +78,7 @@ export const data = [
         image: treat4,
         name: "chocolate glazed lollipops",
         price: 13,
-        quantity: "bulk",
+        price_per: "bulk",
         availability: "available",
       },
       {
@@ -86,7 +86,7 @@ export const data = [
         image: treat5,
         name: "chocolate candies",
         price: 15,
-        quantity: "bulk",
+        price_per: "bulk",
         availability: "sold out",
       },
     ],
@@ -99,7 +99,7 @@ export const data = [
         image: pie1,
         name: "raspberry pie",
         price: 16,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -107,7 +107,7 @@ export const data = [
         image: pie2,
         name: "pumpkin pie",
         price: 12,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
       {
@@ -115,7 +115,7 @@ export const data = [
         image: pie3,
         name: "plum pie",
         price: 12,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -123,7 +123,7 @@ export const data = [
         image: pie4,
         name: "orange pie",
         price: 14,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -131,7 +131,7 @@ export const data = [
         image: pie5,
         name: "carrot pie",
         price: 15,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
     ],
@@ -144,7 +144,7 @@ export const data = [
   //       image: catering1,
   //       name: "catering 1",
   //       price: 45,
-  //       quantity: "person",
+  //       price_per: "person",
   //       availability: "available",
   //     },
   //     {
@@ -152,7 +152,7 @@ export const data = [
   //       image: catering2,
   //       name: "catering 2",
   //       price: 40,
-  //       quantity: "person",
+  //       price_per: "person",
   //       availability: "available",
   //     },
   //     {
@@ -160,7 +160,7 @@ export const data = [
   //       image: catering3,
   //       name: "catering 3",
   //       price: 50,
-  //       quantity: "person",
+  //       price_per: "person",
   //       availability: "sold out",
   //     },
   //     {
@@ -168,7 +168,7 @@ export const data = [
   //       image: catering4,
   //       name: "catering 4",
   //       price: 35,
-  //       quantity: "person",
+  //       price_per: "person",
   //       availability: "available",
   //     },
   //   ],
@@ -181,7 +181,7 @@ export const data = [
         image: cake1,
         name: "strawberry cake",
         price: 12,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -189,7 +189,7 @@ export const data = [
         image: cake2,
         name: "cake with chocolate topping",
         price: 15,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
       {
@@ -197,7 +197,7 @@ export const data = [
         image: cake3,
         name: "blackberry cake",
         price: 12,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -205,7 +205,7 @@ export const data = [
         image: cake4,
         name: "coffee cake",
         price: 13,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -213,7 +213,7 @@ export const data = [
         image: cake5,
         name: "chocolate cake",
         price: 15,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
     ],
@@ -226,7 +226,7 @@ export const data = [
         image: donut1,
         name: "pink donut",
         price: 5,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -234,7 +234,7 @@ export const data = [
         image: donut2,
         name: "honey donut",
         price: 6,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -242,7 +242,7 @@ export const data = [
         image: donut3,
         name: "crispy donut",
         price: 5,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -250,7 +250,7 @@ export const data = [
         image: donut4,
         name: "chocolate donut",
         price: 7,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
       {
@@ -258,7 +258,7 @@ export const data = [
         image: donut5,
         name: "blue donut",
         price: 6,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
     ],
@@ -271,7 +271,7 @@ export const data = [
   //       image: giftBox1,
   //       name: "donuts gift box",
   //       price: 15,
-  //       quantity: "each",
+  //       price_per: "each",
   //       availability: "available",
   //     },
   //     {
@@ -279,7 +279,7 @@ export const data = [
   //       image: giftBox2,
   //       name: "custom gift box",
   //       price: 20,
-  //       quantity: "each",
+  //       price_per: "each",
   //       availability: "available",
   //     },
   //     {
@@ -287,7 +287,7 @@ export const data = [
   //       image: giftBox3,
   //       name: "cookies set 1 gift box",
   //       price: 13,
-  //       quantity: "each",
+  //       price_per: "each",
   //       availability: "available",
   //     },
   //     {
@@ -295,7 +295,7 @@ export const data = [
   //       image: giftBox4,
   //       name: "cookies set 2 gift box",
   //       price: 15,
-  //       quantity: "each",
+  //       price_per: "each",
   //       availability: "sold out",
   //     },
   //     {
@@ -303,7 +303,7 @@ export const data = [
   //       image: giftBox5,
   //       name: "candies gift box",
   //       price: 17,
-  //       quantity: "each",
+  //       price_per: "each",
   //       availability: "available",
   //     },
   //   ],
@@ -316,7 +316,7 @@ export const data = [
         image: cookie1,
         name: "oat cookie",
         price: 2,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -324,7 +324,7 @@ export const data = [
         image: cookie2,
         name: "gingerbread cookie",
         price: 3,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
       {
@@ -332,7 +332,7 @@ export const data = [
         image: cookie3,
         name: "cocoa cookie with peanuts",
         price: 3,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -340,7 +340,7 @@ export const data = [
         image: cookie4,
         name: "chocolate chip cookie",
         price: 3,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -348,7 +348,7 @@ export const data = [
         image: cookie5,
         name: "butter cookie",
         price: 2,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
     ],
@@ -361,7 +361,7 @@ export const data = [
         image: croissant1,
         name: "chocolate croissant",
         price: 4,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -369,7 +369,7 @@ export const data = [
         image: croissant2,
         name: "peanut butter croissant",
         price: 5,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
       {
@@ -377,7 +377,7 @@ export const data = [
         image: croissant3,
         name: "plain croissant",
         price: 3,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -385,7 +385,7 @@ export const data = [
         image: croissant4,
         name: "sugar croissant",
         price: 4,
-        quantity: "each",
+        price_per: "each",
         availability: "available",
       },
       {
@@ -393,7 +393,7 @@ export const data = [
         image: croissant5,
         name: "xl croissant",
         price: 4,
-        quantity: "each",
+        price_per: "each",
         availability: "sold out",
       },
     ],

@@ -136,7 +136,7 @@ const Header = ({ user, isCartOpen, setIsRegisterActive }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    isCartOpen: state.isCartOpen.isCartOpen,
+    isCartOpen: state.cart.isCartOpen,
   };
 };
 
