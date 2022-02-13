@@ -1,0 +1,33 @@
+.cart-list {
+  &__section {
+    margin-top: 80px;
+    padding-top: 8rem !important;
+
+    div {
+      & > .btn {
+        width: auto !important;
+      }
+    }
+  }
+
+  &__empty {
+    text-align: center;
+  }
+
+  &__items {
+    &__container {
+    }
+
+    &__heading {
+      display: flex;
+
+      & > span {
+        flex: 1;
+
+        &:first-child {
+          flex: 2;
+        }
+      }
+    }
+  }
+}

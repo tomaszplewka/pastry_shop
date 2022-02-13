@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import SignIn from "../../sign-in/SignIn";
 import Register from "../../register/Register";
 import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
 import ScrollToTop from "../../scroll-to-top/ScrollToTop";
+
+import {
+  selectUser,
+  selectIsRegisterActive,
+} from "../../../reducers/user/user-selectors";
 
 const Auth = ({ user, isRegisterActive }) => {
   return (
@@ -25,11 +31,9 @@ const Auth = ({ user, isRegisterActive }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    isRegisterActive: state.isRegisterActive.isActive,
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  user: selectUser,
+  isRegisterActive: selectIsRegisterActive,
+});
 
 export default connect(mapStateToProps)(Auth);

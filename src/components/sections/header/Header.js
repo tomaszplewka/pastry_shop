@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import SectionContainer from "../../section-container/SectionContainer";
 import CartIcon from "../../cart-icon/CartIcon";
@@ -20,13 +21,16 @@ import {
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import actions from "../../../actions";
+import { selectIsCartOpen } from "../../../reducers/cart/cart-selectors";
+import { selectUser } from "../../../reducers/user/user-selectors";
+import { scrollUtility } from "../../utilities/scroll-utility";
 
 import "./Header.scss";
 import "./HeaderSocial.scss";
 
 library.add(faShoppingCart, faSearch, faPhone, faEnvelope);
 
-const Header = ({ user, isCartOpen, setIsRegisterActive }) => {
+const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -50,11 +54,22 @@ const Header = ({ user, isCartOpen, setIsRegisterActive }) => {
   }, []);
 
   const handleSignOutClick = (e) => {
+    scrollUtility();
     Firebase.logOut();
+    handleNavLinkClick();
   };
 
   const handleSignInClick = (e) => {
+    scrollUtility();
     setIsRegisterActive(false);
+    handleNavLinkClick();
+  };
+
+  const handleNavLinkClick = () => {
+    scrollUtility();
+    if (isCartOpen) {
+      toggleCart();
+    }
   };
 
   return (
@@ -100,18 +115,18 @@ const Header = ({ user, isCartOpen, setIsRegisterActive }) => {
       <header ref={ref} className="header__container">
         <SectionContainer customClass="d-flex justify-content-between align-items-center position-relative">
           <div className="header__logo__container">
-            <NavLink to="/">
+            <NavLink onClick={handleNavLinkClick} to="/">
               <img className="header__logo" src={logo} alt="" />
             </NavLink>
           </div>
           <nav className="header__menu__container">
-            <NavLink to="/our-offer">
+            <NavLink onClick={handleNavLinkClick} to="/our-offer">
               <span>our offer</span>
             </NavLink>
-            <NavLink to="about-us">
+            <NavLink onClick={handleNavLinkClick} to="about-us">
               <span>about us</span>
             </NavLink>
-            <NavLink to="contact">
+            <NavLink onClick={handleNavLinkClick} to="contact">
               <span>contact</span>
             </NavLink>
             {user.id ? (
@@ -133,15 +148,14 @@ const Header = ({ user, isCartOpen, setIsRegisterActive }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    isCartOpen: state.cart.isCartOpen,
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  user: selectUser,
+  isCartOpen: selectIsCartOpen,
+});
 
 const mapDispatchToProps = {
   setIsRegisterActive: actions.setIsRegisterActive,
+  toggleCart: actions.toggleCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
+import { scrollUtility } from "../utilities/scroll-utility";
+
 import "./ScrollToTop.scss";
 
 library.add(faChevronUp);
@@ -31,12 +33,7 @@ const ScrollToTop = () => {
     };
   }, []);
 
-  const onBtnClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const onBtnClick = () => scrollUtility();
 
   return (
     <div ref={ref} className="scroll-to-top" onClick={onBtnClick}>

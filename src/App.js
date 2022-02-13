@@ -8,6 +8,7 @@ import FrontPage from "./components/pages/front-page/FrontPage";
 import AboutPage from "./components/pages/about-page/AboutPage";
 import ContactPage from "./components/pages/contact-page/ContactPage";
 import ShopPage from "./components/pages/shop-page/ShopPage";
+import Cart from "./components/pages/cart-page/CartPage";
 import Auth from "./components/pages/auth/Auth";
 
 import actions from "./actions";
@@ -34,6 +35,7 @@ const App = ({ setUser }) => {
         <Route path="/our-offer" element={<ShopPage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/sign-in" element={<Auth />} />
         <Route path="/register" element={<Auth />} />
       </Routes>

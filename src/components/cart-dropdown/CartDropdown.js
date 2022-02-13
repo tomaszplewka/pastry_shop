@@ -1,17 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Btn from "../Btn/Btn";
-import CartItem from "../cart-item/CartItem";
+import CartDropdownItem from "../cart-dropdown-item/CartDropdownItem";
 
 import { selectCartItems } from "../../reducers/cart/cart-selectors";
 
+import actions from "../../actions";
+import { scrollUtility } from "../utilities/scroll-utility";
+
 import "./CartDropdown.scss";
 
-const CartDropdown = ({ items }) => {
+const CartDropdown = ({ items, dispatch }) => {
+  const navigate = useNavigate();
+
   const renderedItems = items.map((item) => {
-    return <CartItem key={item.id} item={item} />;
+    return <CartDropdownItem key={item.id} item={item} />;
   });
+
+  const handleBtnClick = (e) => {
+    scrollUtility();
+    navigate("/cart");
+    dispatch(actions.toggleCart());
+  };
 
   return (
     <div className="cart-dropdown__container">
@@ -25,8 +37,8 @@ const CartDropdown = ({ items }) => {
         )}
       </div>
       {renderedItems.length ? (
-        <Btn fullwidth invert>
-          checkout
+        <Btn onClick={handleBtnClick} fullwidth invert>
+          review cart
         </Btn>
       ) : null}
     </div>
