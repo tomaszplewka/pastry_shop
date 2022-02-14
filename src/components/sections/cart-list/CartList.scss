@@ -16,17 +16,49 @@
 
   &__items {
     &__container {
+      background-color: #fffeff;
+      filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
+      border-radius: 10px;
+      margin: 4rem 0;
     }
 
     &__heading {
       display: flex;
+      border-bottom: 2px solid rgba(#1e212b, 0.25);
 
       & > span {
+        padding: 2rem;
         flex: 1;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
 
         &:first-child {
           flex: 2;
+          text-align: left;
         }
+      }
+    }
+
+    &__total {
+      margin: 2rem;
+      display: flex;
+      justify-content: flex-end;
+
+      span {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+
+    &__btns {
+      margin: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .btn {
+        margin-bottom: 2rem !important;
       }
     }
   }

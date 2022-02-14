@@ -6,17 +6,23 @@ import { createStructuredSelector } from "reselect";
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import Btn from "../../Btn/Btn";
+import CartItem from "../../cart-item/CartItem";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
-import { selectCartItems } from "../../../reducers/cart/cart-selectors";
+import { scrollUtility } from "../../utilities/scroll-utility";
+
+import {
+  selectCartItems,
+  selectCartItemsTotal,
+} from "../../../reducers/cart/cart-selectors";
 
 import "./CartList.scss";
 
-const CartList = ({ items }) => {
+const CartList = ({ items, getTotal }) => {
   const navigate = useNavigate();
 
   const renderedCartItems = items.map((item) => {
-    return "KOKO";
+    return <CartItem key={item.id} item={item} />;
   });
 
   return (
@@ -30,22 +36,35 @@ const CartList = ({ items }) => {
       <SectionContainer>
         <SectionTitle title="your cart" />
         {renderedCartItems.length ? (
-          <div className="my-5 cart-list__items__container">
+          <div className="cart-list__items__container">
             <div className="cart-list__items__heading">
               <span>Item</span>
               <span>Qty</span>
               <span>Price</span>
-              <span>Total</span>
+              <span>Subtotal</span>
               <span>Remove</span>
-              {/* <span>&#215;</span> */}
             </div>
             <div className="cart-list__items">{renderedCartItems}</div>
-            <div className="cart-list__items__total"></div>
+            <div className="cart-list__items__total">
+              <span>Total: ${getTotal}</span>
+            </div>
             <div className="cart-list__items__btns">
-              <Btn onClick={() => navigate("/our-offer")} invert>
+              <Btn
+                onClick={() => {
+                  scrollUtility();
+                  navigate("/our-offer");
+                }}
+                invert
+              >
                 continue shopping
               </Btn>
-              <Btn onClick={() => navigate("/checkout")} invert>
+              <Btn
+                onClick={() => {
+                  scrollUtility();
+                  navigate("/checkout");
+                }}
+                invert
+              >
                 proceed to checkout
               </Btn>
             </div>
@@ -70,6 +89,7 @@ const CartList = ({ items }) => {
 
 const mapStateToProps = createStructuredSelector({
   items: selectCartItems,
+  getTotal: selectCartItemsTotal,
 });
 
 export default connect(mapStateToProps)(CartList);
