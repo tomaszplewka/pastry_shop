@@ -3,7 +3,7 @@ import React from "react";
 import "./FormInput.scss";
 
 const FormInput = ({
-  onChange,
+  // onChange,
   inline,
   label,
   invert,
@@ -27,7 +27,7 @@ const FormInput = ({
       )}
       <input
         className={`${invert ? "invert" : ""}`}
-        onChange={onChange}
+        // onChange={onChange}
         style={
           fullwidth
             ? inline

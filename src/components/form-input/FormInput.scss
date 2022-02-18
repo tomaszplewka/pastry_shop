@@ -77,4 +77,15 @@
       }
     }
   }
+
+  &__error {
+    margin-top: -0.75rem;
+    width: 50%;
+    margin-left: auto;
+
+    span {
+      color: #d64550;
+      font-weight: bold;
+    }
+  }
 }

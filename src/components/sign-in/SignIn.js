@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
 
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
@@ -10,42 +11,19 @@ import Firebase from "../modules/Firebase";
 
 import "./SignIn.scss";
 
-const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const SignIn = ({ handleSubmit, submitting }) => {
   const navigate = useNavigate();
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
+  const handleSignIn = (values) => {
+    console.log(values);
     console.log("SIGN IN CLICKED");
-    Firebase.logInEmailAndPassword(
-      {
-        email,
-        password,
-      },
-      navigate
-    );
+    Firebase.logInEmailAndPassword(values, navigate);
   };
 
   const handleSignInWithGoogle = (e) => {
     e.preventDefault();
     console.log("SIGN IN WITH GOOGLE CLICKED");
     Firebase.logInGoogle(navigate);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    switch (name) {
-      case "email":
-        setEmail(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
   };
 
   return (
@@ -61,32 +39,24 @@ const SignIn = () => {
           title="Sign In"
           subtitle={["First visit?", "Register here"]}
           urlSlug="register"
-          handleSubmit={handleSignIn}
+          handleSubmit={handleSubmit(handleSignIn)}
         >
-          <FormInput
-            type="email"
-            id="email"
+          <Field
             name="email"
-            value={email}
-            required
-            onChange={handleChange}
+            type="email"
             label="email"
             placeholder="E-mail"
-            invert
+            component={renderField}
           />
-          <FormInput
-            type="password"
-            id="password"
+          <Field
             name="password"
-            value={password}
-            required
-            onChange={handleChange}
+            type="password"
             label="password"
             placeholder="Password"
-            invert
+            component={renderField}
           />
           <div className="d-flex flex-column mb-0">
-            <Btn type="submit" fullwidth invert>
+            <Btn type="submit" disabled={submitting} fullwidth invert>
               Sign In
             </Btn>
             <Btn onClick={handleSignInWithGoogle} fullwidth invert>
@@ -100,4 +70,45 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = "This field is required.";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Provide valid email address.";
+  }
+  if (!values.password) {
+    errors.password = "Provide password.";
+  }
+  return errors;
+};
+
+const renderField = ({
+  input,
+  name,
+  label,
+  placeholder,
+  type,
+  meta: { touched, error },
+}) => (
+  <>
+    <FormInput
+      type={type}
+      name={name}
+      required
+      label={label}
+      placeholder={placeholder}
+      invert
+      {...input}
+    />
+    <div className="form-input__error">
+      {touched && error && <span>{error}</span>}
+    </div>
+  </>
+);
+
+export default reduxForm({
+  form: "sign-in-form",
+  validate,
+})(SignIn);

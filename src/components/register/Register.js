@@ -1,24 +1,21 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
 
-import React, { useState } from "react";
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
 import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
+
 import Firebase from "../modules/Firebase";
 
 import "./Register.scss";
 
-const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const Register = ({ handleSubmit, submitting }) => {
   const navigate = useNavigate();
 
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault();
+  const handleRegisterSubmit = ({ email, password }) => {
     console.log("REGISTER CLICKED");
 
     Firebase.registerUserWithEmailAndPassword(
@@ -28,27 +25,6 @@ const Register = () => {
       },
       navigate
     );
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    switch (name) {
-      case "username":
-        setUsername(value);
-        break;
-      case "email":
-        setEmail(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-      case "confirmPassword":
-        setConfirmPassword(value);
-        break;
-      default:
-        break;
-    }
   };
 
   return (
@@ -64,53 +40,37 @@ const Register = () => {
           title="Register"
           subtitle={["Do you already have an account?", "Sign in here"]}
           urlSlug="sign-in"
-          handleSubmit={handleRegisterSubmit}
+          handleSubmit={handleSubmit(handleRegisterSubmit)}
         >
-          <FormInput
-            type="text"
-            id="username"
+          <Field
             name="username"
-            value={username}
-            required
-            onChange={handleChange}
-            label="Username"
+            type="text"
+            label="username"
             placeholder="Username"
-            invert
+            component={renderField}
           />
-          <FormInput
-            type="email"
-            id="email"
+          <Field
             name="email"
-            value={email}
-            required
-            onChange={handleChange}
+            type="email"
             label="email"
-            placeholder="Email"
-            invert
+            placeholder="E-mail"
+            component={renderField}
           />
-          <FormInput
-            type="password"
-            id="password"
+          <Field
             name="password"
-            value={password}
-            required
-            onChange={handleChange}
+            type="password"
             label="password"
             placeholder="Password"
-            invert
+            component={renderField}
           />
-          <FormInput
-            type="password"
-            id="confirmPassword"
+          <Field
             name="confirmPassword"
-            value={confirmPassword}
-            required
-            onChange={handleChange}
-            label="confirm Password"
+            type="password"
+            label="Confirm Password"
             placeholder="Confirm Password"
-            invert
+            component={renderField}
           />
-          <Btn type="submit" fullwidth invert>
+          <Btn type="submit" disabled={submitting} fullwidth invert>
             Register
           </Btn>
         </Form>
@@ -120,4 +80,62 @@ const Register = () => {
   );
 };
 
-export default Register;
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.username) {
+    errors.username = "This field is required.";
+  } else if (values.username.length > 15) {
+    errors.username = "Must be 15 characters or less";
+  }
+
+  if (!values.email) {
+    errors.email = "This field is required.";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Provide valid email address.";
+  }
+
+  if (!values.password) {
+    errors.password = "Provide password.";
+  }
+
+  if (!values.confirmPassword) {
+    errors.confirmPassword = "Confirm password.";
+  }
+
+  if (values.password !== values.confirmPassword) {
+    errors.password = "Passwords do not match.";
+    errors.confirmPassword = "Passwords do not match.";
+  }
+
+  return errors;
+};
+
+const renderField = ({
+  input,
+  name,
+  label,
+  placeholder,
+  type,
+  meta: { touched, error },
+}) => (
+  <>
+    <FormInput
+      type={type}
+      name={name}
+      required
+      label={label}
+      placeholder={placeholder}
+      invert
+      {...input}
+    />
+    <div className="form-input__error">
+      {touched && error && <span>{error}</span>}
+    </div>
+  </>
+);
+
+export default reduxForm({
+  form: "register-form",
+  validate,
+})(Register);

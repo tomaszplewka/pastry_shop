@@ -9,6 +9,7 @@ import AboutPage from "./components/pages/about-page/AboutPage";
 import ContactPage from "./components/pages/contact-page/ContactPage";
 import ShopPage from "./components/pages/shop-page/ShopPage";
 import Cart from "./components/pages/cart-page/CartPage";
+import CheckoutPage from "./components/pages/checkout-page/CheckoutPage";
 import Auth from "./components/pages/auth/Auth";
 
 import actions from "./actions";
@@ -38,6 +39,7 @@ const App = ({ setUser }) => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/sign-in" element={<Auth />} />
         <Route path="/register" element={<Auth />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
       <Footer />
     </>
