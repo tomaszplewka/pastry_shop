@@ -21,7 +21,7 @@ const FormInput = ({
       }
     >
       {hide ? null : (
-        <label style={{ display: "inline-block" }} htmlFor={otherProps.id}>
+        <label style={{ display: "inline-block" }} htmlFor={otherProps.name}>
           {label}
         </label>
       )}
@@ -35,6 +35,7 @@ const FormInput = ({
               : { width: "100%", margin: "0rem 0rem 0.75rem" }
             : { width: "50%", margin: "0rem 0rem 0.5rem" }
         }
+        id={otherProps.name}
         {...otherProps}
       />
     </div>

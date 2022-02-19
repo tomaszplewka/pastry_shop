@@ -1,15 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+// import { createStructuredSelector } from "reselect";
 import { useNavigate, Navigate } from "react-router-dom";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import Btn from "../../Btn/Btn";
+import FormTextarea from "../../form-textarea/FormTextarea";
 import Form from "../../form/Form";
 import FormInput from "../../form-input/FormInput";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
+import OrderSummary from "../order-summary/OrderSummary";
 
 import { scrollUtility } from "../../utilities/scroll-utility";
 
@@ -18,7 +20,15 @@ import { selectCartItems } from "../../../reducers/cart/cart-selectors";
 
 import "./CheckoutForm.scss";
 
-const CheckoutForm = ({ user, cart, handleSubmit, submitting }) => {
+const CheckoutForm = ({
+  user,
+  cart,
+  handleSubmit,
+  submitting,
+  consent,
+  methodPayment,
+}) => {
+  console.log("CONSENT: ", consent);
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -114,14 +124,137 @@ const CheckoutForm = ({ user, cart, handleSubmit, submitting }) => {
                       placeholder="City"
                       component={renderField}
                     />
-                    <span className="checkout-form__form__checkbox-shipping">
+                    <span className="checkout-form__form__checkbox">
                       <label htmlFor="consent" className="">
-                        <input
-                          type="checkbox"
+                        <Field
                           name="consent"
+                          component="input"
+                          type="checkbox"
                           id="consent"
                           className=""
                           value="1"
+                          required
+                        />
+                        <span>
+                          {/* "I have read the Shop Policy as well as the Privacy
+                          Policy and Cookies, and I accept the Shop Policy and
+                          the Privacy Policy and Cookies." * */}
+                          Ship to a different address
+                        </span>
+                      </label>
+                    </span>
+                    {consent ? (
+                      <div className="checkout-form__form--shipping">
+                        <h2 className="form__title">shipping address</h2>
+                        <Field
+                          name="address_shipping"
+                          type="text"
+                          label="address"
+                          placeholder="Address"
+                          component={renderField}
+                        />
+                        <Field
+                          name="zip_shipping"
+                          type="text"
+                          label="zip code"
+                          placeholder="Zip Code"
+                          component={renderField}
+                        />
+                        <Field
+                          name="city_shipping"
+                          type="text"
+                          label="city"
+                          placeholder="City"
+                          component={renderField}
+                        />
+                      </div>
+                    ) : null}
+                    <div className="checkout-form__method--shipping">
+                      <h2 className="form__title">shipping method</h2>
+                      <label>
+                        <Field
+                          name="method_shipping"
+                          component="input"
+                          type="radio"
+                          value="10"
+                        />
+                        <div className="checkout-form__method--shipping__container">
+                          <span className="checkout-form__method--shipping__nname">
+                            Fast Courier
+                          </span>
+                          <span className="checkout-form__method--shipping__price">
+                            $10
+                          </span>
+                        </div>
+                      </label>
+                      <label>
+                        <Field
+                          name="method_shipping"
+                          component="input"
+                          type="radio"
+                          value="0"
+                        />
+                        <div className="checkout-form__method--shipping__container">
+                          <span className="checkout-form__method--shipping__nname">
+                            self-pickup
+                          </span>
+                          <span className="checkout-form__method--shipping__price">
+                            free
+                          </span>
+                        </div>
+                      </label>
+                    </div>
+                    <div className="checkout-form__method--payment">
+                      <h2 className="form__title">payment method</h2>
+                      <label>
+                        <Field
+                          name="method_payment"
+                          component="input"
+                          type="radio"
+                          value="stripe"
+                        />
+                        <div className="checkout-form__method--payment__container">
+                          <span className="checkout-form__method--payment__nname">
+                            Stripe
+                          </span>
+                        </div>
+                      </label>
+                      <label>
+                        <Field
+                          name="method_payment"
+                          component="input"
+                          type="radio"
+                          value="bank_transfer"
+                        />
+                        <div className="checkout-form__method--payment__container">
+                          <span className="checkout-form__method--payment__nname">
+                            Bank transfer
+                          </span>
+                        </div>
+                      </label>
+                    </div>
+                    <div className="checkout-form__additional-comments">
+                      <h2 className="form__title">additional comments</h2>
+                      <Field
+                        name="additional_comments"
+                        component={FormTextarea}
+                        required
+                        placeholder="Additional comments"
+                        hide
+                        invert
+                        fullwidth
+                      />
+                    </div>
+                    <span className="checkout-form__form__checkbox">
+                      <label htmlFor="consent_consent" className="">
+                        <Field
+                          name="consent_consent"
+                          component="input"
+                          type="checkbox"
+                          id="consent_consent"
+                          className=""
+                          value="1"
+                          required
                         />
                         <span>
                           "I have read the Shop Policy as well as the Privacy
@@ -130,10 +263,41 @@ const CheckoutForm = ({ user, cart, handleSubmit, submitting }) => {
                         </span>
                       </label>
                     </span>
+                    <span className="checkout-form__form__checkbox">
+                      <label htmlFor="consent_email" className="">
+                        <Field
+                          name="consent_email"
+                          component="input"
+                          type="checkbox"
+                          id="consent_email"
+                          className=""
+                          value="1"
+                        />
+                        <span>
+                          "I agree to receive from Pastry Shop based in Kelowna,
+                          commercial information regarding Pastry Shop and its
+                          partners to the e-mail address provided by me. "
+                          (optional)
+                        </span>
+                      </label>
+                    </span>
+                    <div className="mt-5 pt-3">
+                      {methodPayment === "stripe" ? (
+                        <Btn type="submit" fullwidth invert>
+                          Order & Pay with Stripe
+                        </Btn>
+                      ) : (
+                        <Btn type="submit" fullwidth invert>
+                          Order & Pay
+                        </Btn>
+                      )}
+                    </div>
                   </Form>
                 </div>
               </div>
-              <div className="checkout-form__sidebar"></div>
+              <div className="checkout-form__sidebar">
+                <OrderSummary />
+              </div>
             </div>
           </SectionContainer>
           <ShapeDividerBottom color="#eaf2ef" />
@@ -146,6 +310,7 @@ const CheckoutForm = ({ user, cart, handleSubmit, submitting }) => {
 };
 
 const validate = (values) => {
+  console.log(values);
   const errors = {};
 
   if (!values.email) {
@@ -153,9 +318,15 @@ const validate = (values) => {
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Provide valid email address.";
   }
+
   if (!values.password) {
     errors.password = "Provide password.";
   }
+
+  if (!values.consent) {
+    errors.consent = "chuj";
+  }
+
   return errors;
 };
 
@@ -183,12 +354,18 @@ const renderField = ({
   </>
 );
 
-const mapStateToProps = createStructuredSelector({
-  user: selectUser,
-  cart: selectCartItems,
+const selector = formValueSelector("checkout-form");
+
+const mapStateToProps = (state) => ({
+  user: selectUser(state),
+  cart: selectCartItems(state),
+  consent: selector(state, "consent"),
+  methodPayment: selector(state, "method_payment"),
 });
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: "checkout-form",
   validate,
-})(connect(mapStateToProps)(CheckoutForm));
+})(CheckoutForm);
+
+export default connect(mapStateToProps)(formWrapped);
