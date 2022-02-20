@@ -1,6 +1,7 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+
 import HeaderBanner from "../../sections/header-banner/HeaderBanner";
-import CategoryPreview from "../../sections/category-preview/CategoryPreview";
 import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
 import ScrollToTop from "../../scroll-to-top/ScrollToTop";
@@ -11,7 +12,7 @@ const ShopPage = () => {
   return (
     <>
       <HeaderBanner image={background} title="our offer" position="530px" />
-      <CategoryPreview />
+      <Outlet />
       <Testimonials />
       <Subscription />
       <ScrollToTop />

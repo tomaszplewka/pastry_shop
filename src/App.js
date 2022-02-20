@@ -8,6 +8,9 @@ import FrontPage from "./components/pages/front-page/FrontPage";
 import AboutPage from "./components/pages/about-page/AboutPage";
 import ContactPage from "./components/pages/contact-page/ContactPage";
 import ShopPage from "./components/pages/shop-page/ShopPage";
+import CategoryPreview from "./components/sections/category-preview/CategoryPreview";
+import CategorySingle from "./components/sections/category-single/CategorySingle";
+import ItemSingle from "./components/sections/item-single/ItemSingle";
 import Cart from "./components/pages/cart-page/CartPage";
 import CheckoutPage from "./components/pages/checkout-page/CheckoutPage";
 import Auth from "./components/pages/auth/Auth";
@@ -33,7 +36,12 @@ const App = ({ setUser }) => {
       <Header />
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/our-offer" element={<ShopPage />} />
+        <Route path="/our-offer" element={<ShopPage />}>
+          <Route path=":itemsCategory" element={<CategorySingle />}>
+            <Route path=":itemName" element={<ItemSingle />} />
+          </Route>
+          <Route index element={<CategoryPreview />} />
+        </Route>
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/cart" element={<Cart />} />

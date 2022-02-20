@@ -1,4 +1,7 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import CardItem from "../../card-item/CardItem";
@@ -9,12 +12,18 @@ import { data } from "../../../data";
 import "./CategoryPreview.scss";
 
 const CategoryPreview = () => {
+  const location = useLocation();
+
   const renderedCategories = data.map((category, index) => {
     return (
       <div key={index} className="pt-5 category-preview__container">
         <div className="category-preview__content">
           <h2 className="category-preview__title">{category.category}</h2>
-          <span>see more</span>
+          <span>
+            <Link to={`${location.pathname}/${category.category}`}>
+              see more
+            </Link>
+          </span>
         </div>
         <div className="category-preview__items__container">
           {category.items
