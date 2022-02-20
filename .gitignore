@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Firebase config
 /src/components/modules/FirebaseConfig.js
+
+# Stripe
+/src/components/modules/Stripe.js

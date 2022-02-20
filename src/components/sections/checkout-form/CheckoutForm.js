@@ -7,6 +7,7 @@ import { Field, reduxForm, formValueSelector } from "redux-form";
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import Btn from "../../Btn/Btn";
+import StripeBtn from "../../stripe-btn/StripeBtn";
 import FormTextarea from "../../form-textarea/FormTextarea";
 import Form from "../../form/Form";
 import FormInput from "../../form-input/FormInput";
@@ -283,9 +284,7 @@ const CheckoutForm = ({
                     </span>
                     <div className="mt-5 pt-3">
                       {methodPayment === "stripe" ? (
-                        <Btn type="submit" fullwidth invert>
-                          Order & Pay with Stripe
-                        </Btn>
+                        <StripeBtn />
                       ) : (
                         <Btn type="submit" fullwidth invert>
                           Order & Pay
