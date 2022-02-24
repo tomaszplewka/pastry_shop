@@ -9,6 +9,7 @@ import "./CardItem.scss";
 
 const CardItem = ({ item, cartBtn, addToCart }) => {
   const { name, price, image, price_per, id, availability } = item;
+
   return (
     <div className={`card-item ${cartBtn ? "extend" : ""}`}>
       <div className="card-item__img__container">

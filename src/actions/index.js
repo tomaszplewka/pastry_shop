@@ -1,4 +1,10 @@
-import { setUser, setIsRegisterActive } from "./user/user-actions";
+import {
+  setUserStart,
+  setUserSuccess,
+  setUserFailure,
+  setIsRegisterActive,
+} from "./user/user-actions";
+
 import {
   toggleCart,
   addToCart,
@@ -6,13 +12,24 @@ import {
   decreaseItemQty,
 } from "./cart/cart-actions";
 
+import {
+  fetchDataStart,
+  fetchDataSuccess,
+  fetchDataFailure,
+} from "./shop/shop-actions";
+
 const actions = {
-  setUser,
+  setUserStart,
+  setUserSuccess,
+  setUserFailure,
   setIsRegisterActive,
   toggleCart,
   addToCart,
   removeFromCartDirectly,
   decreaseItemQty,
+  fetchDataStart,
+  fetchDataSuccess,
+  fetchDataFailure,
 };
 
 export default actions;

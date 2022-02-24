@@ -10,7 +10,14 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  onSnapshot,
+} from "firebase/firestore";
 
 const Firebase = (() => {
   // Initialize Firebase
@@ -20,7 +27,8 @@ const Firebase = (() => {
   // Firestore
   const db = getFirestore();
 
-  const subscribeToAuthStateChanges = (setUser) => {
+  const subscribeToAuthStateChanges = (start, success, failure) => {
+    start();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         console.log("USER");
@@ -28,7 +36,7 @@ const Firebase = (() => {
           name: user.displayName,
           email: user.email,
         });
-        setUser({
+        success({
           name: user.displayName,
           email: user.email,
           id: user.uid,
@@ -36,7 +44,7 @@ const Firebase = (() => {
       } else {
         // User is signed out
         console.log("NO USER OR USER SIGNED OUT");
-        setUser({
+        success({
           name: null,
           email: null,
           id: null,
@@ -47,41 +55,30 @@ const Firebase = (() => {
     return unsubscribe;
   };
 
-  const logInGoogle = async (navigate) => {
+  const logInGoogle = async (navigate, start, failure) => {
     try {
+      start();
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ propmt: "select_account" });
       await signInWithPopup(auth, provider);
       navigate("/");
-      // Get user's data
-      // const { getNewDeck, gameState, showLoader } = await resolveUserData(
-      //   result.user.uid
-      // );
-      // Set state
-      // setTimeout(() => {
-      //   setAppState((prevState) => {
-      //     return {
-      //       ...prevState,
-      //       userId: result.user.uid,
-      //       getNewDeck,
-      //       isUserLoggedIn: true,
-      //       gameState,
-      //       showLoader,
-      //       displayName: result.user.displayName,
-      //       photoUrl: result.user.photoURL,
-      //     };
-      //   });
-      // }, 1500);
     } catch (error) {
       // Show alert
       console.log(error.message);
+      failure(error.message);
     }
   };
 
-  const registerUserWithEmailAndPassword = async (data, navigate) => {
+  const registerUserWithEmailAndPassword = async (
+    data,
+    navigate,
+    start,
+    failure
+  ) => {
     const { email, password } = data;
 
     try {
+      start();
       const credentials = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -93,17 +90,20 @@ const Firebase = (() => {
       navigate("/");
     } catch (error) {
       console.log(error.message);
+      failure(error.message);
     }
   };
 
-  const logInEmailAndPassword = async (data, navigate) => {
+  const logInEmailAndPassword = async (data, navigate, start, failure) => {
     const { email, password } = data;
 
     try {
+      start();
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (error) {
       console.log(error.message);
+      failure(error.message);
     }
   };
 
@@ -136,79 +136,27 @@ const Firebase = (() => {
     }
   };
 
-  const storeData = async (userId, data, setShowLoader) => {
-    // Check if user exists
-    // const isUserInDb = await userExists(userId);
-    // try {
-    //   if (!isUserInDb) {
-    //     // Save brand-new user
-    //     await setDoc(doc(db, "users", userId), {
-    //       data,
-    //       timestamp: Date.now(),
-    //     });
-    //   } else {
-    //     // Merge with existing data
-    //     await setDoc(
-    //       doc(db, "users", userId),
-    //       {
-    //         data,
-    //         timestamp: Date.now(),
-    //       },
-    //       { merge: true }
-    //     );
-    //   }
-    // } catch (error) {
-    //   // Show alert
-    // }
-    // if (setShowLoader) {
-    //   setTimeout(() => {
-    //     setShowLoader(false);
-    //   }, 1500);
-    // }
-  };
+  const subscribeToDataChanges = (start, success, failure) => {
+    start();
+    const unsubscribe = onSnapshot(
+      collection(db, "data"),
+      (snapshot) => {
+        console.log("SNAPSHOT");
+        const shopCategories = {};
+        snapshot.forEach((doc) => {
+          shopCategories[doc.id] = doc.data();
+        });
 
-  // const userExists = async (userId) => {
-  //   // Get "users" collection
-  //   const docSnap = await getDoc(doc(db, "users", userId));
-  //   // Check if collection with userId already exists
-  //   let isUserInDb = false;
-  //   if (docSnap.exists()) {
-  //     isUserInDb = true;
-  //   }
+        success(shopCategories);
+      },
+      (error) => {
+        // ...
+        console.log(error.message);
+        failure();
+      }
+    );
 
-  //   return isUserInDb;
-  // };
-
-  const resolveUserData = async (user = "guest") => {
-    // Check if user already exists in LS
-    // const guestFromLS = LocalStorage.getFromLS(user);
-    // // Check if user already exists in db
-    // const isUserInDb = await userExists(user);
-    // // Resolve state
-    // let getNewDeck = false;
-    // let gameState = null;
-    // let showLoader = false;
-    // if (guestFromLS && isUserInDb) {
-    //   const userDoc = await getDoc(doc(db, "users", user));
-    //   if (guestFromLS.timestamp >= userDoc.data().timestamp) {
-    //     gameState = guestFromLS.data;
-    //   } else {
-    //     gameState = userDoc.data().data;
-    //   }
-    // } else if (guestFromLS) {
-    //   gameState = guestFromLS.data;
-    // } else if (isUserInDb) {
-    //   const userDoc = await getDoc(doc(db, "users", user));
-    //   gameState = userDoc.data().data;
-    // } else {
-    //   getNewDeck = true;
-    //   showLoader = true;
-    // }
-    // return {
-    //   getNewDeck,
-    //   gameState,
-    //   showLoader,
-    // };
+    return unsubscribe;
   };
 
   return {
@@ -216,9 +164,9 @@ const Firebase = (() => {
     subscribeToAuthStateChanges,
     logInGoogle,
     logOut,
-    storeData,
     registerUserWithEmailAndPassword,
     logInEmailAndPassword,
+    subscribeToDataChanges,
   };
 })();
 

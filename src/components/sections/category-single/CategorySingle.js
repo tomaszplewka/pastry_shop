@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
@@ -8,20 +9,16 @@ import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 import { scrollUtility } from "../../utilities/scroll-utility";
 
-import { data } from "../../../data";
-
 import "./CategorySingle.scss";
 
-const CategorySingle = () => {
+const CategorySingle = ({ data }) => {
   const params = useParams();
 
   useEffect(() => scrollUtility(), []);
 
-  const renderedItems = data
-    .find((category) => category.category === params.itemsCategory)
-    .items.map((item, index) => {
-      return <CardItem key={index} item={item} cartBtn />;
-    });
+  const renderedItems = data[params.itemsCategory].items.map((item, index) => {
+    return <CardItem key={index} item={item} cartBtn />;
+  });
 
   return (
     <section
@@ -44,4 +41,8 @@ const CategorySingle = () => {
   );
 };
 
-export default CategorySingle;
+const mapStateToProps = (state) => ({
+  data: state.data.categories,
+});
+
+export default connect(mapStateToProps)(CategorySingle);

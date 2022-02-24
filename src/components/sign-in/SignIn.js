@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
 
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
@@ -9,21 +10,28 @@ import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
 import Firebase from "../modules/Firebase";
 
+import actions from "../../actions";
+
 import "./SignIn.scss";
 
-const SignIn = ({ handleSubmit, submitting }) => {
+const SignIn = ({ handleSubmit, submitting, setUserStart, setUserFailure }) => {
   const navigate = useNavigate();
 
   const handleSignIn = (values) => {
     console.log(values);
     console.log("SIGN IN CLICKED");
-    Firebase.logInEmailAndPassword(values, navigate);
+    Firebase.logInEmailAndPassword(
+      values,
+      navigate,
+      setUserStart,
+      setUserFailure
+    );
   };
 
   const handleSignInWithGoogle = (e) => {
     e.preventDefault();
     console.log("SIGN IN WITH GOOGLE CLICKED");
-    Firebase.logInGoogle(navigate);
+    Firebase.logInGoogle(navigate, setUserStart, setUserFailure);
   };
 
   return (
@@ -108,7 +116,12 @@ const renderField = ({
   </>
 );
 
+const mapDispatchToProps = {
+  setUserStart: actions.setUserStart,
+  setUserFailure: actions.setUserFailure,
+};
+
 export default reduxForm({
   form: "sign-in-form",
   validate,
-})(SignIn);
+})(connect(null, mapDispatchToProps)(SignIn));

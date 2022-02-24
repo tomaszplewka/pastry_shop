@@ -1,32 +1,29 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import CardItem from "../../card-item/CardItem";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
-import { data } from "../../../data";
-
 import "./CategoryPreview.scss";
 
-const CategoryPreview = () => {
+const CategoryPreview = ({ data }) => {
   const location = useLocation();
 
-  const renderedCategories = data.map((category, index) => {
+  const renderedCategories = Object.keys(data).map((category, index) => {
     return (
       <div key={index} className="pt-5 category-preview__container">
         <div className="category-preview__content">
-          <h2 className="category-preview__title">{category.category}</h2>
+          <h2 className="category-preview__title">{category}</h2>
           <span>
-            <Link to={`${location.pathname}/${category.category}`}>
-              see more
-            </Link>
+            <Link to={`${location.pathname}/${category}`}>see more</Link>
           </span>
         </div>
         <div className="category-preview__items__container">
-          {category.items
+          {data[category].items
             .filter((item, index) => index < 3)
             .map((item, index) => (
               <CardItem key={index} item={item} cartBtn />
@@ -53,4 +50,8 @@ const CategoryPreview = () => {
   );
 };
 
-export default CategoryPreview;
+const mapStateToProps = (state) => ({
+  data: state.data.categories,
+});
+
+export default connect(mapStateToProps)(CategoryPreview);

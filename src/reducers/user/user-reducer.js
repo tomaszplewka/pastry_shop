@@ -1,17 +1,33 @@
 import { userActionTypes } from "../../actions/user/user-action-types";
 
 const INITIAL_USER_STATE = {
-  name: null,
-  email: null,
-  id: null,
+  user: {
+    name: null,
+    email: null,
+    id: null,
+  },
+  isFetching: false,
+  error: undefined,
 };
 
 export const userReducer = (state = INITIAL_USER_STATE, action) => {
   switch (action.type) {
-    case userActionTypes.SET_USER:
+    case userActionTypes.SET_USER_START:
       return {
         ...state,
-        ...action.payload,
+        isFetching: true,
+      };
+    case userActionTypes.SET_USER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.payload,
+      };
+    case userActionTypes.SET_USER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload,
       };
     default:
       return state;

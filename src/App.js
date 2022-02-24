@@ -14,6 +14,7 @@ import ItemSingle from "./components/sections/item-single/ItemSingle";
 import Cart from "./components/pages/cart-page/CartPage";
 import CheckoutPage from "./components/pages/checkout-page/CheckoutPage";
 import Auth from "./components/pages/auth/Auth";
+import Loader from "./components/hoc/loader/Loader";
 
 import actions from "./actions";
 
@@ -21,22 +22,60 @@ import Firebase from "./components/modules/Firebase";
 
 import "./App.scss";
 
-const App = ({ setUser }) => {
+const FrontPageLoader = Loader(FrontPage);
+const ShopPageLoader = Loader(ShopPage);
+const AuthLoader = Loader(Auth);
+
+const App = ({
+  isFetchingUser,
+  setUserStart,
+  setUserSuccess,
+  setUserFailure,
+  isFetchingData,
+  fetchDataStart,
+  fetchDataSuccess,
+  fetchDataFailure,
+}) => {
   useEffect(() => {
     console.log("APP USE EFFECT");
-    const unsubscribe = Firebase.subscribeToAuthStateChanges(setUser);
+    const unsubscribe = Firebase.subscribeToAuthStateChanges(
+      setUserStart,
+      setUserSuccess,
+      setUserFailure
+    );
 
     return () => {
       unsubscribe();
     };
-  }, [setUser]);
+  }, []);
+
+  useEffect(() => {
+    console.log("APP -- FETCH DATA");
+    const unsubscribe = Firebase.subscribeToDataChanges(
+      fetchDataStart,
+      fetchDataSuccess,
+      fetchDataFailure
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  console.log("APP RENDER");
 
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<FrontPage />} />
-        <Route path="/our-offer" element={<ShopPage />}>
+        <Route
+          path="/"
+          element={<FrontPageLoader isLoading={isFetchingData} />}
+        />
+        <Route
+          path="/our-offer"
+          element={<ShopPageLoader isLoading={isFetchingData} />}
+        >
           <Route path=":itemsCategory" element={<CategorySingle />}>
             <Route path=":itemName" element={<ItemSingle />} />
           </Route>
@@ -45,8 +84,14 @@ const App = ({ setUser }) => {
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/sign-in" element={<Auth />} />
-        <Route path="/register" element={<Auth />} />
+        <Route
+          path="/sign-in"
+          element={<AuthLoader isLoading={isFetchingUser} />}
+        />
+        <Route
+          path="/register"
+          element={<AuthLoader isLoading={isFetchingUser} />}
+        />
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
       <Footer />
@@ -54,8 +99,18 @@ const App = ({ setUser }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isFetchingData: state.data.isFetching,
+  isFetchingUser: state.user.isFetching,
+});
+
 const mapDispatchToProps = {
-  setUser: actions.setUser,
+  setUserStart: actions.setUserStart,
+  setUserSuccess: actions.setUserSuccess,
+  setUserFailure: actions.setUserFailure,
+  fetchDataStart: actions.fetchDataStart,
+  fetchDataSuccess: actions.fetchDataSuccess,
+  fetchDataFailure: actions.fetchDataFailure,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

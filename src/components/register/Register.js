@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
 
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
@@ -10,9 +11,16 @@ import Btn from "../Btn/Btn";
 
 import Firebase from "../modules/Firebase";
 
+import actions from "../../actions";
+
 import "./Register.scss";
 
-const Register = ({ handleSubmit, submitting }) => {
+const Register = ({
+  handleSubmit,
+  submitting,
+  setUserStart,
+  setUserFailure,
+}) => {
   const navigate = useNavigate();
 
   const handleRegisterSubmit = ({ email, password }) => {
@@ -23,7 +31,9 @@ const Register = ({ handleSubmit, submitting }) => {
         email,
         password,
       },
-      navigate
+      navigate,
+      setUserStart,
+      setUserFailure
     );
   };
 
@@ -135,7 +145,12 @@ const renderField = ({
   </>
 );
 
+const mapDispatchToProps = {
+  setUserStart: actions.setUserStart,
+  setUserFailure: actions.setUserFailure,
+};
+
 export default reduxForm({
   form: "register-form",
   validate,
-})(Register);
+})(connect(null, mapDispatchToProps)(Register));

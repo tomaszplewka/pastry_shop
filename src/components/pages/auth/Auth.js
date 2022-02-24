@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -15,13 +15,19 @@ import {
 } from "../../../reducers/user/user-selectors";
 
 const Auth = ({ user, isRegisterActive }) => {
+  const location = useLocation();
+
   return (
     <>
       {user.id ? (
         <Navigate to="/" />
       ) : (
         <>
-          {isRegisterActive ? <Register /> : <SignIn />}
+          {isRegisterActive || location.pathname === "/register" ? (
+            <Register />
+          ) : (
+            <SignIn />
+          )}
           <Testimonials />
           <Subscription />
           <ScrollToTop />

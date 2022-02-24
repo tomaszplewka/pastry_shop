@@ -11,7 +11,9 @@ const CategoryItem = ({ title, imageUrl }) => {
     <div className="category-item__container">
       <div
         className="category-item"
-        onClick={() => navigate(`${location.pathname}${title}`)}
+        onClick={() =>
+          navigate(`${location.pathname === "/" ? "/our-offer/" : "/"}${title}`)
+        }
       >
         <div
           className="category-item__bg-img"
