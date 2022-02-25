@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import SectionContainer from "../../section-container/SectionContainer";
@@ -32,6 +32,7 @@ library.add(faShoppingCart, faSearch, faPhone, faEnvelope);
 
 const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
   const ref = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const className = "shrink";
@@ -55,7 +56,7 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
 
   const handleSignOutClick = (e) => {
     scrollUtility();
-    Firebase.logOut();
+    Firebase.logOut(dispatch);
     handleNavLinkClick();
   };
 
