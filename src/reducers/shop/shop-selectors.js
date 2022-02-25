@@ -1,5 +1,7 @@
 import { createSelector } from "reselect";
 
+import { getFeaturedItems } from "./shop-utilities";
+
 const selectShop = (state) => state.data;
 
 export const selectShopCategories = createSelector(
@@ -20,4 +22,10 @@ export const selectIsShopDataFetching = createSelector(
 export const selectShopDataError = createSelector(
   [selectShop],
   (data) => data.error
+);
+
+export const selectFeaturedItems = createSelector(
+  selectShopCategories,
+  selectShopCategoriesForPreview,
+  (data, categories) => getFeaturedItems(data, categories)
 );

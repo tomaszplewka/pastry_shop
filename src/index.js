@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
@@ -17,10 +19,14 @@ if (process.env.NODE_ENV === "development") {
 
 const store = createStore(reducers, applyMiddleware(...middlewares));
 
+const persistor = persistStore(store);
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

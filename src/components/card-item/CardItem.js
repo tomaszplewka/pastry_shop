@@ -1,14 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Btn from "../Btn/Btn";
 
 import actions from "../../actions";
 
+import { scrollUtility } from "../utilities/scroll-utility";
+
 import "./CardItem.scss";
 
-const CardItem = ({ item, cartBtn, addToCart }) => {
-  const { name, price, image, price_per, id, availability } = item;
+const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const { name, price, image, price_per, availability } = item;
+
+  const handleItemClick = () => {
+    navigate(
+      featured_item
+        ? `/our-offer/${category}/${name.split(" ").join("-")}`
+        : params.itemsCategory
+        ? `/our-offer/${params.itemsCategory}/${name.split(" ").join("-")}`
+        : `/our-offer/${category}/${name.split(" ").join("-")}`
+    );
+    scrollUtility();
+  };
 
   return (
     <div className={`card-item ${cartBtn ? "extend" : ""}`}>
@@ -18,6 +35,7 @@ const CardItem = ({ item, cartBtn, addToCart }) => {
           style={{
             backgroundImage: `url(${image})`,
           }}
+          onClick={() => handleItemClick()}
         ></div>
       </div>
       <div className="card-item__body">
