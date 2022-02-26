@@ -1,4 +1,5 @@
 import React from "react";
+
 import SectionContainer from "../../section-container/SectionContainer";
 import FloatingCookie from "../../floating-cookie/FloatingCookie";
 
@@ -13,9 +14,9 @@ const HeaderBanner = ({ image, title, position }) => {
       style={{ backgroundImage: `url(${image})`, zIndex: "1" }}
     >
       <SectionContainer customClass="h-100 position-relative">
-        <div className="header-banner__content">
+        <div className="position-absolute text-center d-inline-flex justify-content-center flex-column header-banner__content">
           <Fade bottom>
-            <h1>{title}</h1>
+            <h1 className="text-uppercase fw-bold">{title}</h1>
           </Fade>
         </div>
         <FloatingCookie position={position} />

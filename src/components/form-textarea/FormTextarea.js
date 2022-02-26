@@ -14,7 +14,11 @@ const FormTextarea = ({
   return (
     <div className="form-textarea__container">
       {hide ? null : (
-        <label style={{ display: "inline-block" }} htmlFor={otherProps.id}>
+        <label
+          className="fw-bold w-50 text-uppercase"
+          style={{ display: "inline-block" }}
+          htmlFor={otherProps.id}
+        >
           {label}
         </label>
       )}

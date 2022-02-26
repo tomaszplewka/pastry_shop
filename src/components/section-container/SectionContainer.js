@@ -2,10 +2,8 @@ import React from "react";
 
 import "./SectionContainer.scss";
 
-const Container = ({ children, customClass }) => {
-  return (
-    <section className={`container ${customClass || ""}`}>{children}</section>
-  );
-};
+const Container = ({ children, customClass }) => (
+  <section className={`container ${customClass || ""}`}>{children}</section>
+);
 
 export default Container;

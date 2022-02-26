@@ -1,12 +1,7 @@
 .card-item {
   height: 300px;
   width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   margin: 13rem auto 4rem;
-  position: relative;
   border-radius: 10px;
   background-color: #eaf2ef;
   transition: all 0.5s ease-in-out;
@@ -32,9 +27,6 @@
   }
 
   &__img {
-    position: absolute;
-    height: 100%;
-    width: 100%;
     background-position: center;
     background-size: cover;
     clip-path: polygon(
@@ -70,10 +62,6 @@
 
     &__container {
       transform: translateY(-150px);
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
     }
@@ -82,14 +70,9 @@
   &__body {
     width: 100%;
     transform: translateY(150px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: calc(100% - 150px);
 
     .name {
-      text-align: center;
       font-size: 1.25rem;
       padding: 1rem;
       padding-bottom: 0;

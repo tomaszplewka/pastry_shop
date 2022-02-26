@@ -26,12 +26,12 @@ const CartDropdown = ({ items, dispatch }) => {
   };
 
   return (
-    <div className="cart-dropdown__container">
+    <div className="position-absolute d-flex flex-column cart-dropdown__container">
       <div className="cart-dropdown__items__container">
         {renderedItems.length ? (
           renderedItems
         ) : (
-          <span className="cart-dropdown__notification">
+          <span className="position-absolute fw-bold text-uppercase d-inline-flex justify-content-center align-items-center cart-dropdown__notification">
             your cart is empty
           </span>
         )}

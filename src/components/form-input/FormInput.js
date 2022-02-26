@@ -13,15 +13,18 @@ const FormInput = ({
 }) => {
   return (
     <div
-      className={`form-input__container  ${
-        inline && fullwidth ? "alternate-margin" : ""
+      className={`d-flex justify-content-between align-items-center form-input__container  ${
+        inline && fullwidth ? "text-start alternate-margin" : ""
       }`}
       style={
         inline ? { width: "50%", display: "inline-block" } : { width: "100%" }
       }
     >
       {hide ? null : (
-        <label style={{ display: "inline-block" }} htmlFor={otherProps.name}>
+        <label
+          className="d-inline-block w-50 text-uppercase fw-bold"
+          htmlFor={otherProps.name}
+        >
           {label}
         </label>
       )}

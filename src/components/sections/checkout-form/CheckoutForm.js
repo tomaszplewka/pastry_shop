@@ -51,15 +51,15 @@ const CheckoutForm = ({
     <>
       {cart.length ? (
         <section
-          className="pb-5 position-relative checkout-form__section"
+          className="pb-5 mt-5 position-relative checkout-form__section"
           style={{
             background:
               "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
           }}
         >
-          <SectionContainer>
+          <SectionContainer customClass="my-5">
             <SectionTitle title="Your checkout" />
-            <div className="checkout-form__content__container">
+            <div className="d-flex checkout-form__content__container">
               <div className="checkout-form__content">
                 {user.id ? null : (
                   <div className="checkout-form__notice">
@@ -67,12 +67,20 @@ const CheckoutForm = ({
                       You are currently ordering as a guest.
                       <br />
                       To login click{" "}
-                      <span id="login" onClick={handleClick}>
+                      <span
+                        className="text-decoration-underline fw-bold"
+                        id="login"
+                        onClick={handleClick}
+                      >
                         here
                       </span>
                       .<br />
                       To register with us click{" "}
-                      <span id="register" onClick={handleClick}>
+                      <span
+                        className="text-decoration-underline fw-bold"
+                        id="register"
+                        onClick={handleClick}
+                      >
                         here
                       </span>
                     </p>
@@ -125,8 +133,8 @@ const CheckoutForm = ({
                       placeholder="City"
                       component={renderField}
                     />
-                    <span className="checkout-form__form__checkbox">
-                      <label htmlFor="consent" className="">
+                    <span className="d-block checkout-form__form__checkbox">
+                      <label htmlFor="consent" className="position-relative">
                         <Field
                           name="consent"
                           component="input"
@@ -179,8 +187,8 @@ const CheckoutForm = ({
                           type="radio"
                           value="10"
                         />
-                        <div className="checkout-form__method--shipping__container">
-                          <span className="checkout-form__method--shipping__nname">
+                        <div className="d-flex justify-content-between align-items-center checkout-form__method--shipping__container">
+                          <span className="fw-bold text-uppercase checkout-form__method--shipping__nname">
                             Fast Courier
                           </span>
                           <span className="checkout-form__method--shipping__price">
@@ -227,8 +235,8 @@ const CheckoutForm = ({
                           type="radio"
                           value="bank_transfer"
                         />
-                        <div className="checkout-form__method--payment__container">
-                          <span className="checkout-form__method--payment__nname">
+                        <div className="d-flex justify-content-between align-items-center checkout-form__method--payment__container">
+                          <span className="fw-bold text-uppercase checkout-form__method--payment__nname">
                             Bank transfer
                           </span>
                         </div>

@@ -1,6 +1,5 @@
 .checkout-form {
   &__section {
-    margin-top: 80px;
     padding-top: 8rem !important;
   }
 
@@ -10,7 +9,6 @@
 
     &__container {
       padding: 48px 0 0;
-      display: flex;
     }
   }
 
@@ -21,9 +19,7 @@
     }
 
     span {
-      font-weight: bold;
       cursor: pointer;
-      text-decoration: underline;
     }
   }
 
@@ -52,12 +48,10 @@
     }
 
     &__checkbox {
-      display: block;
       margin: 4rem 0 2rem;
 
       label {
         cursor: pointer;
-        position: relative;
 
         &.required {
           span::before {
@@ -172,17 +166,12 @@
         background: transparent;
         padding: 1.5rem;
         border-radius: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         transition: all 0.3s ease;
         cursor: pointer;
 
         span {
           color: #1e212b;
           font-size: 1.25rem;
-          font-weight: bold;
-          text-transform: uppercase;
           letter-spacing: 2px;
         }
       }

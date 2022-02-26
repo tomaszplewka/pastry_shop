@@ -1,4 +1,5 @@
 import React from "react";
+
 import GalleryItem from "../gallery-item/GalleryItem";
 
 import "./GalleryList.scss";
@@ -42,7 +43,11 @@ const GalleryList = () => {
       />
     );
   });
-  return <div className="py-5 gallery-list__container">{renderedItems}</div>;
+  return (
+    <div className="py-5 d-grid position-relative gallery-list__container">
+      {renderedItems}
+    </div>
+  );
 };
 
 export default GalleryList;

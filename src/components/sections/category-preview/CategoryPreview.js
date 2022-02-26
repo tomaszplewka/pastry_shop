@@ -16,13 +16,15 @@ const CategoryPreview = ({ data }) => {
   const renderedCategories = Object.keys(data).map((category, index) => {
     return (
       <div key={index} className="pt-5 category-preview__container">
-        <div className="category-preview__content">
-          <h2 className="category-preview__title">{category}</h2>
-          <span>
+        <div className="d-flex justify-content-between align-items-center category-preview__content">
+          <h2 className="text-uppercase fw-bold category-preview__title">
+            {category}
+          </h2>
+          <span className="text-decoration-underline text-uppercase">
             <Link to={`${location.pathname}/${category}`}>see more</Link>
           </span>
         </div>
-        <div className="category-preview__items__container">
+        <div className="d-flex justify-content-evenly align-items-center category-preview__items__container">
           {data[category].items
             .filter((item, index) => index < 3)
             .map((item, index) => (

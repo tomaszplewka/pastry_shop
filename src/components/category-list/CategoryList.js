@@ -17,7 +17,9 @@ const CategoryList = ({ data }) => {
   });
 
   return (
-    <div className=" py-5 category-list__container">{renderedCategories}</div>
+    <div className=" py-5 m-auto d-flex flex-row justify-content-center align-items-center flex-wrap position-relative category-list__container">
+      {renderedCategories}
+    </div>
   );
 };
 

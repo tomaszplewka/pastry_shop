@@ -1,10 +1,9 @@
 import React from "react";
+
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import CategoryList from "../../category-list/CategoryList";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
-
-import "./Categories.scss";
 
 const Categories = () => {
   return (

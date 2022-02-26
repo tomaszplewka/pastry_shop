@@ -28,18 +28,22 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
   };
 
   return (
-    <div className={`card-item ${cartBtn ? "extend" : ""}`}>
-      <div className="card-item__img__container">
+    <div
+      className={`d-flex justify-content-start align-items-center flex-column position-relative card-item ${
+        cartBtn ? "extend" : ""
+      }`}
+    >
+      <div className="position-absolute overflow-hidden w-100 h-100 card-item__img__container">
         <div
-          className="card-item__img"
+          className="position-absolute w-100 h-100 card-item__img"
           style={{
             backgroundImage: `url(${image})`,
           }}
           onClick={() => handleItemClick()}
         ></div>
       </div>
-      <div className="card-item__body">
-        <span className="name">{name}</span>
+      <div className="d-flex justify-content-center align-items-center flex-column card-item__body">
+        <span className="text-center name">{name}</span>
         <span className="price">{`$${price} / ${price_per}`}</span>
         {cartBtn ? (
           <Btn onClick={() => addToCart(item)} invert fullwidth>

@@ -3,12 +3,13 @@ import React from "react";
 import "./ShapeDividerBottom.scss";
 
 const ShapeDividerBottom = ({ color }) => (
-  <div className="shape-divider--bottom">
+  <div className="position-absolute overflow-hidden w-100 shape-divider--bottom">
     <svg
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1200 120"
       preserveAspectRatio="none"
+      className="position-relative d-block"
     >
       <path
         fill={color}

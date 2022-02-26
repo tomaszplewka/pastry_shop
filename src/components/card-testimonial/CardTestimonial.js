@@ -12,12 +12,12 @@ const CardTestimonial = ({ item }) => {
   const renderedRating = Array.apply(null, {
     length: Math.ceil(item.rating),
   }).map((element, index) => (
-    <span key={index} className="card-testimonial__rating">
+    <span key={index} className="d-inline-block  card-testimonial__rating">
       <span
         className={
           Math.ceil(item.rating) !== Math.floor(item.rating) &&
           index === Math.ceil(item.rating) - 1
-            ? "half"
+            ? "d-inline-block overflow-hidden w-50 half"
             : ""
         }
       >
@@ -27,17 +27,19 @@ const CardTestimonial = ({ item }) => {
   ));
 
   return (
-    <div className="card-testimonial__container">
-      <div className="card-testimonial__rating__container">
-        <span className="card-testimonial__reviewer">{item.reviewer}</span>
+    <div className="d-flex justify-content-center flex-column card-testimonial__container">
+      <div className="d-flex align-items-start card-testimonial__rating__container">
+        <span className="fw-bold d-inline-flex align-items-center card-testimonial__reviewer">
+          {item.reviewer}
+        </span>
         {renderedRating}
       </div>
       <div className="card-testimonial__occupation__container">
         <p className="card-testimonial__occupation">{item.occupation}</p>
       </div>
-      <div className="card-testimonial__review__container">
+      <div className="position-relative card-testimonial__review__container">
         <FontAwesomeIcon icon={["fas", "quote-right"]} />
-        <p className="card-testimonial__review">{item.review}</p>
+        <p className="fst-italic card-testimonial__review">{item.review}</p>
         <FontAwesomeIcon icon={["fas", "quote-right"]} />
       </div>
     </div>

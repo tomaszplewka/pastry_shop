@@ -33,7 +33,9 @@ const CategorySingle = ({ data }) => {
         {params.itemName ? (
           <Outlet />
         ) : (
-          <div className="py-5 category-single__container">{renderedItems}</div>
+          <div className="py-5 d-flex flex-wrap category-single__container">
+            {renderedItems}
+          </div>
         )}
       </SectionContainer>
       <ShapeDividerBottom color="#eaf2ef" />

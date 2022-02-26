@@ -16,7 +16,6 @@ import {
   faPhone,
   faEnvelope,
   faShoppingCart,
-  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -28,7 +27,7 @@ import { scrollUtility } from "../../utilities/scroll-utility";
 import "./Header.scss";
 import "./HeaderSocial.scss";
 
-library.add(faShoppingCart, faSearch, faPhone, faEnvelope);
+library.add(faShoppingCart, faPhone, faEnvelope);
 
 const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
   const ref = useRef();
@@ -75,23 +74,30 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
 
   return (
     <>
-      <section className="header-social__container">
+      <section className="position-fixed header-social__container">
         <SectionContainer>
-          <ul>
-            <li>
-              <a href="tel:+1 403 477 9000">
+          <ul className="d-flex justify-content-center align-items-center m-0 p-0 list-unstyled">
+            <li className="d-inline-flex justify-content-center align-items-center m-0">
+              <a
+                className="text-decoration-none d-flex justify-content-center align-items-center"
+                href="tel:+1 403 477 9000"
+              >
                 <FontAwesomeIcon icon={["fas", "phone"]} />
                 <span>+1 403 477 9000</span>
               </a>
             </li>
-            <li>
-              <a href="mailto:pastry.shop@ps.com">
+            <li className="d-inline-flex justify-content-center align-items-center m-0">
+              <a
+                className="text-decoration-none d-flex justify-content-center align-items-center"
+                href="mailto:pastry.shop@ps.com"
+              >
                 <FontAwesomeIcon icon={["fas", "envelope"]} />
                 <span>pastry.shop@ps.com</span>
               </a>
             </li>
-            <li>
+            <li className="d-inline-flex justify-content-center align-items-center m-0">
               <a
+                className="text-decoration-none d-flex justify-content-center align-items-center"
                 href="https://www.facebook.com"
                 rel="noreferrer"
                 target="_blank"
@@ -100,8 +106,9 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
                 <span>facebook</span>
               </a>
             </li>
-            <li>
+            <li className="d-inline-flex justify-content-center align-items-center m-0">
               <a
+                className="text-decoration-none d-flex justify-content-center align-items-center"
                 href="https://www.instagram.com"
                 rel="noreferrer"
                 target="_blank"
@@ -113,34 +120,59 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
           </ul>
         </SectionContainer>
       </section>
-      <header ref={ref} className="header__container">
+      <header
+        ref={ref}
+        className="position-fixed d-flex justify-content-center align-items-center header__container"
+      >
         <SectionContainer customClass="d-flex justify-content-between align-items-center position-relative">
-          <div className="header__logo__container">
+          <div className="position-relative header__logo__container">
             <NavLink onClick={handleNavLinkClick} to="/">
-              <img className="header__logo" src={logo} alt="" />
+              <img
+                className="position-absolute header__logo"
+                src={logo}
+                alt=""
+              />
             </NavLink>
           </div>
-          <nav className="header__menu__container">
-            <NavLink onClick={handleNavLinkClick} to="/our-offer">
-              <span>our offer</span>
+          <nav className="d-flex justify-content-evenly align-items-center header__menu__container">
+            <NavLink
+              className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
+              onClick={handleNavLinkClick}
+              to="/our-offer"
+            >
+              <span className="d-inline-block text-uppercase">our offer</span>
             </NavLink>
-            <NavLink onClick={handleNavLinkClick} to="about-us">
-              <span>about us</span>
+            <NavLink
+              className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
+              onClick={handleNavLinkClick}
+              to="about-us"
+            >
+              <span className="d-inline-block text-uppercase">about us</span>
             </NavLink>
-            <NavLink onClick={handleNavLinkClick} to="contact">
-              <span>contact</span>
+            <NavLink
+              className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
+              onClick={handleNavLinkClick}
+              to="contact"
+            >
+              <span className="d-inline-block text-uppercase">contact</span>
             </NavLink>
             {user.id ? (
-              <div onClick={(e) => handleSignOutClick(e)}>
-                <span>sign out</span>
+              <div
+                className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
+                onClick={(e) => handleSignOutClick(e)}
+              >
+                <span className="d-inline-block text-uppercase">sign out</span>
               </div>
             ) : (
-              <NavLink onClick={handleSignInClick} to="sign-in">
-                <span>sign in</span>
+              <NavLink
+                className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
+                onClick={handleSignInClick}
+                to="sign-in"
+              >
+                <span className="d-inline-block text-uppercase">sign in</span>
               </NavLink>
             )}
             <CartIcon />
-            {/* <FontAwesomeIcon icon={["fas", "search"]} /> */}
           </nav>
           {isCartOpen ? <CartDropdown /> : null}
         </SectionContainer>

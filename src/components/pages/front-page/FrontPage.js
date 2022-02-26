@@ -1,4 +1,5 @@
 import React from "react";
+
 import CarouselCustom from "../../carousel-custom/CarouselCustom";
 import Categories from "../../sections/categories/Categories";
 import FeaturedItems from "../../sections/featured-items/FeaturedItems";
@@ -7,8 +8,6 @@ import SocialMediaGallery from "../../sections/social-media-gallery/SocialMediaG
 import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
 import ScrollToTop from "../../scroll-to-top/ScrollToTop";
-
-import "./FrontPage.scss";
 
 const FrontPage = () => {
   return (

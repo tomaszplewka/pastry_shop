@@ -1,4 +1,5 @@
 import React from "react";
+
 import SectionTitle from "../../section-title/SectionTitle";
 import SectionSubtitle from "../../section-subtitle/SectionSubtitle";
 import SectionContainer from "../../section-container/SectionContainer";
@@ -21,8 +22,15 @@ const data = [
 const DeliveryBanner = () => {
   const renderedContent = data.map((item, index) => {
     return (
-      <div key={index} className="delivery-banner__icon__container">
-        <img src={item.photo} alt="" className="delivery-banner__icon" />
+      <div
+        key={index}
+        className="text-center mb-3 delivery-banner__icon__container"
+      >
+        <img
+          src={item.photo}
+          alt=""
+          className="my-0 mx-auto delivery-banner__icon"
+        />
       </div>
     );
   });
@@ -37,7 +45,9 @@ const DeliveryBanner = () => {
       <SectionContainer customClass="py-5 position-relative">
         <SectionTitle title="Serious craving? Get seriously fast delivery!" />
         <SectionSubtitle subtitle="Selected Areas Only" />
-        <div className="py-5 delivery-banner__content">{renderedContent}</div>
+        <div className="py-5 d-flex justify-content-center align-items-center delivery-banner__content">
+          {renderedContent}
+        </div>
       </SectionContainer>
       <ShapeDividerBottom color="#fffeff" />
     </section>

@@ -1,14 +1,10 @@
 .cart-item {
   &__container {
-    display: flex;
-    align-items: center;
     border-bottom: 2px solid rgba(#1e212b, 0.25);
 
     & > div {
       flex: 1;
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: center;
 
       &:first-child {
         flex: 2;
@@ -16,19 +12,12 @@
     }
 
     span {
-      font-weight: bold;
-      text-transform: uppercase;
       font-size: 1.25rem;
-      text-align: center;
     }
   }
 
   &__item {
     & > div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
       img {
         width: 175px;
         height: 225px;
@@ -43,10 +32,6 @@
   }
 
   &__qty {
-    display: flex;
-    justify-content: space-evenly !important;
-    align-items: center;
-
     button {
       outline: none;
       -webkit-appearance: none;

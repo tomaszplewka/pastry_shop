@@ -1,4 +1,5 @@
 import React from "react";
+
 import GalleryList from "../../gallery-list/GalleryList";
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";

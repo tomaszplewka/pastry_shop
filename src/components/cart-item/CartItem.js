@@ -9,14 +9,14 @@ const CartItem = ({ item, removeItem, addToCart, decreaseItemQty }) => {
   const { image, name, price, quantity } = item;
 
   return (
-    <div className="cart-item__container">
-      <div className="cart-item__item">
-        <div>
+    <div className="d-flex align-items-center cart-item__container">
+      <div className="d-flex justify-content-center cart-item__item">
+        <div className="d-flex justify-content-between align-items-center">
           <img src={image} alt="" />
-          <span>{name}</span>
+          <span className="fw-bold text-uppercase text-center">{name}</span>
         </div>
       </div>
-      <div className="cart-item__qty">
+      <div className="d-flex justify-content-evenly align-items-center cart-item__qty">
         <button
           className="decrement"
           name="decrement"

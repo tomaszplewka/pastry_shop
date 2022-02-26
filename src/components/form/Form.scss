@@ -27,10 +27,7 @@
 
   &__container {
     max-width: 600px;
-    position: relative;
-    margin: auto;
     padding: 3rem;
-    overflow: hidden;
     background-color: #f2af29;
     border-radius: 1rem;
     border: 1px solid #f2af29;
@@ -68,24 +65,17 @@
 
   &__title {
     font-family: "Quintessential", cursive;
-    text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: bolder;
     margin: 0 1.5rem 2rem;
-    text-align: center;
     color: #1e212b;
   }
 
   &__subtitle {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: #1e212b;
 
     span {
-      text-decoration: underline;
       cursor: pointer;
       transition: all 0.3s ease;
 

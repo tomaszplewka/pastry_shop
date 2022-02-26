@@ -27,28 +27,30 @@ const CartList = ({ items, getTotal }) => {
 
   return (
     <section
-      className="pb-5 position-relative cart-list__section"
+      className="pb-5 mt-5 position-relative cart-list__section"
       style={{
         background:
           "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
       }}
     >
-      <SectionContainer>
+      <SectionContainer customClass="mt-5">
         <SectionTitle title="your cart" />
         {renderedCartItems.length ? (
           <div className="cart-list__items__container">
-            <div className="cart-list__items__heading">
-              <span>Item</span>
-              <span>Qty</span>
-              <span>Price</span>
-              <span>Subtotal</span>
-              <span>Remove</span>
+            <div className="d-flex cart-list__items__heading">
+              <span className="fw-bold text-uppercase">Item</span>
+              <span className="fw-bold text-uppercase text-center">Qty</span>
+              <span className="fw-bold text-uppercase text-center">Price</span>
+              <span className="fw-bold text-uppercase text-center">
+                Subtotal
+              </span>
+              <span className="fw-bold text-uppercase text-center">Remove</span>
             </div>
             <div className="cart-list__items">{renderedCartItems}</div>
-            <div className="cart-list__items__total">
-              <span>Total: ${getTotal}</span>
+            <div className="d-flex justify-content-end cart-list__items__total">
+              <span className="fw-bold">Total: ${getTotal}</span>
             </div>
-            <div className="cart-list__items__btns">
+            <div className="d-flex justify-content-between align-items-center cart-list__items__btns">
               <Btn
                 onClick={() => {
                   scrollUtility();
@@ -71,7 +73,7 @@ const CartList = ({ items, getTotal }) => {
           </div>
         ) : (
           <>
-            <h4 className="pt-5 cart-list__empty">
+            <h4 className="pt-5 text-center cart-list__empty">
               Your cart is currently empty
             </h4>
             <div className="d-flex justify-content-center pb-5 mb-3">

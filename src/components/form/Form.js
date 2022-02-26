@@ -24,11 +24,16 @@ const Form = ({
   };
 
   return (
-    <div className="mb-5 form__container">
-      <h2 className="form__title">{title}</h2>
+    <div className="mb-5 position-relative m-auto overflow-hidden form__container">
+      <h2 className="text-center fw-bolder text-uppercase form__title">
+        {title}
+      </h2>
       {subtitle ? (
-        <p className="form__subtitle">
-          {subtitle[0]}&nbsp;<span onClick={handleClick}>{subtitle[1]}</span>
+        <p className="d-flex justify-content-center align-items-center form__subtitle">
+          {subtitle[0]}&nbsp;
+          <span className="text-decoration-underline" onClick={handleClick}>
+            {subtitle[1]}
+          </span>
         </p>
       ) : null}
       {handleSubmit ? (

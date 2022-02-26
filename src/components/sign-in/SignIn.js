@@ -8,7 +8,10 @@ import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
 import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
+
 import Firebase from "../modules/Firebase";
+
+import { validate, renderField } from "../utilities/redux-form";
 
 import "./SignIn.scss";
 
@@ -30,13 +33,13 @@ const SignIn = ({ handleSubmit, submitting }) => {
 
   return (
     <section
-      className="py-5 position-relative sign-in__section"
+      className="py-5 mt-5 position-relative sign-in__section"
       style={{
         background:
           "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
       }}
     >
-      <SectionContainer customClass="mt-3 py-5">
+      <SectionContainer customClass="mt-5 py-5">
         <Form
           title="Sign In"
           subtitle={["First visit?", "Register here"]}
@@ -49,6 +52,7 @@ const SignIn = ({ handleSubmit, submitting }) => {
             label="email"
             placeholder="E-mail"
             component={renderField}
+            torender={FormInput}
           />
           <Field
             name="password"
@@ -56,6 +60,7 @@ const SignIn = ({ handleSubmit, submitting }) => {
             label="password"
             placeholder="Password"
             component={renderField}
+            torender={FormInput}
           />
           <div className="d-flex flex-column mb-0">
             <Btn type="submit" disabled={submitting} fullwidth invert>
@@ -71,44 +76,6 @@ const SignIn = ({ handleSubmit, submitting }) => {
     </section>
   );
 };
-
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.email) {
-    errors.email = "This field is required.";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Provide valid email address.";
-  }
-  if (!values.password) {
-    errors.password = "Provide password.";
-  }
-  return errors;
-};
-
-const renderField = ({
-  input,
-  name,
-  label,
-  placeholder,
-  type,
-  meta: { touched, error },
-}) => (
-  <>
-    <FormInput
-      type={type}
-      name={name}
-      required
-      label={label}
-      placeholder={placeholder}
-      invert
-      {...input}
-    />
-    <div className="form-input__error">
-      {touched && error && <span>{error}</span>}
-    </div>
-  </>
-);
 
 export default reduxForm({
   form: "sign-in-form",

@@ -6,13 +6,15 @@ const CartDropdownItem = ({ item }) => {
   const { name, price, quantity, image } = item;
 
   return (
-    <div className="cart-dropdown-item__container">
+    <div className="d-flex justify-content-between align-items-center cart-dropdown-item__container">
       <div className="cart-dropdown-item__image__container">
         <img className="cart-dropdown-item__image" src={image} alt="" />
       </div>
       <div className="cart-dropdown-item__content">
-        <h6 className="cart-dropdown-item__title">{name}</h6>
-        <div className="cart-dropdown-item__content__details">
+        <h6 className="fw-bolder text-uppercase cart-dropdown-item__title">
+          {name}
+        </h6>
+        <div className="d-flex flex-column align-items-start cart-dropdown-item__content__details">
           <span className="cart-dropdown-item__quantity">
             <span>Qty:&nbsp;</span>
             {quantity}

@@ -36,7 +36,11 @@ const ScrollToTop = () => {
   const onBtnClick = () => scrollUtility();
 
   return (
-    <div ref={ref} className="scroll-to-top" onClick={onBtnClick}>
+    <div
+      ref={ref}
+      className="position-fixed d-inline-flex justify-content-center align-items-center scroll-to-top"
+      onClick={onBtnClick}
+    >
       <FontAwesomeIcon icon={["fas", "chevron-up"]} />
     </div>
   );

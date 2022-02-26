@@ -14,10 +14,15 @@ library.add(faShoppingCart);
 
 const CartIcon = ({ toggleCart, cartQuantity }) => {
   return (
-    <span className="cart-icon__container" onClick={toggleCart}>
+    <span
+      className="position-relative cart-icon__container"
+      onClick={toggleCart}
+    >
       <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
       {cartQuantity ? (
-        <span className="cart-icon__quantity">{cartQuantity}</span>
+        <span className="position-absolute d-inline-flex justify-content-center align-items-center fw-bold cart-icon__quantity">
+          {cartQuantity}
+        </span>
       ) : null}
     </span>
   );

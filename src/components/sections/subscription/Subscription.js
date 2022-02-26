@@ -1,4 +1,5 @@
 import React from "react";
+
 import SectionTitle from "../../section-title/SectionTitle";
 import SectionSubtitle from "../../section-subtitle/SectionSubtitle";
 import SectionContainer from "../../section-container/SectionContainer";
@@ -14,9 +15,9 @@ const Subscription = () => {
       <SectionContainer customClass="py-5">
         <SectionTitle title="Sweet Deals & 10% Off" />
         <SectionSubtitle subtitle="Subscribe to Receive Sweet Deals and Treats!" />
-        <div className="pb-5 subscription__container">
-          <form className="subscription__form">
-            <div className="subscription__input__container">
+        <div className="pb-5 my-0 mx-auto subscription__container">
+          <form className="w-100 d-flex flex-column justify-content-between align-items-center subscription__form">
+            <div className="w-100 d-flex mt-2 subscription__input__container">
               <FormInput
                 type="email"
                 id="email"

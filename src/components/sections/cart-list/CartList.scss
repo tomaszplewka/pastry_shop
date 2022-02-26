@@ -1,6 +1,5 @@
 .cart-list {
   &__section {
-    margin-top: 80px;
     padding-top: 8rem !important;
 
     div {
@@ -11,7 +10,6 @@
   }
 
   &__empty {
-    text-align: center;
   }
 
   &__items {
@@ -23,39 +21,28 @@
     }
 
     &__heading {
-      display: flex;
       border-bottom: 2px solid rgba(#1e212b, 0.25);
 
       & > span {
         padding: 2rem;
         flex: 1;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
 
         &:first-child {
           flex: 2;
-          text-align: left;
         }
       }
     }
 
     &__total {
       margin: 2rem;
-      display: flex;
-      justify-content: flex-end;
 
       span {
         font-size: 2rem;
-        font-weight: bold;
       }
     }
 
     &__btns {
       margin: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
       .btn {
         margin-bottom: 2rem !important;
