@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Field, reduxForm } from "redux-form";
 
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
@@ -8,9 +9,21 @@ import FormTextarea from "../../form-textarea/FormTextarea";
 import Btn from "../../Btn/Btn";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
+import { validate, renderField } from "../../utilities/redux-form";
+
 import "./ContactForm.scss";
 
 const ContactForm = () => {
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setIsFormSubmitted(true);
+    // setTimeout(() => {
+    //   setIsFormSubmitted(false);
+    // }, 3000);
+  };
+
   return (
     <section
       className="py-5 position-relative text-section__section"
@@ -36,55 +49,62 @@ const ContactForm = () => {
           dolore placeat nemo, ratione sit nihil vel at qui! Dolorem, fuga
           ipsam!
         </p>
-        <Form
-          title="Contact Us"
-          // handleSubmit={handleSubmit}
-        >
-          <FormInput
-            type="text"
-            id="username"
-            name="username"
-            // value={username}
-            required
-            // onChange={handleChange}
-            placeholder="Name"
-            hide
-            invert
-            inline
-            fullwidth
-          />
-          <FormInput
-            type="email"
-            id="email"
-            name="email"
-            // value={email}
-            required
-            // onChange={handleChange}
-            placeholder="Email"
-            hide
-            invert
-            inline
-            fullwidth
-          />
-          <FormTextarea
-            id="message"
-            name="message"
-            // value={email}
-            required
-            // onChange={handleChange}
-            placeholder="Message"
-            hide
-            invert
-            fullwidth
-          />
-          <Btn type="submit" fullwidth invert>
-            Send Message
-          </Btn>
-        </Form>
+        {isFormSubmitted ? (
+          <div className="mb-5 mx-5 px-5 pb-5">
+            <h4 className="text-center">
+              Thank you for contacting us. We will reply at our earliest
+              convenience. Have a great day.
+            </h4>
+          </div>
+        ) : (
+          <Form title="Contact Us" handleSubmit={handleFormSubmit}>
+            <Field
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="Name"
+              hide={true}
+              invert={true}
+              fullwidth={true}
+              component={renderField}
+              torender={FormInput}
+            />
+            <Field
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Email"
+              hide={true}
+              invert={true}
+              fullwidth={true}
+              component={renderField}
+              torender={FormInput}
+            />
+            <Field
+              id="message"
+              name="message"
+              required
+              placeholder="Message"
+              hide={true}
+              invert={true}
+              fullwidth={true}
+              component={renderField}
+              torender={FormTextarea}
+            />
+            <Btn type="submit" fullwidth invert>
+              Send Message
+            </Btn>
+          </Form>
+        )}
       </SectionContainer>
       <ShapeDividerBottom color="#eaf2ef" />
     </section>
   );
 };
 
-export default ContactForm;
+export default reduxForm({
+  form: "contact-form",
+  validate,
+})(ContactForm);

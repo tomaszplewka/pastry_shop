@@ -1,5 +1,5 @@
 export const scrollUtility = () =>
-  window.scrollTo({
+  window.scroll({
     top: 0,
     behavior: "smooth",
   });

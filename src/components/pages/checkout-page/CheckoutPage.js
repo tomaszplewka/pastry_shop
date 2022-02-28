@@ -1,6 +1,6 @@
 import React from "react";
 
-import CheckoutForm from "../../sections/checkout-form/CheckoutForm";
+import Checkout from "../../sections/checkout/Checkout";
 import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
 import ScrollToTop from "../../scroll-to-top/ScrollToTop";
@@ -10,7 +10,7 @@ import "./CheckoutPage.scss";
 const CheckoutPage = () => {
   return (
     <>
-      <CheckoutForm />
+      <Checkout />
       <Testimonials />
       <Subscription />
       <ScrollToTop />

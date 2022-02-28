@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 };
 
 export const shopReducer = (state = INITIAL_STATE, action) => {
-  console.log(state);
   switch (action.type) {
     case shopActionTypes.FETCH_DATA_START:
       return {

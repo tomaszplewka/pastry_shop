@@ -30,7 +30,7 @@ const App = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     console.log("APP -- FETCH DATA");
