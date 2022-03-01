@@ -8,9 +8,9 @@ export const validate = (values) => {
   }
 
   if (!values.full_name) {
-    errors.username = "This field is required.";
+    errors.full_name = "This field is required.";
   } else if (values.full_name.length > 15) {
-    errors.username = "Must be 15 characters or less";
+    errors.full_name = "Must be 15 characters or less";
   }
 
   if (!values.phone) {
@@ -29,6 +29,10 @@ export const validate = (values) => {
 
   if (!values.password) {
     errors.password = "Provide password.";
+  }
+
+  if (!values.password_sign_in) {
+    errors.password_sign_in = "Provide password.";
   }
 
   if (!values.confirmPassword) {

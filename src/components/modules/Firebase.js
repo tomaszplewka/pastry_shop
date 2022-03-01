@@ -43,10 +43,14 @@ const Firebase = (() => {
     dispatch(setUserStart());
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        await saveUserData(user.uid, {
-          name: user.displayName,
-          email: user.email,
-        });
+        await saveUserData(
+          user.uid,
+          {
+            name: user.displayName,
+            email: user.email,
+          },
+          dispatch
+        );
         dispatch(
           setUserSuccess({
             name: user.displayName,
@@ -76,7 +80,6 @@ const Firebase = (() => {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
       dispatch(setUserFailure(error.message));
     }
   };
@@ -89,20 +92,18 @@ const Firebase = (() => {
       await signInWithPopup(auth, provider);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
       dispatch(setUserFailure(error.message));
     }
   };
   // Log in with email & password
   const logInEmailAndPassword = async (data, navigate, dispatch) => {
-    const { email, password } = data;
+    const { email, password_sign_in } = data;
 
     try {
       dispatch(setUserStart());
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password_sign_in);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
       dispatch(setUserFailure(error.message));
     }
   };
@@ -112,12 +113,11 @@ const Firebase = (() => {
       dispatch(setUserStart());
       await signOut(auth);
     } catch (error) {
-      console.log(error.message);
       dispatch(setUserFailure());
     }
   };
   // Save user data
-  const saveUserData = async (userId, data) => {
+  const saveUserData = async (userId, data, dispatch) => {
     if (!userId) return;
 
     const docSnap = await getDoc(doc(db, "users", userId));
@@ -129,7 +129,7 @@ const Firebase = (() => {
           timestamp: Date.now(),
         });
       } catch (error) {
-        console.log(error.message);
+        dispatch(fetchDataFailure(error.message));
       }
     }
   };
@@ -146,8 +146,7 @@ const Firebase = (() => {
         dispatch(fetchDataSuccess(shopCategories));
       },
       (error) => {
-        console.log(error.message);
-        dispatch(fetchDataFailure());
+        dispatch(fetchDataFailure(error.message));
       }
     );
 

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
@@ -11,6 +11,10 @@ import Btn from "../Btn/Btn";
 
 import Firebase from "../modules/Firebase";
 
+import { selectUserFetchingError } from "../../reducers/user/user-selectors";
+
+import actions from "../../actions";
+
 import { validate, renderField } from "../utilities/redux-form";
 
 import "./SignIn.scss";
@@ -18,10 +22,17 @@ import "./SignIn.scss";
 const SignIn = ({ handleSubmit, submitting }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const error = useSelector((state) => selectUserFetchingError(state));
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        dispatch(actions.setUserFailure());
+      }, 5000);
+    }
+  }, [dispatch, error]);
 
   const handleSignIn = (values) => {
-    console.log(values);
-    console.log("SIGN IN CLICKED");
     Firebase.logInEmailAndPassword(values, navigate, dispatch);
   };
 
@@ -55,13 +66,24 @@ const SignIn = ({ handleSubmit, submitting }) => {
             torender={FormInput}
           />
           <Field
-            name="password"
+            name="password_sign_in"
             type="password"
             label="password"
             placeholder="Password"
             component={renderField}
             torender={FormInput}
           />
+          {error ? (
+            <div className="w-100 mt-5 mb-3 text-center form-input__error">
+              <span className="fw-bold text-uppercase">
+                server error:&nbsp;
+                {error
+                  .slice(error.indexOf("/") + 1, -2)
+                  .split("-")
+                  .join(" ")}
+              </span>
+            </div>
+          ) : null}
           <div className="d-flex flex-column mb-0">
             <Btn type="submit" disabled={submitting} fullwidth invert>
               Sign In

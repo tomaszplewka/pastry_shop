@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SectionContainer from "../section-container/SectionContainer";
 import ShapeDividerBottom from "../shape-divider-bottom/ShapeDividerBottom";
 import Form from "../form/Form";
 import FormInput from "../form-input/FormInput";
 import Btn from "../Btn/Btn";
+
+import { selectUserFetchingError } from "../../reducers/user/user-selectors";
+
+import actions from "../../actions";
 
 import Firebase from "../modules/Firebase";
 
@@ -18,9 +22,17 @@ import "./Register.scss";
 const Register = ({ handleSubmit, submitting }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const error = useSelector((state) => selectUserFetchingError(state));
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        dispatch(actions.setUserFailure());
+      }, 5000);
+    }
+  }, [dispatch, error]);
 
   const handleRegisterSubmit = ({ email, password }) => {
-    console.log("REGISTER CLICKED");
     Firebase.registerUserWithEmailAndPassword(
       {
         email,
@@ -78,6 +90,17 @@ const Register = ({ handleSubmit, submitting }) => {
             component={renderField}
             torender={FormInput}
           />
+          {error ? (
+            <div className="w-100 my-4 text-center form-input__error">
+              <span className="fw-bold text-uppercase">
+                server error:&nbsp;
+                {error
+                  .slice(error.indexOf("/") + 1, -2)
+                  .split("-")
+                  .join(" ")}
+              </span>
+            </div>
+          ) : null}
           <Btn type="submit" disabled={submitting} fullwidth invert>
             Register
           </Btn>
