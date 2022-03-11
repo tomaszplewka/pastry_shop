@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { createStructuredSelector } from "reselect";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 
@@ -33,9 +32,13 @@ const CheckoutForm = ({
   submitting,
   differentAddress,
   methodShipping,
-  methodPayment,
+  methodPayment
 }) => {
   const navigate = useNavigate();
+
+  console.log("DIFFERENT ADDRESS: ", differentAddress);
+  console.log("METHOD SHIPPING: ", methodShipping);
+  console.log("METHOD PAYMENT: ", methodPayment);
 
   if (!cart.length) {
     return <Navigate to="/cart" />;
@@ -84,13 +87,18 @@ const CheckoutForm = ({
 
   const renderedShippingFields = differentAddress ? <ShippingFields /> : null;
 
+  const handleSubmitTemp = (e) => {
+    e.preventDefault();
+    console.log("SUBMITTED");
+  };
+
   return (
     <>
       <section
         className="pb-5 mt-5 position-relative checkout-form__section"
         style={{
           background:
-            "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+            "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
         }}
       >
         <SectionContainer customClass="my-5">
@@ -99,27 +107,25 @@ const CheckoutForm = ({
             <div className="checkout-form__content">
               {renderedFormNotice}
               <div className="checkout-form__form">
-                <Form
-                // handleSubmit={handleSubmit(handleSignIn)}
-                >
+                <Form handleSubmit={handleSubmitTemp}>
                   <BillingFields />
                   <span className="d-block checkout-form__form__checkbox">
                     <label
-                      htmlFor="differentAddress"
+                      htmlFor="different_address"
                       className="position-relative"
                     >
                       <Field
-                        name="differentAddress"
+                        name="different_address"
                         component="input"
                         type="checkbox"
-                        id="differentAddress"
+                        id="different_address"
                       />
                       <span>Ship to a different address</span>
                     </label>
                   </span>
                   {renderedShippingFields}
-                  <ShippingMethods isError={!!methodShipping} />
-                  <PaymentMethods isError={!!methodPayment} />
+                  <ShippingMethods isError={methodShipping} />
+                  <PaymentMethods isError={methodPayment} />
                   <div className="checkout-form__additional-comments">
                     <h2 className="ms-0 fw-bolder text-uppercase form__title">
                       additional comments
@@ -196,14 +202,14 @@ const selector = formValueSelector("checkout-form");
 const mapStateToProps = (state) => ({
   user: selectUser(state),
   cart: selectCartItems(state),
-  differentAddress: selector(state, "differentAddress"),
+  differentAddress: selector(state, "different_address"),
   methodShipping: selector(state, "method_shipping"),
-  methodPayment: selector(state, "method_payment"),
+  methodPayment: selector(state, "method_payment")
 });
 
 const formWrapped = reduxForm({
   form: "checkout-form",
-  validate,
+  validate
 })(CheckoutForm);
 
 export default connect(mapStateToProps)(formWrapped);

@@ -38,7 +38,9 @@ const ShippingMethods = ({ isError }) => {
         </div>
       </label>
       <div className="w-100 text-center form-input__error">
-        {isError && <span className="fw-bold">"Choose shipping method.</span>}
+        {isError === undefined && (
+          <span className="fw-bold d-block pt-4">Choose shipping method.</span>
+        )}
       </div>
     </div>
   );

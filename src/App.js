@@ -24,7 +24,6 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("APP USE EFFECT");
     const unsubscribe = Firebase.subscribeToAuthStateChanges(dispatch);
 
     return () => {
@@ -33,13 +32,12 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("APP -- FETCH DATA");
     const unsubscribe = Firebase.subscribeToDataChanges(dispatch);
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

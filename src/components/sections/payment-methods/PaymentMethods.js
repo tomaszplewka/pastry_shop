@@ -34,7 +34,9 @@ const PaymentMethods = ({ isError }) => {
         </div>
       </label>
       <div className="w-100 text-center form-input__error">
-        {isError && <span className="fw-bold">"Choose payment method.</span>}
+        {isError === undefined && (
+          <span className="fw-bold d-block pt-4">Choose payment method.</span>
+        )}
       </div>
     </div>
   );

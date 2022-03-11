@@ -29,13 +29,13 @@ const CartItem = ({ item, removeItem, addToCart, decreaseItemQty }) => {
           onClick={() => addToCart(item)}
         ></button>
       </div>
-      <div className="cart-item__price">
+      <div className="text-center cart-item__price">
         <span>${price}</span>
       </div>
-      <div className="cart-item__total">
+      <div className="text-center cart-item__total">
         <span>${quantity * price}</span>
       </div>
-      <div className="cart-item__remove">
+      <div className="text-center cart-item__remove">
         <span onClick={() => removeItem(item)}>&#215;</span>
       </div>
     </div>
@@ -45,7 +45,7 @@ const CartItem = ({ item, removeItem, addToCart, decreaseItemQty }) => {
 const mapDispatchToProps = {
   removeItem: actions.removeFromCartDirectly,
   addToCart: actions.addToCart,
-  decreaseItemQty: actions.decreaseItemQty,
+  decreaseItemQty: actions.decreaseItemQty
 };
 
 export default connect(null, mapDispatchToProps)(CartItem);

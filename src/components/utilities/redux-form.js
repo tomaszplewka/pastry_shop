@@ -70,12 +70,24 @@ export const validate = (values) => {
     errors.zip_shipping = "Provide valid zip code (e.g. 25-934).";
   }
 
+  if (!values.city) {
+    errors.city = "This field is required.";
+  }
+
   if (!values.city_shipping) {
     errors.city_shipping = "This field is required.";
   }
 
   if (!values.consent) {
     errors.consent = "This field is required.";
+  }
+
+  if (!values.method_shipping) {
+    errors.method_shipping = "This field is required.";
+  }
+
+  if (!values.method_payment) {
+    errors.method_payment = "This field is required.";
   }
 
   return errors;
@@ -91,7 +103,7 @@ export const renderField = ({
   meta: { touched, error },
   fullwidth = false,
   invert = true,
-  hide = false,
+  hide = false
 }) => {
   const Component = torender;
 
