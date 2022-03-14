@@ -8,16 +8,14 @@ import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
 import background from "../../../assets/images/social-media/social1.jpg";
 
-const ShopPage = () => {
-  return (
-    <>
-      <HeaderBanner image={background} title="our offer" position="530px" />
-      <Outlet />
-      <Testimonials />
-      <Subscription />
-      <ScrollToTop />
-    </>
-  );
-};
+const ShopPage = () => (
+  <>
+    <HeaderBanner image={background} title="our offer" position="530px" />
+    <Outlet />
+    <Testimonials />
+    <Subscription />
+    <ScrollToTop />
+  </>
+);
 
 export default ShopPage;

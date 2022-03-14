@@ -1,24 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Header from "./components/sections/header/Header";
 import Footer from "./components/sections/footer/Footer";
-import AboutPage from "./components/pages/about-page/AboutPage";
-import ContactPage from "./components/pages/contact-page/ContactPage";
-import CategoryPreview from "./components/sections/category-preview/CategoryPreview";
-import CategorySingle from "./components/sections/category-single/CategorySingle";
-import ItemSingle from "./components/sections/item-single/ItemSingle";
-import Cart from "./components/pages/cart-page/CartPage";
-import CheckoutPage from "./components/pages/checkout-page/CheckoutPage";
+import Spinner from "./components/spinner/Spinner";
 
-import FrontPageContainer from "./components/containers/FrontPageContainer";
-import ShopPageContainer from "./components/containers/ShopPageContainer";
-import AuthContainer from "./components/containers/AuthContainer";
+import ErrorBoundary from "./components/error-boundary/ErrorBoundary";
 
 import Firebase from "./components/modules/Firebase";
 
 import "./App.scss";
+
+const FrontPageContainer = lazy(() =>
+  import("./components/containers/FrontPageContainer")
+);
+const ShopPageContainer = lazy(() =>
+  import("./components/containers/ShopPageContainer")
+);
+const AuthContainer = lazy(() =>
+  import("./components/containers/AuthContainer")
+);
+const AboutPage = lazy(() => import("./components/pages/about-page/AboutPage"));
+const ContactPage = lazy(() =>
+  import("./components/pages/contact-page/ContactPage")
+);
+const CategoryPreview = lazy(() =>
+  import("./components/sections/category-preview/CategoryPreview")
+);
+const CategorySingle = lazy(() =>
+  import("./components/sections/category-single/CategorySingle")
+);
+const ItemSingle = lazy(() =>
+  import("./components/sections/item-single/ItemSingle")
+);
+const Cart = lazy(() => import("./components/pages/cart-page/CartPage"));
+const CheckoutPage = lazy(() =>
+  import("./components/pages/checkout-page/CheckoutPage")
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,21 +61,25 @@ const App = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<FrontPageContainer />} />
-        <Route path="/our-offer" element={<ShopPageContainer />}>
-          <Route path=":itemsCategory" element={<CategorySingle />}>
-            <Route path=":itemName" element={<ItemSingle />} />
-          </Route>
-          <Route index element={<CategoryPreview />} />
-        </Route>
-        <Route path="/about-us" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/sign-in" element={<AuthContainer />} />
-        <Route path="/register" element={<AuthContainer />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-      </Routes>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route path="/" element={<FrontPageContainer />} />
+            <Route path="/our-offer" element={<ShopPageContainer />}>
+              <Route path=":itemsCategory" element={<CategorySingle />}>
+                <Route path=":itemName" element={<ItemSingle />} />
+              </Route>
+              <Route index element={<CategoryPreview />} />
+            </Route>
+            <Route path="/about-us" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/sign-in" element={<AuthContainer />} />
+            <Route path="/register" element={<AuthContainer />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
       <Footer />
     </>
   );

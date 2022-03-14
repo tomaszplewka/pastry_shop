@@ -9,19 +9,17 @@ import Testimonials from "../../sections/testimonials/Testimonials";
 import Subscription from "../../sections/subscription/Subscription";
 import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
-const FrontPage = () => {
-  return (
-    <>
-      <CarouselCustom />
-      <Categories />
-      <FeaturedItems />
-      <DeliveryBanner />
-      <SocialMediaGallery />
-      <Testimonials />
-      <Subscription />
-      <ScrollToTop />
-    </>
-  );
-};
+const FrontPage = () => (
+  <>
+    <CarouselCustom />
+    <Categories />
+    <FeaturedItems />
+    <DeliveryBanner />
+    <SocialMediaGallery />
+    <Testimonials />
+    <Subscription />
+    <ScrollToTop />
+  </>
+);
 
 export default FrontPage;
