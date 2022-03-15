@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { connect } from "react-redux";
 
 import actions from "../../actions";
@@ -48,4 +48,4 @@ const mapDispatchToProps = {
   decreaseItemQty: actions.decreaseItemQty
 };
 
-export default connect(null, mapDispatchToProps)(CartItem);
+export default connect(null, mapDispatchToProps)(memo(CartItem));

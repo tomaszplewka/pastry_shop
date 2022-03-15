@@ -8,17 +8,15 @@ import "./FloatingCookie.scss";
 
 library.add(faCookieBite);
 
-const FloatingCookie = ({ position }) => {
-  return (
-    <div
-      className="position-absolute w-100 text-center floating-cookie__container"
-      style={{
-        top: position,
-      }}
-    >
-      <FontAwesomeIcon icon={["fas", "cookie-bite"]} />
-    </div>
-  );
-};
+const FloatingCookie = ({ position }) => (
+  <div
+    className="position-absolute w-100 text-center floating-cookie__container"
+    style={{
+      top: position
+    }}
+  >
+    <FontAwesomeIcon icon={["fas", "cookie-bite"]} />
+  </div>
+);
 
 export default FloatingCookie;

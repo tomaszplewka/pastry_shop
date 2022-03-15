@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteRight, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -9,22 +9,26 @@ import "./CardTestimonial.scss";
 library.add(faQuoteRight, faStar);
 
 const CardTestimonial = ({ item }) => {
-  const renderedRating = Array.apply(null, {
-    length: Math.ceil(item.rating),
-  }).map((element, index) => (
-    <span key={index} className="d-inline-block  card-testimonial__rating">
-      <span
-        className={
-          Math.ceil(item.rating) !== Math.floor(item.rating) &&
-          index === Math.ceil(item.rating) - 1
-            ? "d-inline-block overflow-hidden w-50 half"
-            : ""
-        }
-      >
-        <FontAwesomeIcon icon={["fas", "star"]} inverse />
-      </span>
-    </span>
-  ));
+  const renderedRating = useMemo(
+    () =>
+      Array.apply(null, {
+        length: Math.ceil(item.rating)
+      }).map((element, index) => (
+        <span key={index} className="d-inline-block  card-testimonial__rating">
+          <span
+            className={
+              Math.ceil(item.rating) !== Math.floor(item.rating) &&
+              index === Math.ceil(item.rating) - 1
+                ? "d-inline-block overflow-hidden w-50 half"
+                : ""
+            }
+          >
+            <FontAwesomeIcon icon={["fas", "star"]} inverse />
+          </span>
+        </span>
+      )),
+    [item.rating]
+  );
 
   return (
     <div className="d-flex justify-content-center flex-column card-testimonial__container">

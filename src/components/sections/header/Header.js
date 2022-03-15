@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -15,7 +15,7 @@ import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import {
   faPhone,
   faEnvelope,
-  faShoppingCart,
+  faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -53,24 +53,24 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
     };
   }, []);
 
-  const handleSignOutClick = (e) => {
-    scrollUtility();
-    Firebase.logOut(dispatch);
-    handleNavLinkClick();
-  };
-
-  const handleSignInClick = (e) => {
-    scrollUtility();
-    setIsRegisterActive(false);
-    handleNavLinkClick();
-  };
-
-  const handleNavLinkClick = () => {
+  const handleNavLinkClick = useCallback(() => {
     scrollUtility();
     if (isCartOpen) {
       toggleCart();
     }
-  };
+  }, [isCartOpen, toggleCart]);
+
+  const handleSignOutClick = useCallback(() => {
+    scrollUtility();
+    Firebase.logOut(dispatch);
+    handleNavLinkClick();
+  }, [dispatch, handleNavLinkClick]);
+
+  const handleSignInClick = useCallback(() => {
+    scrollUtility();
+    setIsRegisterActive(false);
+    handleNavLinkClick();
+  }, [setIsRegisterActive, handleNavLinkClick]);
 
   return (
     <>
@@ -183,12 +183,12 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser,
-  isCartOpen: selectIsCartOpen,
+  isCartOpen: selectIsCartOpen
 });
 
 const mapDispatchToProps = {
   setIsRegisterActive: actions.setIsRegisterActive,
-  toggleCart: actions.toggleCart,
+  toggleCart: actions.toggleCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

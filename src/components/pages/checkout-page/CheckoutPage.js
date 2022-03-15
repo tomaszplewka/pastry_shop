@@ -7,15 +7,13 @@ import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
 import "./CheckoutPage.scss";
 
-const CheckoutPage = () => {
-  return (
-    <>
-      <Checkout />
-      <Testimonials />
-      <Subscription />
-      <ScrollToTop />
-    </>
-  );
-};
+const CheckoutPage = () => (
+  <>
+    <Checkout />
+    <Testimonials />
+    <Subscription />
+    <ScrollToTop />
+  </>
+);
 
 export default CheckoutPage;

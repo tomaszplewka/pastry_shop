@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +17,6 @@ import Firebase from "../modules/Firebase";
 
 import { validate, renderField } from "../utilities/redux-form";
 
-import "./Register.scss";
-
 const Register = ({ handleSubmit, submitting }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,23 +30,26 @@ const Register = ({ handleSubmit, submitting }) => {
     }
   }, [dispatch, error]);
 
-  const handleRegisterSubmit = ({ email, password }) => {
-    Firebase.registerUserWithEmailAndPassword(
-      {
-        email,
-        password,
-      },
-      navigate,
-      dispatch
-    );
-  };
+  const handleRegisterSubmit = useCallback(
+    ({ email, password }) => {
+      Firebase.registerUserWithEmailAndPassword(
+        {
+          email,
+          password
+        },
+        navigate,
+        dispatch
+      );
+    },
+    [dispatch, navigate]
+  );
 
   return (
     <section
       className="py-5 mt-5 position-relative register__section"
       style={{
         background:
-          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
       <SectionContainer customClass="mt-5 py-5">
@@ -113,5 +114,5 @@ const Register = ({ handleSubmit, submitting }) => {
 
 export default reduxForm({
   form: "register-form",
-  validate,
+  validate
 })(Register);

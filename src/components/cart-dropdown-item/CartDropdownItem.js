@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import "./CartDropdownItem.scss";
 
@@ -28,4 +28,4 @@ const CartDropdownItem = ({ item }) => {
   );
 };
 
-export default CartDropdownItem;
+export default memo(CartDropdownItem);

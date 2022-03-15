@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -16,16 +16,20 @@ const CategorySingle = ({ data }) => {
 
   useEffect(() => scrollUtility(), []);
 
-  const renderedItems = data[params.itemsCategory].items.map((item, index) => {
-    return <CardItem key={index} item={item} cartBtn />;
-  });
+  const renderedItems = useMemo(
+    () =>
+      data[params.itemsCategory].items.map((item, index) => {
+        return <CardItem key={index} item={item} cartBtn />;
+      }),
+    [data, params.itemsCategory]
+  );
 
   return (
     <section
       className="py-5 position-relative category-single__section"
       style={{
         background:
-          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
       <SectionContainer>
@@ -44,7 +48,7 @@ const CategorySingle = ({ data }) => {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.data.categories,
+  data: state.data.categories
 });
 
 export default connect(mapStateToProps)(CategorySingle);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import { connect } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
 
   const { name, price, image, price_per, availability } = item;
 
-  const handleItemClick = () => {
+  const handleItemClick = useCallback(() => {
     navigate(
       featured_item
         ? `/our-offer/${category}/${name.split(" ").join("-")}`
@@ -25,7 +25,7 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
         : `/our-offer/${category}/${name.split(" ").join("-")}`
     );
     scrollUtility();
-  };
+  }, [category, featured_item, name, navigate, params.itemsCategory]);
 
   return (
     <div
@@ -37,9 +37,9 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
         <div
           className="position-absolute w-100 h-100 card-item__img"
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${image})`
           }}
-          onClick={() => handleItemClick()}
+          onClick={handleItemClick}
         ></div>
       </div>
       <div className="d-flex justify-content-center align-items-center flex-column card-item__body">
@@ -56,7 +56,7 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
 };
 
 const mapDispatchToProps = {
-  addToCart: actions.addToCart,
+  addToCart: actions.addToCart
 };
 
-export default connect(null, mapDispatchToProps)(CardItem);
+export default connect(null, mapDispatchToProps)(memo(CardItem));

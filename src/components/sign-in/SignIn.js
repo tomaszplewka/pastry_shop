@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,22 +32,27 @@ const SignIn = ({ handleSubmit, submitting }) => {
     }
   }, [dispatch, error]);
 
-  const handleSignIn = (values) => {
-    Firebase.logInEmailAndPassword(values, navigate, dispatch);
-  };
+  const handleSignIn = useCallback(
+    (values) => {
+      Firebase.logInEmailAndPassword(values, navigate, dispatch);
+    },
+    [dispatch, navigate]
+  );
 
-  const handleSignInWithGoogle = (e) => {
-    e.preventDefault();
-    console.log("SIGN IN WITH GOOGLE CLICKED");
-    Firebase.logInGoogle(navigate, dispatch);
-  };
+  const handleSignInWithGoogle = useCallback(
+    (e) => {
+      e.preventDefault();
+      Firebase.logInGoogle(navigate, dispatch);
+    },
+    [dispatch, navigate]
+  );
 
   return (
     <section
       className="py-5 mt-5 position-relative sign-in__section"
       style={{
         background:
-          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
       <SectionContainer customClass="mt-5 py-5">
@@ -101,5 +106,5 @@ const SignIn = ({ handleSubmit, submitting }) => {
 
 export default reduxForm({
   form: "sign-in-form",
-  validate,
+  validate
 })(SignIn);

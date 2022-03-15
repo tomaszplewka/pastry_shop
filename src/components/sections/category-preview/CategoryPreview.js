@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -13,34 +13,43 @@ import "./CategoryPreview.scss";
 const CategoryPreview = ({ data }) => {
   const location = useLocation();
 
-  const renderedCategories = Object.keys(data).map((category, index) => {
-    return (
-      <div key={index} className="pt-5 category-preview__container">
-        <div className="d-flex justify-content-between align-items-center category-preview__content">
-          <h2 className="text-uppercase fw-bold category-preview__title">
-            {category}
-          </h2>
-          <span className="text-decoration-underline text-uppercase">
-            <Link to={`${location.pathname}/${category}`}>see more</Link>
-          </span>
-        </div>
-        <div className="d-flex justify-content-evenly align-items-center category-preview__items__container">
-          {data[category].items
-            .filter((item, index) => index < 3)
-            .map((item, index) => (
-              <CardItem key={index} item={item} category={category} cartBtn />
-            ))}
-        </div>
-      </div>
-    );
-  });
+  const renderedCategories = useMemo(
+    () =>
+      Object.keys(data).map((category, index) => {
+        return (
+          <div key={index} className="pt-5 category-preview__container">
+            <div className="d-flex justify-content-between align-items-center category-preview__content">
+              <h2 className="text-uppercase fw-bold category-preview__title">
+                {category}
+              </h2>
+              <span className="text-decoration-underline text-uppercase">
+                <Link to={`${location.pathname}/${category}`}>see more</Link>
+              </span>
+            </div>
+            <div className="d-flex justify-content-evenly align-items-center category-preview__items__container">
+              {data[category].items
+                .filter((item, index) => index < 3)
+                .map((item, index) => (
+                  <CardItem
+                    key={index}
+                    item={item}
+                    category={category}
+                    cartBtn
+                  />
+                ))}
+            </div>
+          </div>
+        );
+      }),
+    [data, location.pathname]
+  );
 
   return (
     <section
       className="py-5 position-relative category-preview__section"
       style={{
         background:
-          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
       <SectionContainer>
@@ -53,7 +62,7 @@ const CategoryPreview = ({ data }) => {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.data.categories,
+  data: state.data.categories
 });
 
 export default connect(mapStateToProps)(CategoryPreview);

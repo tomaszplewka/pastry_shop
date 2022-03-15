@@ -20,29 +20,27 @@ const sliderConfig = {
   slidesPerView: 3,
   loop: true,
   speed: 500,
-  autoHeight: true,
+  autoHeight: true
 };
 
-const FeaturedItems = ({ featuredItems }) => {
-  return (
-    <section className="position-relative">
-      <SectionContainer customClass="py-5">
-        <SectionTitle title="Featured Items" />
-        <Slider
-          data={featuredItems}
-          config={sliderConfig}
-          render={CardItem}
-          cartBtn
-          featured_item
-        />
-      </SectionContainer>
-      <ShapeDividerBottom color="#edffd9" />
-    </section>
-  );
-};
+const FeaturedItems = ({ featuredItems }) => (
+  <section className="position-relative">
+    <SectionContainer customClass="py-5">
+      <SectionTitle title="Featured Items" />
+      <Slider
+        data={featuredItems}
+        config={sliderConfig}
+        render={CardItem}
+        cartBtn
+        featured_item
+      />
+    </SectionContainer>
+    <ShapeDividerBottom color="#edffd9" />
+  </section>
+);
 
 const mapStateToProps = createStructuredSelector({
-  featuredItems: selectFeaturedItems,
+  featuredItems: selectFeaturedItems
 });
 
 export default connect(mapStateToProps)(FeaturedItems);

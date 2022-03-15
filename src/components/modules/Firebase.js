@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
+  signOut
 } from "firebase/auth";
 
 import {
@@ -17,7 +17,7 @@ import {
   setDoc,
   getDoc,
   collection,
-  onSnapshot,
+  onSnapshot
 } from "firebase/firestore";
 
 import actions from "../../actions";
@@ -36,7 +36,7 @@ const Firebase = (() => {
     fetchDataFailure,
     setUserStart,
     setUserSuccess,
-    setUserFailure,
+    setUserFailure
   } = actions;
   // Subscribe to user auth changes
   const subscribeToAuthStateChanges = (dispatch) => {
@@ -47,7 +47,7 @@ const Firebase = (() => {
           user.uid,
           {
             name: user.displayName,
-            email: user.email,
+            email: user.email
           },
           dispatch
         );
@@ -55,7 +55,7 @@ const Firebase = (() => {
           setUserSuccess({
             name: user.displayName,
             email: user.email,
-            id: user.uid,
+            id: user.uid
           })
         );
       } else {
@@ -63,7 +63,7 @@ const Firebase = (() => {
           setUserSuccess({
             name: null,
             email: null,
-            id: null,
+            id: null
           })
         );
       }
@@ -126,7 +126,7 @@ const Firebase = (() => {
       try {
         await setDoc(doc(db, "users", userId), {
           data,
-          timestamp: Date.now(),
+          timestamp: Date.now()
         });
       } catch (error) {
         dispatch(fetchDataFailure(error.message));
@@ -160,7 +160,7 @@ const Firebase = (() => {
     logInGoogle,
     logInEmailAndPassword,
     logOut,
-    subscribeToDataChanges,
+    subscribeToDataChanges
   };
 })();
 

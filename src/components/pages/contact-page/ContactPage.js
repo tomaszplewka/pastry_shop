@@ -8,16 +8,14 @@ import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
 import background from "../../../assets/images/carousel2.jpg";
 
-const ContactPage = () => {
-  return (
-    <>
-      <HeaderBanner image={background} title="contact us" position="530px" />
-      <ContactForm />
-      <Testimonials />
-      <Subscription />
-      <ScrollToTop />
-    </>
-  );
-};
+const ContactPage = () => (
+  <>
+    <HeaderBanner image={background} title="contact us" position="530px" />
+    <ContactForm />
+    <Testimonials />
+    <Subscription />
+    <ScrollToTop />
+  </>
+);
 
 export default ContactPage;

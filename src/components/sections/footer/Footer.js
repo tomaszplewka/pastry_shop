@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { NavLink } from "react-router-dom";
 
 import SectionContainer from "../../section-container/SectionContainer";
@@ -11,7 +11,7 @@ import { scrollUtility } from "../../utilities/scroll-utility";
 import "./Footer.scss";
 
 const Footer = () => {
-  const handleNavLinkClick = () => scrollUtility();
+  const handleNavLinkClick = useCallback(() => scrollUtility(), []);
 
   return (
     <footer className="text-center footer__container">

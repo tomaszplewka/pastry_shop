@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Field, reduxForm } from "redux-form";
 
 import SectionTitle from "../../section-title/SectionTitle";
@@ -15,15 +15,13 @@ import "./Subscription.scss";
 const Subscription = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
-
     setIsSubscribed(true);
-
     // setTimeout(() => {
     //   setIsSubscribed(false);
     // }, 3000);
-  };
+  }, []);
 
   return (
     <section className="position-relative">
@@ -67,5 +65,5 @@ const Subscription = () => {
 
 export default reduxForm({
   form: "subscription-form",
-  validate,
+  validate
 })(Subscription);

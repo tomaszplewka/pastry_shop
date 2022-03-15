@@ -12,30 +12,23 @@ import "./CartIcon.scss";
 
 library.add(faShoppingCart);
 
-const CartIcon = ({ toggleCart, cartQuantity }) => {
-  return (
-    <span
-      className="position-relative cart-icon__container"
-      onClick={toggleCart}
-    >
-      <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
-      {cartQuantity ? (
-        <span className="position-absolute d-inline-flex justify-content-center align-items-center fw-bold cart-icon__quantity">
-          {cartQuantity}
-        </span>
-      ) : null}
-    </span>
-  );
-};
+const CartIcon = ({ toggleCart, cartQuantity }) => (
+  <span className="position-relative cart-icon__container" onClick={toggleCart}>
+    <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
+    {cartQuantity ? (
+      <span className="position-absolute d-inline-flex justify-content-center align-items-center fw-bold cart-icon__quantity">
+        {cartQuantity}
+      </span>
+    ) : null}
+  </span>
+);
 
-const mapStateToProps = (state) => {
-  return {
-    cartQuantity: selectCartItemsQuantity(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  cartQuantity: selectCartItemsQuantity(state)
+});
 
 const mapDispatchToProps = {
-  toggleCart: actions.toggleCart,
+  toggleCart: actions.toggleCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

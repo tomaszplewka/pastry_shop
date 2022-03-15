@@ -13,23 +13,23 @@ const data = [
   {
     tilt: "left",
     photo: Social2,
-    margin: "left",
+    margin: "left"
   },
   {
     tilt: "right",
     photo: Social1,
-    margin: "right",
+    margin: "right"
   },
   {
     tilt: "right",
     photo: Social3,
-    margin: "left",
+    margin: "left"
   },
   {
     tilt: "left",
     photo: Social4,
-    margin: "right",
-  },
+    margin: "right"
+  }
 ];
 
 const GalleryList = () => {
@@ -43,6 +43,7 @@ const GalleryList = () => {
       />
     );
   });
+
   return (
     <div className="py-5 d-grid position-relative gallery-list__container">
       {renderedItems}

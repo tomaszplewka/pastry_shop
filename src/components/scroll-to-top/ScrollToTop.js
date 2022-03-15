@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -33,7 +33,7 @@ const ScrollToTop = () => {
     };
   }, []);
 
-  const onBtnClick = () => scrollUtility();
+  const onBtnClick = useCallback(() => scrollUtility(), []);
 
   return (
     <div

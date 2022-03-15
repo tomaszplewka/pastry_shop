@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -13,7 +13,7 @@ import { scrollUtility } from "../../utilities/scroll-utility";
 
 import {
   selectCartItems,
-  selectCartItemsTotal,
+  selectCartItemsTotal
 } from "../../../reducers/cart/cart-selectors";
 
 import "./CartList.scss";
@@ -21,16 +21,20 @@ import "./CartList.scss";
 const CartList = ({ items, getTotal }) => {
   const navigate = useNavigate();
 
-  const renderedCartItems = items.map((item) => {
-    return <CartItem key={item.id} item={item} />;
-  });
+  const renderedCartItems = useMemo(
+    () =>
+      items.map((item) => {
+        return <CartItem key={item.id} item={item} />;
+      }),
+    [items]
+  );
 
   return (
     <section
       className="pb-5 mt-5 position-relative cart-list__section"
       style={{
         background:
-          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
       <SectionContainer customClass="mt-5">
@@ -91,7 +95,7 @@ const CartList = ({ items, getTotal }) => {
 
 const mapStateToProps = createStructuredSelector({
   items: selectCartItems,
-  getTotal: selectCartItemsTotal,
+  getTotal: selectCartItemsTotal
 });
 
 export default connect(mapStateToProps)(CartList);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Field, reduxForm } from "redux-form";
 
 import SectionContainer from "../../section-container/SectionContainer";
@@ -16,20 +16,20 @@ import "./ContactForm.scss";
 const ContactForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = useCallback((e) => {
     e.preventDefault();
     setIsFormSubmitted(true);
     // setTimeout(() => {
     //   setIsFormSubmitted(false);
     // }, 3000);
-  };
+  }, []);
 
   return (
     <section
       className="py-5 position-relative text-section__section"
       style={{
         background:
-          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)",
+          "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
       <SectionContainer>
@@ -106,5 +106,5 @@ const ContactForm = () => {
 
 export default reduxForm({
   form: "contact-form",
-  validate,
+  validate
 })(ContactForm);

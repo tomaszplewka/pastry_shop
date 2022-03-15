@@ -5,16 +5,14 @@ import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
-const SocialMediaGallery = () => {
-  return (
-    <section className="position-relative">
-      <SectionContainer customClass="py-5">
-        <SectionTitle title="Follow Us On Social Media" />
-        <GalleryList />
-      </SectionContainer>
-      <ShapeDividerBottom color="#eaf2ef" />
-    </section>
-  );
-};
+const SocialMediaGallery = () => (
+  <section className="position-relative">
+    <SectionContainer customClass="py-5">
+      <SectionTitle title="Follow Us On Social Media" />
+      <GalleryList />
+    </SectionContainer>
+    <ShapeDividerBottom color="#eaf2ef" />
+  </section>
+);
 
 export default SocialMediaGallery;

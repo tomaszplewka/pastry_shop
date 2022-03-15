@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -15,15 +15,15 @@ import "./CartDropdown.scss";
 const CartDropdown = ({ items, dispatch }) => {
   const navigate = useNavigate();
 
-  const renderedItems = items.map((item) => {
-    return <CartDropdownItem key={item.id} item={item} />;
-  });
+  const renderedItems = items.map((item) => (
+    <CartDropdownItem key={item.id} item={item} />
+  ));
 
-  const handleBtnClick = (e) => {
+  const handleBtnClick = useCallback(() => {
     scrollUtility();
     navigate("/cart");
     dispatch(actions.toggleCart());
-  };
+  }, [dispatch, navigate]);
 
   return (
     <div className="position-absolute d-flex flex-column cart-dropdown__container">
@@ -45,10 +45,8 @@ const CartDropdown = ({ items, dispatch }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    items: selectCartItems(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  items: selectCartItems(state)
+});
 
 export default connect(mapStateToProps)(CartDropdown);

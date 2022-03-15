@@ -11,7 +11,7 @@ import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
 import {
   selectUser,
-  selectIsRegisterActive,
+  selectIsRegisterActive
 } from "../../../reducers/user/user-selectors";
 
 const Auth = ({ user, isRegisterActive }) => {
@@ -39,7 +39,7 @@ const Auth = ({ user, isRegisterActive }) => {
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser,
-  isRegisterActive: selectIsRegisterActive,
+  isRegisterActive: selectIsRegisterActive
 });
 
 export default connect(mapStateToProps)(Auth);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,16 +12,16 @@ const Form = ({
   subtitle,
   urlSlug,
   setIsRegisterActive,
-  handleSubmit,
+  handleSubmit
 }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     urlSlug === "register"
       ? setIsRegisterActive(true)
       : setIsRegisterActive(false);
     navigate(`/${urlSlug}`);
-  };
+  }, [navigate, setIsRegisterActive, urlSlug]);
 
   return (
     <div className="mb-5 position-relative m-auto overflow-hidden form__container">
@@ -50,7 +50,7 @@ const Form = ({
 };
 
 const mapDispatchToProps = {
-  setIsRegisterActive: actions.setIsRegisterActive,
+  setIsRegisterActive: actions.setIsRegisterActive
 };
 
 export default connect(null, mapDispatchToProps)(Form);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Fade from "react-reveal/Fade";
 
@@ -40,4 +40,4 @@ const GalleryItem = ({ tilt, photo, margin }) => {
   );
 };
 
-export default GalleryItem;
+export default memo(GalleryItem);

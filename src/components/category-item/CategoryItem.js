@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import "./CategoryItem.scss";
@@ -7,8 +7,11 @@ const CategoryItem = ({ title, imageUrl }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleCategoryItemClick = () =>
-    navigate(`${location.pathname === "/" ? "/our-offer/" : "/"}${title}`);
+  const handleCategoryItemClick = useCallback(
+    () =>
+      navigate(`${location.pathname === "/" ? "/our-offer/" : "/"}${title}`),
+    [navigate, location.pathname, title]
+  );
 
   return (
     <div className="m-2 position-relative  category-item__container">

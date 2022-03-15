@@ -9,17 +9,15 @@ import ScrollToTop from "../../scroll-to-top/ScrollToTop";
 
 import background from "../../../assets/images/carousel1.jpg";
 
-const AboutPage = () => {
-  return (
-    <>
-      <HeaderBanner image={background} title="about us" position="530px" />
-      <TextSectionExample />
-      <SocialMediaGallery />
-      <Testimonials />
-      <Subscription />
-      <ScrollToTop />
-    </>
-  );
-};
+const AboutPage = () => (
+  <>
+    <HeaderBanner image={background} title="about us" position="530px" />
+    <TextSectionExample />
+    <SocialMediaGallery />
+    <Testimonials />
+    <Subscription />
+    <ScrollToTop />
+  </>
+);
 
 export default AboutPage;
