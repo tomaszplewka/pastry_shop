@@ -9,7 +9,13 @@ const ShippingMethods = ({ isError }) => (
       shipping methods
     </h2>
     <label>
-      <Field name="method_shipping" component="input" type="radio" value="10" />
+      <Field
+        name="method_shipping"
+        required
+        component="input"
+        type="radio"
+        value="10"
+      />
       <div className="d-flex justify-content-between align-items-center checkout-form__method--shipping__container">
         <span className="fw-bold text-uppercase checkout-form__method--shipping__name">
           Fast Courier
@@ -18,7 +24,13 @@ const ShippingMethods = ({ isError }) => (
       </div>
     </label>
     <label>
-      <Field name="method_shipping" component="input" type="radio" value="0" />
+      <Field
+        name="method_shipping"
+        required
+        component="input"
+        type="radio"
+        value="0"
+      />
       <div className="d-flex justify-content-between align-items-center checkout-form__method--shipping__container">
         <span className="fw-bold text-uppercase checkout-form__method--shipping__name">
           self-pickup

@@ -82,14 +82,6 @@ export const validate = (values) => {
     errors.consent = "This field is required.";
   }
 
-  if (!values.method_shipping) {
-    errors.method_shipping = "This field is required.";
-  }
-
-  if (!values.method_payment) {
-    errors.method_payment = "This field is required.";
-  }
-
   return errors;
 };
 

@@ -26,11 +26,8 @@
   }
 
   &__container {
+    top: 90px;
     max-width: 600px;
-    position: relative;
-    margin: auto;
-    padding: 3rem;
-    overflow: hidden;
     background-color: #f2af29;
     border-radius: 1rem;
     border: 1px solid #f2af29;
@@ -68,18 +65,74 @@
 
   &__title {
     font-family: "Quintessential", cursive;
-    text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: bolder;
     margin: 0 0 2rem;
     color: #1e212b;
   }
 
   &__content {
-    & > div {
+    &__item {
       border-bottom: 1px solid #1e212b;
-      padding: 1.5rem 0;
+      padding: 0 0 2rem;
       margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      &__name {
+        font-size: 1.1rem;
+        color: #1e212b;
+        text-transform: uppercase;
+      }
+
+      &__qty {
+        font-size: 1.25rem;
+        color: #1e212b;
+        display: inline-block;
+        margin-left: 1rem;
+        font-weight: bold;
+
+        &::before {
+          content: "\00D7";
+          display: inline-block;
+          margin-right: 1rem;
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+      }
+
+      &__price {
+        font-size: 1.25rem;
+        color: #1e212b;
+        font-weight: bold;
+      }
+    }
+
+    &__shipping {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 2rem 0;
+      border-bottom: 1px solid #1e212b;
+
+      span {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #1e212b;
+      }
+    }
+
+    &__total {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 2rem 0 1rem;
+
+      span {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #1e212b;
+      }
     }
   }
 }

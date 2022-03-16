@@ -13,6 +13,10 @@
       &:checked {
         & + .checkout-form__method--shipping__container {
           background: #eaf2ef;
+
+          span {
+            color: #1e212b;
+          }
         }
       }
     }
@@ -31,6 +35,15 @@
       color: #1e212b;
       font-size: 1.25rem;
       letter-spacing: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: #1e212b;
+
+      span {
+        color: #eaf2ef;
+      }
     }
   }
 }

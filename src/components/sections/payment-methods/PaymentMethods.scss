@@ -19,6 +19,10 @@
       &:checked {
         & + .checkout-form__method--payment__container {
           background: #eaf2ef;
+
+          span {
+            color: #1e212b;
+          }
         }
       }
     }
@@ -39,6 +43,15 @@
       letter-spacing: 2px;
       flex: 1;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: #1e212b;
+
+      span {
+        color: #eaf2ef;
+      }
     }
   }
 }

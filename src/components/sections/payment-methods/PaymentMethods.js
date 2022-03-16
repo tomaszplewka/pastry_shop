@@ -14,9 +14,12 @@ const PaymentMethods = ({ isError }) => (
         component="input"
         type="radio"
         value="stripe"
+        required
       />
       <div className="checkout-form__method--payment__container">
-        <span className="checkout-form__method--payment__nname">Stripe</span>
+        <span className="fw-bold text-uppercase checkout-form__method--payment__name">
+          Stripe
+        </span>
       </div>
     </label>
     <label>
@@ -25,9 +28,10 @@ const PaymentMethods = ({ isError }) => (
         component="input"
         type="radio"
         value="bank_transfer"
+        required
       />
       <div className="d-flex justify-content-between align-items-center checkout-form__method--payment__container">
-        <span className="fw-bold text-uppercase checkout-form__method--payment__nname">
+        <span className="fw-bold text-uppercase checkout-form__method--payment__name">
           Bank transfer
         </span>
       </div>
