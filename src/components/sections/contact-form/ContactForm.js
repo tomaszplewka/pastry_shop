@@ -19,9 +19,9 @@ const ContactForm = () => {
   const handleFormSubmit = useCallback((e) => {
     e.preventDefault();
     setIsFormSubmitted(true);
-    // setTimeout(() => {
-    //   setIsFormSubmitted(false);
-    // }, 3000);
+    setTimeout(() => {
+      setIsFormSubmitted(false);
+    }, 3000);
   }, []);
 
   return (

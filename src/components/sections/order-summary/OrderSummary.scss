@@ -73,24 +73,15 @@
   &__content {
     &__item {
       border-bottom: 1px solid #1e212b;
-      padding: 0 0 2rem;
-      margin-top: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
 
       &__name {
         font-size: 1.1rem;
         color: #1e212b;
-        text-transform: uppercase;
       }
 
       &__qty {
         font-size: 1.25rem;
         color: #1e212b;
-        display: inline-block;
-        margin-left: 1rem;
-        font-weight: bold;
 
         &::before {
           content: "\00D7";
@@ -104,33 +95,22 @@
       &__price {
         font-size: 1.25rem;
         color: #1e212b;
-        font-weight: bold;
       }
     }
 
     &__shipping {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
       padding: 2rem 0;
       border-bottom: 1px solid #1e212b;
 
       span {
         font-size: 1.25rem;
-        font-weight: bold;
         color: #1e212b;
       }
     }
 
     &__total {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: 2rem 0 1rem;
-
       span {
         font-size: 1.4rem;
-        font-weight: bold;
         color: #1e212b;
       }
     }

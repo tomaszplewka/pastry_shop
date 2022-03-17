@@ -2,12 +2,12 @@ import { cartActionTypes } from "../../actions/cart/cart-action-types";
 import {
   addItemToCart,
   removeFromCartDirectly,
-  decreaseItemQty,
+  decreaseItemQty
 } from "./cart-utilities";
 
 const INITIAL_STATE = {
   isCartOpen: false,
-  cart: [],
+  cart: []
 };
 
 export const cartReducer = (state = INITIAL_STATE, action) => {
@@ -15,22 +15,27 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
     case cartActionTypes.TOGGLE_CART:
       return {
         ...state,
-        isCartOpen: !state.isCartOpen,
+        isCartOpen: !state.isCartOpen
       };
     case cartActionTypes.ADD_TO_CART:
       return {
         ...state,
-        cart: addItemToCart(state.cart, action.payload),
+        cart: addItemToCart(state.cart, action.payload)
       };
     case cartActionTypes.REMOVE_FROM_CART_DIRECTLY:
       return {
         ...state,
-        cart: removeFromCartDirectly(state.cart, action.payload),
+        cart: removeFromCartDirectly(state.cart, action.payload)
       };
     case cartActionTypes.DECREASE_ITEM_QTY:
       return {
         ...state,
-        cart: decreaseItemQty(state.cart, action.payload),
+        cart: decreaseItemQty(state.cart, action.payload)
+      };
+    case cartActionTypes.EMPTY_CART:
+      return {
+        ...state,
+        cart: []
       };
     default:
       return state;

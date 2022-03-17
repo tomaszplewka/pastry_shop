@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Field, reduxForm, formValueSelector } from "redux-form";
@@ -6,7 +6,6 @@ import { Field, reduxForm, formValueSelector } from "redux-form";
 import SectionContainer from "../../section-container/SectionContainer";
 import SectionTitle from "../../section-title/SectionTitle";
 import Btn from "../../Btn/Btn";
-import StripeBtn from "../../stripe-btn/StripeBtn";
 import FormTextarea from "../../form-textarea/FormTextarea";
 import Form from "../../form/Form";
 import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
@@ -23,22 +22,21 @@ import { validate } from "../../utilities/redux-form";
 import { selectUser } from "../../../reducers/user/user-selectors";
 import { selectCartItems } from "../../../reducers/cart/cart-selectors";
 
+import actions from "../../../actions";
+
 import "./Checkout.scss";
 
 const CheckoutForm = ({
   user,
   cart,
   handleSubmit,
-  submitting,
   differentAddress,
   methodShipping,
-  methodPayment
+  methodPayment,
+  emptyCart
 }) => {
   const navigate = useNavigate();
-
-  console.log("DIFFERENT ADDRESS: ", differentAddress);
-  console.log("METHOD SHIPPING: ", methodShipping);
-  console.log("METHOD PAYMENT: ", methodPayment);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   if (!cart.length) {
     return <Navigate to="/cart" />;
@@ -57,6 +55,15 @@ const CheckoutForm = ({
       default:
         break;
     }
+  };
+
+  const handleFormSubmit = () => {
+    setIsFormSubmitted(true);
+    scrollUtility();
+    setTimeout(() => {
+      navigate("/");
+      emptyCart();
+    }, 3000);
   };
 
   const renderedFormNotice = user.id ? null : (
@@ -87,11 +94,6 @@ const CheckoutForm = ({
 
   const renderedShippingFields = differentAddress ? <ShippingFields /> : null;
 
-  const handleSubmitTemp = (e) => {
-    e.preventDefault();
-    console.log("SUBMITTED");
-  };
-
   return (
     <>
       <section
@@ -105,86 +107,93 @@ const CheckoutForm = ({
           <SectionTitle title="Your checkout" />
           <div className="d-flex checkout-form__content__container">
             <div className="checkout-form__content">
-              {renderedFormNotice}
-              <div className="checkout-form__form">
-                <Form handleSubmit={handleSubmitTemp}>
-                  <BillingFields />
-                  <span className="d-block checkout-form__form__checkbox">
-                    <label
-                      htmlFor="different_address"
-                      className="position-relative"
-                    >
-                      <Field
-                        name="different_address"
-                        component="input"
-                        type="checkbox"
-                        id="different_address"
-                      />
-                      <span>Ship to a different address</span>
-                    </label>
-                  </span>
-                  {renderedShippingFields}
-                  <ShippingMethods isError={methodShipping} />
-                  <PaymentMethods isError={methodPayment} />
-                  <div className="checkout-form__additional-comments">
-                    <h2 className="ms-0 fw-bolder text-uppercase form__title">
-                      additional comments
-                    </h2>
-                    <Field
-                      name="additional_comments"
-                      component={FormTextarea}
-                      placeholder="Additional comments"
-                      hide
-                      invert
-                      fullwidth
-                    />
-                  </div>
-                  <span className="d-block checkout-form__form__checkbox">
-                    <label htmlFor="consent" className="position-relative">
-                      <Field
-                        name="consent"
-                        component="input"
-                        type="checkbox"
-                        id="consent"
-                        required
-                      />
-                      <span>
-                        "I have read the Shop Policy as well as the Privacy
-                        Policy and Cookies, and I accept the Shop Policy and the
-                        Privacy Policy and Cookies." *
+              {isFormSubmitted ? (
+                <div className="mb-5 mx-5 px-5 pb-5">
+                  <h4 className="text-center">
+                    Your order is being processed. You will be receiving order
+                    confirmation email any time now. Please check your mailbox.
+                  </h4>
+                </div>
+              ) : (
+                <>
+                  {renderedFormNotice}
+                  <div className="checkout-form__form">
+                    <Form handleSubmit={handleSubmit(handleFormSubmit)}>
+                      <BillingFields />
+                      <span className="d-block checkout-form__form__checkbox">
+                        <label
+                          htmlFor="different_address"
+                          className="position-relative"
+                        >
+                          <Field
+                            name="different_address"
+                            component="input"
+                            type="checkbox"
+                            id="different_address"
+                          />
+                          <span>Ship to a different address</span>
+                        </label>
                       </span>
-                    </label>
-                  </span>
-                  <span className="d-block checkout-form__form__checkbox">
-                    <label
-                      htmlFor="consent_email"
-                      className="position-relative"
-                    >
-                      <Field
-                        name="consent_email"
-                        component="input"
-                        type="checkbox"
-                        id="consent_email"
-                      />
-                      <span>
-                        "I agree to receive from Pastry Shop based in Kelowna,
-                        commercial information regarding Pastry Shop and its
-                        partners to the e-mail address provided by me. "
-                        (optional)
+                      {renderedShippingFields}
+                      <ShippingMethods isError={methodShipping} />
+                      <PaymentMethods isError={methodPayment} />
+                      <div className="checkout-form__additional-comments">
+                        <h2 className="ms-0 fw-bolder text-uppercase form__title">
+                          additional comments
+                        </h2>
+                        <Field
+                          name="additional_comments"
+                          component={FormTextarea}
+                          placeholder="Additional comments"
+                          hide
+                          invert
+                          fullwidth
+                        />
+                      </div>
+                      <span className="d-block checkout-form__form__checkbox">
+                        <label htmlFor="consent" className="position-relative">
+                          <Field
+                            name="consent"
+                            component="input"
+                            type="checkbox"
+                            id="consent"
+                            required
+                          />
+                          <span>
+                            "I have read the Shop Policy as well as the Privacy
+                            Policy and Cookies, and I accept the Shop Policy and
+                            the Privacy Policy and Cookies." *
+                          </span>
+                        </label>
                       </span>
-                    </label>
-                  </span>
-                  <div className="mt-5 pt-3">
-                    {methodPayment === "stripe" ? (
-                      <StripeBtn />
-                    ) : (
-                      <Btn type="submit" fullwidth invert>
-                        Order & Pay
-                      </Btn>
-                    )}
+                      <span className="d-block checkout-form__form__checkbox">
+                        <label
+                          htmlFor="consent_email"
+                          className="position-relative"
+                        >
+                          <Field
+                            name="consent_email"
+                            component="input"
+                            type="checkbox"
+                            id="consent_email"
+                          />
+                          <span>
+                            "I agree to receive from Pastry Shop based in
+                            Kelowna, commercial information regarding Pastry
+                            Shop and its partners to the e-mail address provided
+                            by me. " (optional)
+                          </span>
+                        </label>
+                      </span>
+                      <div className="mt-5 pt-3">
+                        <Btn type="submit" fullwidth invert>
+                          Order & Pay
+                        </Btn>
+                      </div>
+                    </Form>
                   </div>
-                </Form>
-              </div>
+                </>
+              )}
             </div>
             <div className="checkout-form__sidebar">
               <OrderSummary />
@@ -207,9 +216,13 @@ const mapStateToProps = (state) => ({
   methodPayment: selector(state, "method_payment")
 });
 
+const mapDispatchToProps = {
+  emptyCart: actions.emptyCart
+};
+
 const formWrapped = reduxForm({
   form: "checkout-form",
   validate
 })(CheckoutForm);
 
-export default connect(mapStateToProps)(formWrapped);
+export default connect(mapStateToProps, mapDispatchToProps)(formWrapped);

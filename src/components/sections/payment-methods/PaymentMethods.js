@@ -13,12 +13,12 @@ const PaymentMethods = ({ isError }) => (
         name="method_payment"
         component="input"
         type="radio"
-        value="stripe"
+        value="e-transfer"
         required
       />
       <div className="checkout-form__method--payment__container">
-        <span className="fw-bold text-uppercase checkout-form__method--payment__name">
-          Stripe
+        <span className="fw-bold text-uppercase d-block text-center checkout-form__method--payment__name">
+          e-Transfer
         </span>
       </div>
     </label>
@@ -31,7 +31,7 @@ const PaymentMethods = ({ isError }) => (
         required
       />
       <div className="d-flex justify-content-between align-items-center checkout-form__method--payment__container">
-        <span className="fw-bold text-uppercase checkout-form__method--payment__name">
+        <span className="fw-bold text-uppercase d-block text-center checkout-form__method--payment__name">
           Bank transfer
         </span>
       </div>

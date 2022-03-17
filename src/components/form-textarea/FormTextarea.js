@@ -30,7 +30,7 @@ const FormTextarea = ({
           : { width: "100%", margin: "0rem 0rem 0.75rem" }
       }
       {...otherProps}
-    ></textarea>
+    />
   </div>
 );
 

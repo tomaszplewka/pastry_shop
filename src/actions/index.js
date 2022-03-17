@@ -2,7 +2,7 @@ import {
   setUserStart,
   setUserSuccess,
   setUserFailure,
-  setIsRegisterActive,
+  setIsRegisterActive
 } from "./user/user-actions";
 
 import {
@@ -10,12 +10,13 @@ import {
   addToCart,
   removeFromCartDirectly,
   decreaseItemQty,
+  emptyCart
 } from "./cart/cart-actions";
 
 import {
   fetchDataStart,
   fetchDataSuccess,
-  fetchDataFailure,
+  fetchDataFailure
 } from "./shop/shop-actions";
 
 const actions = {
@@ -27,9 +28,10 @@ const actions = {
   addToCart,
   removeFromCartDirectly,
   decreaseItemQty,
+  emptyCart,
   fetchDataStart,
   fetchDataSuccess,
-  fetchDataFailure,
+  fetchDataFailure
 };
 
 export default actions;
