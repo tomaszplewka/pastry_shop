@@ -2,5 +2,17 @@
   &__subtitle {
     font-size: 1.5rem;
     font-weight: 500;
+
+    @media screen and (max-width: 1440px) {
+      font-size: 1.25rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 1.1rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 1rem;
+    }
   }
 }

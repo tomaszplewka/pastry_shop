@@ -45,7 +45,7 @@ const GalleryList = () => {
   });
 
   return (
-    <div className="py-5 d-grid position-relative gallery-list__container">
+    <div className="py-xl-5 pt-3 pb-5 d-grid position-relative gallery-list__container">
       {renderedItems}
     </div>
   );

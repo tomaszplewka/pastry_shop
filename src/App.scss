@@ -1,5 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
+/**
+ * General styles
+ */
 body {
   height: 100%;
   width: 100%;
@@ -52,7 +55,9 @@ a {
   }
 }
 
-//     font-family: 'Quintessential', cursive;
+/**
+ * Vars
+ */
 $raisin-black: #1e212b;
 $english-vermillion: #d64550;
 $honey-yellow: #f2af29;

@@ -14,7 +14,7 @@ const CategoryItem = ({ title, imageUrl }) => {
   );
 
   return (
-    <div className="m-2 position-relative  category-item__container">
+    <div className="m-sm-2 m-0 position-relative  category-item__container">
       <div
         className="position-relative d-flex justify-content-center align-items-center flex-row category-item"
         onClick={handleCategoryItemClick}

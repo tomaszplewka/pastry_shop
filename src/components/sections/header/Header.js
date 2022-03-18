@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import { NavLink } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import SectionContainer from "../../section-container/SectionContainer";
 import CartIcon from "../../cart-icon/CartIcon";
 import CartDropdown from "../../cart-dropdown/CartDropdown";
-import Firebase from "../../modules/Firebase";
+import Menu from "./Menu";
 
 import logo from "../../../assets/images/logo.png";
 
@@ -29,9 +29,10 @@ import "./HeaderSocial.scss";
 
 library.add(faShoppingCart, faPhone, faEnvelope);
 
-const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
+const Header = ({ isCartOpen, toggleCart }) => {
   const ref = useRef();
-  const dispatch = useDispatch();
+  const menu = useRef();
+  const burger = useRef();
 
   useEffect(() => {
     const className = "shrink";
@@ -60,17 +61,11 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
     }
   }, [isCartOpen, toggleCart]);
 
-  const handleSignOutClick = useCallback(() => {
-    scrollUtility();
-    Firebase.logOut(dispatch);
-    handleNavLinkClick();
-  }, [dispatch, handleNavLinkClick]);
-
-  const handleSignInClick = useCallback(() => {
-    scrollUtility();
-    setIsRegisterActive(false);
-    handleNavLinkClick();
-  }, [setIsRegisterActive, handleNavLinkClick]);
+  const handleMobileMenuClick = () => {
+    menu.current.classList.toggle("open");
+    burger.current.classList.toggle("open");
+    document.body.classList.toggle("overflow-hidden");
+  };
 
   return (
     <>
@@ -122,9 +117,9 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
       </section>
       <header
         ref={ref}
-        className="position-fixed d-flex justify-content-center align-items-center header__container"
+        className="position-fixed d-flex justify-content-center align-items-center position-relative header__container"
       >
-        <SectionContainer customClass="d-flex justify-content-between align-items-center position-relative">
+        <SectionContainer customClass="d-flex justify-content-between align-items-center">
           <div className="position-relative header__logo__container">
             <NavLink onClick={handleNavLinkClick} to="/">
               <img
@@ -134,46 +129,23 @@ const Header = ({ user, isCartOpen, setIsRegisterActive, toggleCart }) => {
               />
             </NavLink>
           </div>
-          <nav className="d-flex justify-content-evenly align-items-center header__menu__container">
-            <NavLink
-              className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
-              onClick={handleNavLinkClick}
-              to="/our-offer"
-            >
-              <span className="d-inline-block text-uppercase">our offer</span>
-            </NavLink>
-            <NavLink
-              className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
-              onClick={handleNavLinkClick}
-              to="about-us"
-            >
-              <span className="d-inline-block text-uppercase">about us</span>
-            </NavLink>
-            <NavLink
-              className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
-              onClick={handleNavLinkClick}
-              to="contact"
-            >
-              <span className="d-inline-block text-uppercase">contact</span>
-            </NavLink>
-            {user.id ? (
-              <div
-                className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
-                onClick={(e) => handleSignOutClick(e)}
-              >
-                <span className="d-inline-block text-uppercase">sign out</span>
-              </div>
-            ) : (
-              <NavLink
-                className="d-inline-block border-0 position-relative my-0 mx-3 py-0 px-2"
-                onClick={handleSignInClick}
-                to="sign-in"
-              >
-                <span className="d-inline-block text-uppercase">sign in</span>
-              </NavLink>
-            )}
+          <div className="d-flex justify-content-evenly align-items-center header__menu__container">
+            <nav ref={menu}>
+              <Menu onMobileNavLinkClick={handleMobileMenuClick} />
+            </nav>
             <CartIcon />
-          </nav>
+          </div>
+          <div
+            ref={burger}
+            className="header__menu--mobile-burger"
+            onClick={handleMobileMenuClick}
+          >
+            <div>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
           {isCartOpen ? <CartDropdown /> : null}
         </SectionContainer>
       </header>

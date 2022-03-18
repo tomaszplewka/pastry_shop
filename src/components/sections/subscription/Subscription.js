@@ -18,14 +18,14 @@ const Subscription = () => {
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
     setIsSubscribed(true);
-    // setTimeout(() => {
-    //   setIsSubscribed(false);
-    // }, 3000);
+    setTimeout(() => {
+      setIsSubscribed(false);
+    }, 3000);
   }, []);
 
   return (
     <section className="position-relative">
-      <SectionContainer customClass="py-5">
+      <SectionContainer customClass="py-xl-5 pt-3 pb-5">
         <SectionTitle title="Sweet Deals & 10% Off" />
         <SectionSubtitle subtitle="Subscribe to Receive Sweet Deals and Treats!" />
         {isSubscribed ? (

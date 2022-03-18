@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 
 import CategoryItem from "../category-item/CategoryItem";
 
-import "./CategoryList.scss";
-
 const CategoryList = ({ data }) => {
   const renderedCategories = useMemo(
     () =>
@@ -19,7 +17,7 @@ const CategoryList = ({ data }) => {
   );
 
   return (
-    <div className=" py-5 m-auto d-flex flex-row justify-content-center align-items-center flex-wrap position-relative category-list__container">
+    <div className=" py-xl-5 pt-3 pb-5 m-auto d-flex flex-row justify-content-center align-items-center flex-wrap position-relative category-list__container">
       {renderedCategories}
     </div>
   );

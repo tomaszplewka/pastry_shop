@@ -7,18 +7,83 @@
   transition: all 0.5s ease-in-out;
   filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
 
+  @media screen and (max-width: 1440px) {
+    height: 275px;
+    width: 275px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    height: 225px;
+    width: 225px;
+  }
+
+  @media screen and (max-width: 992px) {
+    height: 175px;
+    width: 175px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 150px;
+    width: 150px;
+  }
+
+  &.dimmed {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &.extend {
     height: 350px;
     width: 350px;
     margin-top: 15rem;
 
+    @media screen and (max-width: 1440px) {
+      height: 325px;
+      width: 325px;
+      margin-top: 14rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      height: 275px;
+      width: 275px;
+      margin-top: 12rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      height: 225px;
+      width: 225px;
+    }
+
+    @media screen and (max-width: 768px) {
+      height: 200px;
+      width: 200px;
+    }
+
     .card-item__img__container {
       transform: translateY(-200px);
+
+      @media screen and (max-width: 1440px) {
+        transform: translateY(-175px);
+      }
+
+      @media screen and (max-width: 1200px) {
+        transform: translateY(-150px);
+      }
     }
 
     .btn {
       width: 90% !important;
       margin: 0 auto 1.5rem !important;
+
+      @media screen and (max-width: 1200px) {
+        width: 75% !important;
+        margin: 0 auto 1.25rem !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        width: 90% !important;
+        margin: 0 auto 1rem !important;
+      }
     }
 
     &:hover {
@@ -72,15 +137,72 @@
     transform: translateY(150px);
     height: calc(100% - 150px);
 
+    @media screen and (max-width: 1200px) {
+      transform: translateY(125px);
+      height: calc(100% - 125px);
+    }
+
+    @media screen and (max-width: 992px) {
+      transform: translateY(75px);
+      height: calc(100% - 75px);
+    }
+
+    @media screen and (max-width: 768px) {
+      transform: translateY(50px);
+      height: calc(100% - 50px);
+    }
+
     .name {
       font-size: 1.25rem;
       padding: 1rem;
       padding-bottom: 0;
+
+      @media screen and (max-width: 1200px) {
+        padding: 0.25rem;
+        font-size: 1.1rem;
+      }
+
+      @media screen and (max-width: 992px) {
+        font-size: 1rem;
+      }
     }
     .price {
       font-size: 1.1rem;
       font-weight: 700;
       padding: 1rem;
+
+      @media screen and (max-width: 1200px) {
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 992px) {
+        padding: 0.25rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    svg {
+      position: absolute;
+      top: -25%;
+      right: calc(50% - 64px);
+      font-size: 8rem;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 6rem;
+        right: calc(50% - 48px);
+        top: -50%;
+      }
+
+      @media screen and (max-width: 992px) {
+        font-size: 5rem;
+        right: calc(50% - 40px);
+        top: -25%;
+      }
+
+      path {
+        fill: #d64550;
+      }
     }
   }
 

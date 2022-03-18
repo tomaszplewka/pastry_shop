@@ -4,6 +4,18 @@
     background-color: #1e212b;
     color: #eaf2ef;
 
+    @media screen and (max-width: 1200px) {
+      padding: 2rem 0;
+    }
+
+    @media screen and (max-width: 992px) {
+      padding: 1rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 0.5rem 0;
+    }
+
     hr {
       height: 2px;
       background: #eaf2ef;
@@ -17,6 +29,16 @@
         color: #eaf2ef;
         font-size: 1rem;
         line-height: 1.5rem;
+
+        @media screen and (max-width: 992px) {
+          font-size: 0.9rem;
+          line-height: 1.25rem;
+        }
+
+        @media screen and (max-width: 576px) {
+          font-size: 0.8rem;
+          line-height: 1rem;
+        }
       }
 
       svg {
@@ -27,6 +49,20 @@
         transition: 0.3s all ease;
         margin: 1rem;
 
+        @media screen and (max-width: 1200px) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 992px) {
+          font-size: 1.25rem;
+          margin: 0.75rem;
+        }
+
+        @media screen and (max-width: 576px) {
+          font-size: 1rem;
+          margin: 0.5rem;
+        }
+
         &:hover {
           color: #d64550;
           transform: scale(1.5);
@@ -36,11 +72,36 @@
 
       h4 {
         font-size: 1.35rem;
+
+        @media screen and (max-width: 1200px) {
+          font-size: 1.25rem;
+        }
+
+        @media screen and (max-width: 992px) {
+          font-size: 1.1rem;
+        }
+
+        @media screen and (max-width: 576px) {
+          font-size: 1rem;
+        }
       }
 
       p {
         margin-bottom: 0.5rem;
         font-size: 0.9rem;
+
+        @media screen and (max-width: 1200px) {
+          font-size: 0.8rem;
+        }
+
+        @media screen and (max-width: 992px) {
+          font-size: 0.75rem;
+        }
+
+        @media screen and (max-width: 576px) {
+          font-size: 0.7rem;
+          margin-bottom: 0.25rem;
+        }
       }
     }
   }

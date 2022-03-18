@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -17,15 +17,23 @@ const sliderConfig = {
   effect: "coverflow",
   autoplay: true,
   spaceBetween: 0,
-  slidesPerView: 3,
+  slidesPerView: 1,
   loop: true,
   speed: 500,
-  autoHeight: true
+  autoHeight: true,
+  breakpoints: {
+    576: {
+      slidesPerView: 2
+    },
+    992: {
+      slidesPerView: 3
+    }
+  }
 };
 
 const FeaturedItems = ({ featuredItems }) => (
   <section className="position-relative">
-    <SectionContainer customClass="py-5">
+    <SectionContainer customClass="py-xl-5 pt-3 pb-5">
       <SectionTitle title="Featured Items" />
       <Slider
         data={featuredItems}
@@ -43,4 +51,4 @@ const mapStateToProps = createStructuredSelector({
   featuredItems: selectFeaturedItems
 });
 
-export default connect(mapStateToProps)(FeaturedItems);
+export default connect(mapStateToProps)(memo(FeaturedItems));

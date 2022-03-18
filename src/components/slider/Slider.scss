@@ -1,6 +1,10 @@
 .swiper {
   min-height: 400px !important;
 
+  @media screen and (max-width: 992px) {
+    min-height: 350px !important;
+  }
+
   &-slide-shadow {
     &-left,
     &-right {

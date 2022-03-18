@@ -71,6 +71,11 @@
   &__error {
     margin-top: -0.75rem;
 
+    @media screen and (max-width: 1200px) {
+      margin-top: -0.25rem;
+      font-size: 0.9rem;
+    }
+
     span {
       color: #d64550;
     }

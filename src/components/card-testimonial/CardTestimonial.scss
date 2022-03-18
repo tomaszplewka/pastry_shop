@@ -7,6 +7,27 @@
     border-radius: 1rem;
     filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
 
+    @media screen and (max-width: 1440px) {
+      margin: 3rem 1rem 1rem;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      margin: 2rem 0.75rem 0.75rem;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      margin: 2rem 2rem 0.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin: 2rem 1.5rem 0.5rem;
+      padding: 0.75rem 1rem;
+    }
+
     &:hover {
       transform: translateY(-10px);
       transition: all 0.5s ease-in-out;
@@ -17,11 +38,22 @@
   &__rating {
     margin-right: 0.25rem;
 
-    &__container {
-    }
+    svg {
+      @media screen and (max-width: 1440px) {
+        font-size: 0.9rem;
+      }
 
-    svg > path {
-      fill: #f2af29;
+      @media screen and (max-width: 1200px) {
+        font-size: 0.8rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 0.75rem;
+      }
+
+      & > path {
+        fill: #f2af29;
+      }
     }
   }
 
@@ -30,14 +62,44 @@
     margin-right: 1rem;
     line-height: 1em;
     height: 22px;
+
+    @media screen and (max-width: 1440px) {
+      font-size: 1rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 0.9rem;
+      height: 18px;
+      margin-top: 0.25rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
 
   &__occupation {
     font-size: 0.9rem;
     opacity: 0.5;
 
+    @media screen and (max-width: 1440px) {
+      font-size: 0.75rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 0.7rem;
+    }
+
     &__container {
       margin-top: -0.5rem;
+
+      @media screen and (max-width: 1200px) {
+        margin-top: -0.25rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin-top: 0;
+      }
     }
   }
 
@@ -45,9 +107,33 @@
     padding-top: 1rem;
     font-size: 0.9rem;
 
+    @media screen and (max-width: 1440px) {
+      font-size: 0.8rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 0.75rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.7rem;
+    }
+
     &__container {
       svg {
         position: absolute;
+
+        @media screen and (max-width: 1440px) {
+          font-size: 0.9rem;
+        }
+
+        @media screen and (max-width: 1200px) {
+          font-size: 0.8rem;
+        }
+
+        @media screen and (max-width: 768px) {
+          font-size: 0.75rem;
+        }
 
         &:first-of-type {
           top: 0;

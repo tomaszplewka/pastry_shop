@@ -7,7 +7,7 @@ import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 const SocialMediaGallery = () => (
   <section className="position-relative">
-    <SectionContainer customClass="py-5">
+    <SectionContainer customClass="py-xl-5 pt-3 pb-5">
       <SectionTitle title="Follow Us On Social Media" />
       <GalleryList />
     </SectionContainer>

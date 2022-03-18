@@ -10,6 +10,18 @@
     svg {
       font-size: 2.5rem;
 
+      @media screen and (max-width: 1440px) {
+        font-size: 2.25rem;
+      }
+
+      @media screen and (max-width: 1200px) {
+        font-size: 2rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.75rem;
+      }
+
       path {
         fill: #f2af29;
       }
@@ -24,6 +36,30 @@
       background-color: #1e212b;
       color: #fffeff;
       z-index: 1;
+
+      @media screen and (max-width: 1200px) {
+        bottom: -17.5px;
+        right: -17.5px;
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+      }
+
+      @media screen and (max-width: 992px) {
+        bottom: -12px;
+        right: -12px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        bottom: -10px;
+        right: -10px;
+        width: 24px;
+        height: 24px;
+        font-size: 0.5rem;
+      }
     }
   }
 }

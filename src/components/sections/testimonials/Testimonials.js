@@ -8,8 +8,6 @@ import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 import { Autoplay, EffectCoverflow } from "swiper";
 
-import "./Testimonials.scss";
-
 const data = [
   {
     rating: 5,
@@ -45,10 +43,18 @@ const sliderConfig = {
   effect: "coverflow",
   autoplay: true,
   spaceBetween: 0,
-  slidesPerView: 3,
+  slidesPerView: 1,
   loop: true,
   speed: 500,
-  autoHeight: true
+  autoHeight: true,
+  breakpoints: {
+    576: {
+      slidesPerView: 2
+    },
+    992: {
+      slidesPerView: 3
+    }
+  }
 };
 
 const Testimonials = () => (
@@ -58,7 +64,7 @@ const Testimonials = () => (
       background: "#eaf2ef"
     }}
   >
-    <SectionContainer customClass="py-5">
+    <SectionContainer customClass="py-xl-5 py-3">
       <SectionTitle title="We care about our clients" />
       <Slider data={data} config={sliderConfig} render={CardTestimonial} />
     </SectionContainer>

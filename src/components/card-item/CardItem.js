@@ -4,11 +4,17 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import Btn from "../Btn/Btn";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
 import actions from "../../actions";
 
 import { scrollUtility } from "../utilities/scroll-utility";
 
 import "./CardItem.scss";
+
+library.add(faBan);
 
 const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
   const navigate = useNavigate();
@@ -31,7 +37,7 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
     <div
       className={`d-flex justify-content-start align-items-center flex-column position-relative card-item ${
         cartBtn ? "extend" : ""
-      }`}
+      } ${availability === "available" ? "" : "dimmed"}`}
     >
       <div className="position-absolute overflow-hidden w-100 h-100 card-item__img__container">
         <div
@@ -42,14 +48,23 @@ const CardItem = ({ item, cartBtn, addToCart, featured_item, category }) => {
           onClick={handleItemClick}
         ></div>
       </div>
-      <div className="d-flex justify-content-center align-items-center flex-column card-item__body">
+      <div className="position-relative d-flex justify-content-center align-items-center flex-column card-item__body">
         <span className="text-center name">{name}</span>
         <span className="price">{`$${price} / ${price_per}`}</span>
         {cartBtn ? (
-          <Btn onClick={() => addToCart(item)} invert fullwidth>
-            add to cart
-          </Btn>
+          availability === "available" ? (
+            <Btn onClick={() => addToCart(item)} invert fullwidth>
+              add to cart
+            </Btn>
+          ) : (
+            <Btn onClick={() => addToCart(item)} invert fullwidth disabled>
+              add to cart
+            </Btn>
+          )
         ) : null}
+        {availability === "available" ? null : (
+          <FontAwesomeIcon icon={["fas", "ban"]} />
+        )}
       </div>
     </div>
   );

@@ -6,16 +6,49 @@
     padding: 0.75rem 0;
     background: #1e212b;
 
+    @media screen and (max-width: 1440px) {
+      padding: 0.5rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      padding: 0.25rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 0.15rem;
+      height: 16px;
+    }
+
     ul {
       li {
         &:not(:last-of-type) {
           margin-right: 2rem !important;
+
+          @media screen and (max-width: 576px) {
+            margin-right: 0.5rem !important;
+          }
         }
 
         a {
           svg {
             font-size: 1.25rem;
             margin-right: 0.5rem;
+
+            @media screen and (max-width: 1440px) {
+              font-size: 1.1rem;
+            }
+
+            @media screen and (max-width: 1200px) {
+              font-size: 0.9rem;
+            }
+
+            @media screen and (max-width: 768px) {
+              font-size: 0.75rem;
+            }
+
+            @media screen and (max-width: 576px) {
+              margin-right: 0.25rem;
+            }
 
             path {
               fill: #f2af29 !important;
@@ -26,6 +59,25 @@
             font-size: 0.9rem;
             color: #eaf2ef;
             line-height: 1.25rem;
+
+            @media screen and (max-width: 1440px) {
+              font-size: 0.8rem;
+              line-height: 1.1rem;
+            }
+
+            @media screen and (max-width: 1200px) {
+              font-size: 0.7rem;
+              line-height: 0.9rem;
+            }
+
+            @media screen and (max-width: 768px) {
+              line-height: 0.75rem;
+              font-size: 0.6rem;
+            }
+
+            @media screen and (max-width: 576px) {
+              font-size: 0.5rem;
+            }
           }
         }
       }

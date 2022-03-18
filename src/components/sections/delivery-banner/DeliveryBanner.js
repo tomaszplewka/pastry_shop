@@ -12,11 +12,11 @@ import "./DeliveryBanner.scss";
 
 const data = [
   {
-    photo: skipTheDishes,
+    photo: skipTheDishes
   },
   {
-    photo: uberEats,
-  },
+    photo: uberEats
+  }
 ];
 
 const DeliveryBanner = () => {
@@ -39,13 +39,13 @@ const DeliveryBanner = () => {
     <section
       className="position-relative"
       style={{
-        background: "#edffd9",
+        background: "#edffd9"
       }}
     >
-      <SectionContainer customClass="py-5 position-relative">
+      <SectionContainer customClass="py-xl-5 pt-3 pb-5 position-relative">
         <SectionTitle title="Serious craving? Get seriously fast delivery!" />
         <SectionSubtitle subtitle="Selected Areas Only" />
-        <div className="py-5 d-flex justify-content-center align-items-center delivery-banner__content">
+        <div className="py-xxl-5 py-xl-4 py-lg-3 d-flex justify-content-center align-items-center delivery-banner__content">
           {renderedContent}
         </div>
       </SectionContainer>

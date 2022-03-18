@@ -43,7 +43,7 @@ const Footer = () => {
           <FontAwesomeIcon icon={faFacebook} />
           <FontAwesomeIcon icon={faInstagram} />
         </div>
-        <hr className="w-75 my-5 mx-auto" />
+        <hr className="w-75 my-xxl-5 my-sm-4 my-2 mx-auto" />
         <div className="w-100 d-flex justify-content-center align-items-center mt-3 footer__items__container">
           <h4 className="fw-bolder text-uppercase">Visit Us</h4>
         </div>
@@ -59,7 +59,7 @@ const Footer = () => {
             8-4:30, Sat. 9-4:30, Sun. 10-5:00{" "}
           </p>
         </div>
-        <hr className="w-75 my-5 mx-auto" />
+        <hr className="w-75 my-xxl-5 my-sm-4 my-2 mx-auto" />
         <div className="w-100 d-flex justify-content-center align-items-center mt-3 footer__items__container">
           <p>Copyright © Tomasz Plewka</p>
         </div>
