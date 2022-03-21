@@ -1,0 +1,9 @@
+.text-section {
+  &__section {
+    p {
+      @media screen and (max-width: 576px) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

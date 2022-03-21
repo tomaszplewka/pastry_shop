@@ -15,7 +15,7 @@ const HeaderBanner = ({ image, title, position }) => (
     <SectionContainer customClass="h-100 position-relative">
       <div className="position-absolute text-center d-inline-flex justify-content-center flex-column header-banner__content">
         <Fade bottom>
-          <h1 className="text-uppercase fw-bold">{title}</h1>
+          <h1>{title}</h1>
         </Fade>
       </div>
       <FloatingCookie position={position} />

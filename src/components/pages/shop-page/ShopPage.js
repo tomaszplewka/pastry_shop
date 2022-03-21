@@ -10,7 +10,7 @@ import background from "../../../assets/images/social-media/social1.jpg";
 
 const ShopPage = () => (
   <>
-    <HeaderBanner image={background} title="our offer" position="530px" />
+    <HeaderBanner image={background} title="Our Offer" position="530px" />
     <Outlet />
     <Testimonials />
     <Subscription />

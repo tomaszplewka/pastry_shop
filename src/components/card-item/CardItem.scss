@@ -15,11 +15,13 @@
   @media screen and (max-width: 1200px) {
     height: 225px;
     width: 225px;
+    margin: 13rem 0.5rem 4rem;
   }
 
   @media screen and (max-width: 992px) {
     height: 175px;
     width: 175px;
+    margin: 13rem auto 4rem;
   }
 
   @media screen and (max-width: 768px) {
@@ -134,8 +136,8 @@
 
   &__body {
     width: 100%;
-    transform: translateY(150px);
-    height: calc(100% - 150px);
+    transform: translateY(140px);
+    height: calc(100% - 140px);
 
     @media screen and (max-width: 1200px) {
       transform: translateY(125px);

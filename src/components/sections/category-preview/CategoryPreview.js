@@ -10,37 +10,33 @@ import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 import "./CategoryPreview.scss";
 
+const itemsToShow =
+  window.screen.width < 768 ? (window.screen.width < 500 ? 1 : 2) : 3;
+
 const CategoryPreview = ({ data }) => {
   const location = useLocation();
 
   const renderedCategories = useMemo(
     () =>
-      Object.keys(data).map((category, index) => {
-        return (
-          <div key={index} className="pt-5 category-preview__container">
-            <div className="d-flex justify-content-between align-items-center category-preview__content">
-              <h2 className="text-uppercase fw-bold category-preview__title">
-                {category}
-              </h2>
-              <span className="text-decoration-underline text-uppercase">
-                <Link to={`${location.pathname}/${category}`}>see more</Link>
-              </span>
-            </div>
-            <div className="d-flex justify-content-evenly align-items-center category-preview__items__container">
-              {data[category].items
-                .filter((item, index) => index < 3)
-                .map((item, index) => (
-                  <CardItem
-                    key={index}
-                    item={item}
-                    category={category}
-                    cartBtn
-                  />
-                ))}
-            </div>
+      Object.keys(data).map((category, index) => (
+        <div key={index} className="pt-sm-5 pt-3 category-preview__container">
+          <div className="d-flex justify-content-between align-items-center category-preview__content">
+            <h2 className="text-uppercase fw-bold category-preview__title">
+              {category}
+            </h2>
+            <span className="text-decoration-underline text-uppercase">
+              <Link to={`${location.pathname}/${category}`}>see more</Link>
+            </span>
           </div>
-        );
-      }),
+          <div className="d-flex justify-content-evenly align-items-center category-preview__items__container">
+            {data[category].items
+              .filter((item, index) => index < itemsToShow)
+              .map((item, index) => (
+                <CardItem key={index} item={item} category={category} cartBtn />
+              ))}
+          </div>
+        </div>
+      )),
     [data, location.pathname]
   );
 

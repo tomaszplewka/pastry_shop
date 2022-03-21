@@ -10,7 +10,7 @@ library.add(faCookieBite);
 
 const FloatingCookie = ({ position }) => (
   <div
-    className="position-absolute w-100 text-center floating-cookie__container"
+    className="position-absolute text-center floating-cookie__container"
     style={{
       top: position
     }}

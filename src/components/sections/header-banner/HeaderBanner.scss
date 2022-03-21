@@ -6,6 +6,11 @@
     background-size: cover;
     height: 600px;
     filter: brightness(0.7) saturate(150%) contrast(190%) hue-rotate(30deg);
+
+    @media screen and (max-width: 768px) {
+      height: 200px;
+      margin-top: 70px;
+    }
   }
 
   &__content {
@@ -16,10 +21,26 @@
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 
+    @media screen and (max-width: 768px) {
+      left: 5%;
+      right: 5%;
+    }
+
     h1 {
       color: #fffeff;
-      font-family: "Quintessential", cursive;
       letter-spacing: 3px;
+
+      @media screen and (max-width: 992px) {
+        font-size: 2rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (max-width: 576px) {
+        font-size: 1.5rem;
+      }
     }
   }
 }

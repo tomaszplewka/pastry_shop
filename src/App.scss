@@ -7,6 +7,7 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
+  overflow-x: hidden;
 }
 
 ul,
@@ -33,15 +34,13 @@ a {
   vertical-align: baseline;
   background: transparent;
   box-sizing: border-box;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
   border-radius: 0;
   font-family: "Montserrat", sans-serif;
   scrollbar-width: thin;
   scrollbar-color: #1e212b transparent;
 
   &::-webkit-scrollbar {
-    width: 12px;
+    width: 1px;
   }
 
   &::-webkit-scrollbar-track {

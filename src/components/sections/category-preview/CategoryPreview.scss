@@ -1,23 +1,39 @@
 .category-preview {
-  &__container {
-  }
-
   &__content {
     span {
       transition: all 0.3s ease;
       color: #1e212b;
       font-size: 1.5rem;
       cursor: pointer;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 1.25rem;
+      }
+
+      @media screen and (max-width: 992px) {
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 576px) {
+        font-size: 0.8rem;
+      }
     }
   }
 
   &__title {
     font-family: "Quintessential", cursive;
     letter-spacing: 3px;
-  }
 
-  &__items {
-    &__container {
+    @media screen and (max-width: 1200px) {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      font-size: 1.3rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 1.1rem;
     }
   }
 }

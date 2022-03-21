@@ -68,6 +68,7 @@ const App = () => {
             <Route path="/our-offer" element={<ShopPageContainer />}>
               <Route path=":itemsCategory" element={<CategorySingle />}>
                 <Route path=":itemName" element={<ItemSingle />} />
+                {/* needs RWD!!! */}
               </Route>
               <Route index element={<CategoryPreview />} />
             </Route>

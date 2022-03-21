@@ -1,9 +1,19 @@
 .floating-cookie {
   &__container {
     filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
+    left: 0;
+    right: 0;
+
+    @media screen and (max-width: 768px) {
+      top: 170px !important;
+    }
 
     svg {
       font-size: 6rem;
+
+      @media screen and (max-width: 768px) {
+        font-size: 3rem;
+      }
 
       path {
         fill: #eaf2ef;
