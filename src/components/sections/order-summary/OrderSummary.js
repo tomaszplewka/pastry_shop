@@ -16,7 +16,7 @@ const OrderSummary = ({ cart, getTotal, methodShipping }) => {
       cart.map((item, index) => (
         <div
           key={index}
-          className="pb-4 mt-4 d-flex justify-content-between align-items-end order-summary__content__item"
+          className="pb-xxl-4 pb-3 mt-xxl-4 mt-3 d-flex justify-content-between align-items-end order-summary__content__item"
         >
           <div>
             <span className="text-uppercase order-summary__content__item__name">
@@ -37,7 +37,7 @@ const OrderSummary = ({ cart, getTotal, methodShipping }) => {
   );
 
   return (
-    <div className="m-auto mb-5 p-4 overflow-hidden position-sticky order-summary__container">
+    <div className="m-auto mb-5 p-xl-4 p-3 overflow-hidden position-sticky order-summary__container">
       <h2 className="text-uppercase fw-bolder text-center order-summary__title">
         order summary
       </h2>

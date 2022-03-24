@@ -17,12 +17,18 @@
     }
 
     label {
-      margin-bottom: 10px;
+      margin-bottom: 0.75rem;
       color: #1e212b;
       font-size: 12px;
       letter-spacing: 1.5px;
       cursor: pointer;
       transition: all 0.3s ease;
+
+      @media screen and (max-width: 576px) {
+        width: 100% !important;
+        display: block !important;
+        margin-bottom: 0.25rem;
+      }
     }
 
     input {
@@ -35,11 +41,27 @@
       color: #1e212b;
       transition: all 0.3s ease;
 
+      @media screen and (max-width: 768px) {
+        padding: 0.4rem 0.3rem;
+        font-size: 0.7rem;
+        box-shadow: 0 5px 5px rgba(#eaf2ef, 1);
+      }
+
+      @media screen and (max-width: 576px) {
+        width: 100% !important;
+        display: block !important;
+      }
+
       &.invert {
         background: transparent;
         border: 1px solid #1e212b;
         box-shadow: 0 10px 10px rgba(#1e212b, 1);
         border-radius: 5px;
+
+        @media screen and (max-width: 768px) {
+          margin: 0 0 1rem;
+          box-shadow: 0 5px 5px rgba(#1e212b, 1);
+        }
 
         &:hover {
           background: #1e212b;
@@ -74,6 +96,10 @@
     @media screen and (max-width: 1200px) {
       margin-top: -0.25rem;
       font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
     }
 
     span {

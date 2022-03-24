@@ -46,13 +46,13 @@ const Register = ({ handleSubmit, submitting }) => {
 
   return (
     <section
-      className="py-5 mt-5 position-relative register__section"
+      className="py-lg-5 py-2 mt-5 position-relative register__section"
       style={{
         background:
           "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
-      <SectionContainer customClass="mt-5 py-5">
+      <SectionContainer customClass="mt-5 py-lg-5 py-4">
         <Form
           title="Register"
           subtitle={["Do you already have an account?", "Sign in here"]}

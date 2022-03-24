@@ -8,6 +8,7 @@
     input[type="radio"] {
       opacity: 0;
       width: 0;
+      position: absolute;
 
       &:checked {
         & + .checkout-form__method--shipping__container {
@@ -30,11 +31,27 @@
     transition: all 0.3s ease;
     cursor: pointer;
 
+    @media screen and (max-width: 1200px) {
+      padding: 1rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      padding: 0.75rem;
+    }
+
     span {
       color: #1e212b;
       font-size: 1.25rem;
       letter-spacing: 2px;
       transition: all 0.3s ease;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 992px) {
+        font-size: 0.9rem;
+      }
     }
 
     &:hover {

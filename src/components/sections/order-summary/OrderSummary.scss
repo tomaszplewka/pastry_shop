@@ -34,6 +34,10 @@
     box-shadow: 0px 10px 20px rgba(50, 50, 0, 0.6);
     color: #fffeff;
 
+    @media screen and (max-width: 992px) {
+      max-width: unset;
+    }
+
     &::after {
       content: "";
       height: 1px;
@@ -68,6 +72,10 @@
     letter-spacing: 2px;
     margin: 0 0 2rem;
     color: #1e212b;
+
+    @media screen and (max-width: 1200px) {
+      font-size: 1.75rem;
+    }
   }
 
   &__content {
@@ -77,11 +85,19 @@
       &__name {
         font-size: 1.1rem;
         color: #1e212b;
+
+        @media screen and (max-width: 1400px) {
+          font-size: 1rem;
+        }
       }
 
       &__qty {
         font-size: 1.25rem;
         color: #1e212b;
+
+        @media screen and (max-width: 1400px) {
+          font-size: 1.1rem;
+        }
 
         &::before {
           content: "\00D7";
@@ -89,12 +105,20 @@
           margin-right: 1rem;
           font-size: 1.25rem;
           font-weight: bold;
+
+          @media screen and (max-width: 1400px) {
+            font-size: 1.1rem;
+          }
         }
       }
 
       &__price {
         font-size: 1.25rem;
         color: #1e212b;
+
+        @media screen and (max-width: 1400px) {
+          font-size: 1.1rem;
+        }
       }
     }
 
@@ -102,9 +126,17 @@
       padding: 2rem 0;
       border-bottom: 1px solid #1e212b;
 
+      @media screen and (max-width: 1400px) {
+        padding: 1rem 0 !important;
+      }
+
       span {
         font-size: 1.25rem;
         color: #1e212b;
+
+        @media screen and (max-width: 1400px) {
+          font-size: 1.1rem;
+        }
       }
     }
 

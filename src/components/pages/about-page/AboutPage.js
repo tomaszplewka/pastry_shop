@@ -11,7 +11,7 @@ import background from "../../../assets/images/carousel1.jpg";
 
 const AboutPage = () => (
   <>
-    <HeaderBanner image={background} title="about us" position="530px" />
+    <HeaderBanner image={background} title="About Us" position="530px" />
     <TextSectionExample />
     <SocialMediaGallery />
     <Testimonials />

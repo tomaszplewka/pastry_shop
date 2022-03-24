@@ -11,8 +11,6 @@ import ShapeDividerBottom from "../../shape-divider-bottom/ShapeDividerBottom";
 
 import { validate, renderField } from "../../utilities/redux-form";
 
-import "./ContactForm.scss";
-
 const ContactForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -34,7 +32,7 @@ const ContactForm = () => {
     >
       <SectionContainer>
         <SectionTitle title="Message Us" />
-        <p className="my-5">
+        <p className="my-md-5 my-3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
           reiciendis illum quo veniam quaerat velit, asperiores pariatur esse.
           Doloremque voluptatem eligendi beatae nisi. Reprehenderit incidunt
@@ -43,7 +41,7 @@ const ContactForm = () => {
           Tenetur, sequi. Ad totam necessitatibus consequatur officia
           doloremque!
         </p>
-        <p className="mb-5 pb-5">
+        <p className="mb-md-5 mb-1 pb-5">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint debitis
           iusto, earum corrupti, voluptate tempora voluptas molestiae illum
           dolore placeat nemo, ratione sit nihil vel at qui! Dolorem, fuga

@@ -10,7 +10,7 @@ import background from "../../../assets/images/carousel2.jpg";
 
 const ContactPage = () => (
   <>
-    <HeaderBanner image={background} title="contact us" position="530px" />
+    <HeaderBanner image={background} title="Contact Us" position="530px" />
     <ContactForm />
     <Testimonials />
     <Subscription />

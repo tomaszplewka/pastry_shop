@@ -21,12 +21,24 @@
       transition: all 0.3s ease;
       resize: none;
       height: 200px;
+      margin: 0 !important;
+
+      @media screen and (max-width: 768px) {
+        padding: 0.4rem 0.3rem;
+        font-size: 0.7rem;
+        box-shadow: 0 5px 5px rgba(#eaf2ef, 1);
+        height: 150px;
+      }
 
       &.invert {
         background: transparent;
         border: 1px solid #1e212b;
         box-shadow: 0 10px 10px rgba(#1e212b, 1);
         border-radius: 5px;
+
+        @media screen and (max-width: 768px) {
+          box-shadow: 0 5px 5px rgba(#1e212b, 1);
+        }
 
         &:hover {
           background: #1e212b;

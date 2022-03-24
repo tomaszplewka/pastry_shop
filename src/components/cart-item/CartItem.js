@@ -11,12 +11,12 @@ const CartItem = ({ item, removeItem, addToCart, decreaseItemQty }) => {
   return (
     <div className="d-flex align-items-center cart-item__container">
       <div className="d-flex justify-content-center cart-item__item">
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-center flex-xl-row flex-column w-100">
           <img src={image} alt="" />
           <span className="fw-bold text-uppercase text-center">{name}</span>
         </div>
       </div>
-      <div className="d-flex justify-content-evenly align-items-center cart-item__qty">
+      <div className="d-flex justify-content-evenly align-items-center flex-lg-row flex-column-reverse cart-item__qty">
         <button
           className="decrement"
           name="decrement"

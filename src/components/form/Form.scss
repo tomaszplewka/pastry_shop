@@ -18,10 +18,18 @@
   & > div {
     &:not(:last-of-type) {
       margin-bottom: 1.25rem;
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 1rem;
+      }
     }
 
     &:last-of-type {
       margin-bottom: 2.5rem;
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 1.75rem;
+      }
     }
   }
 
@@ -33,6 +41,14 @@
     border: 1px solid #f2af29;
     box-shadow: 0px 10px 20px rgba(50, 50, 0, 0.6);
     color: #fffeff;
+
+    @media screen and (max-width: 768px) {
+      padding: 2rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 1rem;
+    }
 
     &::after {
       content: "";
@@ -68,12 +84,29 @@
     letter-spacing: 2px;
     margin: 0 1.5rem 2rem;
     color: #1e212b;
+
+    @media screen and (max-width: 1200px) {
+      font-size: 1.75rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin: 0 0 1rem;
+    }
   }
 
   &__subtitle {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     color: #1e212b;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
 
     span {
       cursor: pointer;

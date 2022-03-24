@@ -9,7 +9,7 @@ import "./ShippingFields.scss";
 
 const ShippingFields = () => (
   <div className="checkout-form__form--shipping">
-    <h2 className="ms-0 fw-bolder text-uppercase form__title">
+    <h2 className="ms-0 mt-4 fw-bolder text-uppercase form__title">
       shipping address
     </h2>
     <Field

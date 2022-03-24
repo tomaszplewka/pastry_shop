@@ -9,7 +9,9 @@
 
       & > div {
         &:nth-child(3) {
-          order: 4;
+          @media screen and (max-width: 400px) {
+            order: 4;
+          }
         }
       }
     }

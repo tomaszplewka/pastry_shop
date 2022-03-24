@@ -2,6 +2,14 @@
   &__section {
     padding-top: 8rem !important;
 
+    @media screen and (max-width: 992px) {
+      padding-top: 6rem !important;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding-top: 4rem !important;
+    }
+
     div {
       & > .btn {
         width: auto !important;
@@ -15,6 +23,15 @@
       filter: drop-shadow(0px 10px 20px rgba(50, 50, 0, 0.6));
       border-radius: 10px;
       margin: 4rem 0;
+
+      @media screen and (max-width: 992px) {
+        margin: 3rem 0 4rem;
+      }
+
+      @media screen and (max-width: 576px) {
+        margin: 2rem 0;
+        border-radius: 5px;
+      }
     }
 
     &__heading {
@@ -24,8 +41,37 @@
         padding: 2rem;
         flex: 1;
 
+        @media screen and (max-width: 1200px) {
+          padding: 1.25rem;
+          font-size: 0.9rem;
+        }
+
+        @media screen and (max-width: 992px) {
+          padding: 1rem;
+          font-size: 0.8rem;
+        }
+
+        @media screen and (max-width: 768px) {
+          padding: 0.75rem;
+          font-size: 0.75rem;
+        }
+
+        @media screen and (max-width: 576px) {
+          padding: 0.5rem;
+          font-size: 0.65rem;
+          text-align: center !important;
+        }
+
         &:first-child {
           flex: 3;
+
+          @media screen and (max-width: 1200px) {
+            flex: 2;
+          }
+
+          @media screen and (max-width: 576px) {
+            flex: 1;
+          }
         }
       }
     }
@@ -33,16 +79,53 @@
     &__total {
       margin: 2rem;
 
+      @media screen and (max-width: 992px) {
+        margin: 1rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin: 0.75rem;
+      }
+
       span {
         font-size: 2rem;
+
+        @media screen and (max-width: 992px) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 768px) {
+          font-size: 1.25rem;
+        }
+
+        @media screen and (max-width: 576px) {
+          font-size: 1rem;
+        }
       }
     }
 
     &__btns {
       margin: 2rem;
 
-      .btn {
+      @media screen and (max-width: 992px) {
+        margin: 1rem;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin: 0.75rem;
+      }
+
+      @media screen and (max-width: 576px) {
+        margin: 0.5rem;
+      }
+
+      button.btn {
         margin-bottom: 2rem !important;
+
+        @media screen and (max-width: 576px) {
+          margin: 0 0 1.5rem !important;
+          width: 100% !important;
+        }
       }
     }
   }

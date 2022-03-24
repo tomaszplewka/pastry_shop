@@ -1,6 +1,6 @@
 .cart-dropdown {
   &__container {
-    top: calc(100% + 24px);
+    top: calc(100% + 10px);
     right: 0;
     width: 350px;
     height: 400px;
@@ -8,13 +8,9 @@
     box-shadow: 0px 10px 20px rgba(50, 50, 0, 0.6);
     z-index: 1;
 
-    @media screen and (max-width: 1440px) {
-      top: calc(100% + 10px);
-    }
-
     @media screen and (max-width: 400px) {
-      left: unset;
-      right: unset;
+      top: calc(100% + 10px);
+      left: 0;
       width: auto;
     }
 
@@ -28,7 +24,7 @@
     &__container {
       flex: 1;
       overflow-y: scroll;
-      padding: 1rem 0.25rem 1rem 1rem;
+      padding: 1rem 0.75rem 1rem 1rem;
     }
   }
 

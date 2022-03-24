@@ -103,12 +103,12 @@ const CheckoutForm = ({
             "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
         }}
       >
-        <SectionContainer customClass="my-5">
+        <SectionContainer customClass="my-xl-5 mt-lg-5 mt-4">
           <SectionTitle title="Your checkout" />
-          <div className="d-flex checkout-form__content__container">
+          <div className="d-flex flex-lg-row flex-column checkout-form__content__container">
             <div className="checkout-form__content">
               {isFormSubmitted ? (
-                <div className="mb-5 mx-5 px-5 pb-5">
+                <div className="mb-5 mx-auto px-5 pb-5">
                   <h4 className="text-center">
                     Your order is being processed. You will be receiving order
                     confirmation email any time now. Please check your mailbox.
@@ -185,7 +185,7 @@ const CheckoutForm = ({
                           </span>
                         </label>
                       </span>
-                      <div className="mt-5 pt-3">
+                      <div className="mt-5 mb-0">
                         <Btn type="submit" fullwidth invert>
                           Order & Pay
                         </Btn>

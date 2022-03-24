@@ -37,7 +37,7 @@ const CartList = ({ items, getTotal }) => {
           "radial-gradient(circle, rgba(255, 254, 255,1) 10%, rgba(237, 255, 217, 1) 100%)"
       }}
     >
-      <SectionContainer customClass="mt-5">
+      <SectionContainer customClass="mt-xl-5">
         <SectionTitle title="your cart" />
         {renderedCartItems.length ? (
           <div className="cart-list__items__container">
@@ -54,7 +54,7 @@ const CartList = ({ items, getTotal }) => {
             <div className="d-flex justify-content-end cart-list__items__total">
               <span className="fw-bold">Total: ${getTotal}</span>
             </div>
-            <div className="d-flex justify-content-between align-items-center cart-list__items__btns">
+            <div className="d-flex justify-content-between align-items-center flex-sm-row flex-column cart-list__items__btns">
               <Btn
                 onClick={() => {
                   scrollUtility();

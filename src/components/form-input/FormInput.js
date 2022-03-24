@@ -12,7 +12,7 @@ const FormInput = ({
   ...otherProps
 }) => (
   <div
-    className={`d-flex justify-content-between align-items-center form-input__container  ${
+    className={`d-flex justify-content-between align-items-center flex-sm-row flex-column form-input__container  ${
       inline && fullwidth ? "text-start alternate-margin" : ""
     }`}
     style={
